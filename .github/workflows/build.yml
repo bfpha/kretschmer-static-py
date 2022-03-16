@@ -1,0 +1,34 @@
+name: Build and publish
+
+on:
+  workflow_dispatch
+
+jobs:
+  build_pages:
+    name: Publish Data via GitHub Pages Website
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_test.txt') }}  
+    - name: Install dependencies
+      run: |
+        pip install --upgrade --upgrade-strategy eager -r requirements.txt
+        ./setup.sh
+    - name: download bootstrap
+      run: |
+        ./setup.sh
+    - name: build html data
+      run: |
+        python run.py
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        publish_dir: ./html 

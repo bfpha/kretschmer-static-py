@@ -1,1 +1,3 @@
-# kretschmer-static-py
+# Kretschmer Static
+
+under development
