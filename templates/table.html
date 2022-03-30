@@ -25,27 +25,27 @@
     <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Werk</th>
-                <th>Erzeuger</th>
-                <th>Station</th>
-                <th>Ort der Station</th>
+                <th>Titel</th>
+                <th>Photograph</th>
+                <th>Beschreibung</th>
+                <th>Ort der Aufnahme</th>
                 <th>Koordinaten</th>
-                <th>Von</th>
-                <th>Bis</th>
-                <th>Fuzzy Date</th>
+                <th>Land</th>
+                <th>Land (historisch)</th>
+                <th>Datum</th>
             </tr>
         </thead>
         <tbody>
         {% for x in objects %}
             <tr>
-                <td>{{x.werk}}</td>
-                <td>{{x.werk_creator}}</td>
-                <td>{{x.station_label}}</td>
-                <td>{{x.station_place_name}}</td>
-                <td>{{x.station_coords}}</td>
-                <td>{{x.start_date}}</td>
-                <td>{{x.end_date}}</td>
-                <td>{{x.fuzzy_date}}</td>
+                <td>{{x.titleOriginal}}</td>
+                <td>{{x.photographDe}}</td>
+                <td>{{x.descriptionDe}}</td>
+                <td>{{x.placeRegionDe}}</td>
+                <td>{{x.coordinates}}</td>
+                <td>{{x.countryDe}}</td>
+                <td>{{x.countryHistoryDe}}</td>
+                <td>{{x.date}}</td>
             </tr>
         {% endfor %}
         </tbody>

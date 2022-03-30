@@ -1,3 +1,4 @@
+from audioop import reverse
 import jinja2
 import json
 import os
@@ -11,7 +12,7 @@ templateLoader = jinja2.FileSystemLoader(searchpath=".")
 templateEnv = jinja2.Environment(loader=templateLoader)
 template = templateEnv.get_template('./templates/index.html')
 
-GDRIVE_URL = "https://docs.google.com/spreadsheet/ccc?key=1JlRllwvZm6tRqrfzPRkOD0uPB4rfFqO_mnpHWQYPTzI"
+GDRIVE_URL = "https://docs.google.com/spreadsheet/ccc?key=1CZdnY39HSsE0C9eSMdvuCoRxJhSxnwlcUxr80qv96uY"
 
 def gsheet_to_df():
     url = f"{GDRIVE_URL}&output=csv"
@@ -20,7 +21,7 @@ def gsheet_to_df():
     data = r.content
     df = pd.read_csv(BytesIO(data), on_bad_lines='skip')
     # df = pd.read_csv('./data_dump.csv')
-    print(df)
+    # print(df)
     return df
 
 # df.to_csv('data_dump.csv', index=False)
@@ -43,6 +44,7 @@ def make_index_html(df):
             "metadata": []
         }
         for i, row in df.iterrows():
+            item['collection'] = row[1]
             station = {}
             for x in row.keys():
                 station[x] = row[x]
@@ -84,7 +86,7 @@ def make_geojsons(df):
                 }
         }
         for i, row in df.iterrows():
-            coords = list(reversed([float(x) for x in row['coords'].replace(' ', '').split(';')]))
+            coords = list(reversed([float(x) for x in row['coordinates'].replace(' ', '').split(';')]))
             feature_line['geometry']['coordinates'].append(coords)
             feature_point = {
                 "type": "Feature",
@@ -93,7 +95,7 @@ def make_geojsons(df):
                     "coordinates": coords
                 },
                 "properties": {
-                    "title": row['placeDe']
+                    "title": row['placeRegionDe']
                 }
             }
             item["features"].append(feature_point)
