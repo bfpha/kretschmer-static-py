@@ -17,16 +17,16 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Alle Biograhpien</h1>
-        <p class="lead text-muted">Visualisierte Biographie von <strong>Alle Biograhpien</strong> </p>
+        <h1 class="fw-light">Alle Photographien</h1>
+        <p class="lead text-muted">Visualisierte Photographien von <strong>Paul Kretschmer</strong> </p>
         
       </div>
     </div>
-    <table id="example" class="display" style="width:100%">
+    <table id="myTable" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Titel</th>
-                <th>Photograph</th>
+                <th>Photograph/in</th>
                 <th>Beschreibung</th>
                 <th>Ort der Aufnahme</th>
                 <th>Koordinaten</th>
@@ -38,9 +38,13 @@
         <tbody>
         {% for x in objects %}
             <tr>
-                <td>{{x.titleOriginal}}</td>
+                <td><a href="{{ x.fileName }}">{{x.titleOriginal}}</a></td>
                 <td>{{x.photographDe}}</td>
-                <td>{{x.descriptionDe}}</td>
+                <td>
+                    {% if x.descriptionDe is string %}
+                        {{x.descriptionDe}}
+                    {% endif %}
+                </td>
                 <td>{{x.placeRegionDe}}</td>
                 <td>{{x.coordinates}}</td>
                 <td>{{x.countryDe}}</td>
@@ -51,14 +55,14 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Werk</th>
-                <th>Erzeuger</th>
-                <th>Station</th>
-                <th>Ort der Station</th>
+                <th>Titel</th>
+                <th>Photograph/in</th>
+                <th>Beschreibung</th>
+                <th>Ort der Aufnahme</th>
                 <th>Koordinaten</th>
-                <th>Von</th>
-                <th>Bis</th>
-                <th>Fuzzy Date</th>
+                <th>Land</th>
+                <th>Land (historisch)</th>
+                <th>Datum</th>
             </tr>
         </tfoot>
     </table>
@@ -66,7 +70,7 @@
 </section>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable(
+        $('#myTable').DataTable(
             {
                 dom: 'PfrtipB',
                 searchPanes: {

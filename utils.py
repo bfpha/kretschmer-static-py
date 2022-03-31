@@ -37,7 +37,7 @@ def make_index_html(df):
         file_name = f"{object_id}.html"
         data_src = f"data/{object_id}.geojson"
         item = {
-            "object_id": object_id.replace('-', '_'),
+            "object_id": "a" + object_id.replace('-', '_'),
             "url": file_name,
             "data_src": data_src, 
             "title": gr,
@@ -48,6 +48,7 @@ def make_index_html(df):
             station = {}
             for x in row.keys():
                 station[x] = row[x]
+            station["fileName"] = file_name
             item['metadata'].append(station)
             rows.append(station)
         items.append(item)
