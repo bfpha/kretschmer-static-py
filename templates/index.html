@@ -1,12 +1,12 @@
 {% extends "templates/base.html" %}
 {% block title%} Objektbiographien-Start {% endblock %}
 {% block content %}
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Start</li>
-    </ol>
-</nav>
-<section class="py-5 text-center container">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Start</li>
+      </ol>
+  </nav>
+  <div class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Paul Kretschmer</h1>
@@ -17,7 +17,7 @@
         </p>
       </div>
     </div>
-  </section>
+  </div>
   <div id="tab-navigation">
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
       {% for col, items in objects|groupby('collection') %}
@@ -41,7 +41,7 @@
               false
             {% endif %}"
           >
-            {{ col.replace('_', ' ') }}
+            {{ loop.index }}
           </button>
         </li>
       {% endfor %}

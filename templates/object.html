@@ -14,109 +14,241 @@
     </ol>
 </nav>
 <div class="container">
+    <div id="tab-navigation">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active"
+                id="meta-german-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#meta-german"
+                role="tab"
+                aria-controls="meta-german"
+                type="button"
+                aria-selected="true"
+              >
+                Deutsch
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link"
+                  id="meta-creek-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#meta-creek"
+                  role="tab"
+                  aria-controls="meta-creek"
+                  type="button"
+                  aria-selected="false"
+                >
+                  Ελληνική
+                </button>
+            </li>
+        </ul>
+    </div>
     <div class="row">
         {% for x in metadata %}    
-            <div class="col-md-8">  
-                <div class="card">   
-                    <div class="card-header">
-                        <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+            <div class="col-md-8">                
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
+                        <div class="card">   
+                            <div class="card-header">
+                                <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table" id="res-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Titel (Übersetzung)</th>
+                                            <td>{{ x.titleDe }}</td>
+                                        </tr>
+                                        <tr>
+                                            {% if x.descriptionDe is string %}
+                                                <th>Beschreibung</th>
+                                                <td>{{ x.descriptionDe }}</td>
+                                            {% endif %} 
+                                        </tr>
+                                        <tr>
+                                            <th>Signatur/Inv-Nr.</th>
+                                            <td>{{ x.singatureInv }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Signatur Link</th>
+                                            <td>
+                                                <a target="_blank"
+                                                    title="OENB"
+                                                    href="{{ x.oenbLink }}">
+                                                    {{ x.oenbLink }}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Photograph/in</th>
+                                            <td>{{ x.photographDe }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Datum</th>
+                                            <td>{{ x.date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ort/Region</th>
+                                            <td>{{ x.placeRegionDe }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Land</th>
+                                            <td>{{ x.countryDe }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Land (historisch)</th>
+                                            <td>{{ x.countryHistoryDe }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tagebuchtitel</th>
+                                            <td>{{ x.journalTitle1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Relation 1 (Reisetagebuch)</th>
+                                            <td>{{ x.relation1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Reisetagebuch Facsimile 1</th>
+                                            <td>{{ x.journalSignature1 }}</td>
+                                        </tr>
+                                        {% if x.relation2 is string %}
+                                        <tr>
+                                            <th>Relation 2 (Reisetagebuch)</th>
+                                            <td>{{ x.relation2 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Reisetagebuch Facsimile 2</th>
+                                            <td>{{ x.journalSignature2 }}</td>
+                                        </tr> 
+                                        {% endif %} 
+                                        <tr>
+                                            <th>Reisetagebuch Link extern</th>
+                                            <td>
+                                                <a target="_blank"
+                                                    title="OENB"
+                                                    href="{{ x.journalLink }}">
+                                                    {{ x.journalLink }}
+                                                </a>
+                                            </td>
+                                        </tr>  
+                                        {% if x.persons is string %}
+                                        <tr>
+                                            <th>Abgebildete Personen</th>
+                                            <td>{{ x.persons }}</td>
+                                        </tr>  
+                                        {% endif %}   
+                                    </tbody>         
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body table-responsive">
-                        <table class="table" id="res-table">
-                            <tbody>
-                                <tr>
-                                    <th>Titel (Original)</th>
-                                    <td>{{ x.titleOriginal }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Titel (Übersetzung)</th>
-                                    <td>{{ x.titleDe }}</td>
-                                </tr>
-                                <tr>
-                                    {% if x.descriptionDe is string %}
-                                        <th>Beschreibung</th>
-                                        <td>{{ x.description }}</td>
-                                    {% endif %} 
-                                </tr>
-                                <tr>
-                                    <th>Signatur/Inv-Nr.</th>
-                                    <td>{{ x.singatureInv }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Signatur Link</th>
-                                    <td>
-                                        <a target="_blank"
-                                            title="OENB"
-                                            href="{{ x.oenbLink }}">
-                                            {{ x.oenbLink }}
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Photograph/in</th>
-                                    <td>{{ x.photographDe }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Datum</th>
-                                    <td>{{ x.date }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Ort/Region</th>
-                                    <td>{{ x.placeRegionDe }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Land</th>
-                                    <td>{{ x.countryDe }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Land (historisch)</th>
-                                    <td>{{ x.countryHistoryDe }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tagebuchtitel</th>
-                                    <td>{{ x.journalTitle1 }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Relation 1 (Reisetagebuch)</th>
-                                    <td>{{ x.relation1 }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Reisetagebuch Facsimile 1</th>
-                                    <td>{{ x.journalSignature1 }}</td>
-                                </tr>
-                                {% if x.relation2 is string %}
-                                <tr>
-                                    <th>Relation 2 (Reisetagebuch)</th>
-                                    <td>{{ x.relation2 }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Reisetagebuch Facsimile 2</th>
-                                    <td>{{ x.journalSignature2 }}</td>
-                                </tr> 
-                                {% endif %} 
-                                <tr>
-                                    <th>Reisetagebuch Link extern</th>
-                                    <td>
-                                        <a target="_blank"
-                                            title="OENB"
-                                            href="{{ x.journalLink }}">
-                                            {{ x.journalLink }}
-                                        </a>
-                                    </td>
-                                </tr>  
-                                {% if x.persons is string %}
-                                <tr>
-                                    <th>Abgebildete Personen</th>
-                                    <td>{{ x.persons }}</td>
-                                </tr>  
-                                {% endif %}   
-                            </tbody>         
-                        </table>
+                    <div class="tab-pane fade" id="meta-creek" tabindex="-1">
+                        <div class="card">   
+                            <div class="card-header">
+                                <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table" id="res-table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Τίτλος (Μετάφραση)</th>
+                                            <td>{{ x.titleGr }}</td>
+                                        </tr>
+                                        <tr>
+                                            {% if x.descriptionGr is string %}
+                                                <th>Περιγραφή</th>
+                                                <td>{{ x.descriptionGr }}</td>
+                                            {% endif %} 
+                                        </tr>
+                                        <tr>
+                                            <th>Signatur/Inv-Nr.</th>
+                                            <td>{{ x.singatureInv }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Signatur Link</th>
+                                            <td>
+                                                <a target="_blank"
+                                                    title="OENB"
+                                                    href="{{ x.oenbLink }}">
+                                                    {{ x.oenbLink }}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Φωτογράφος</th>
+                                            <td>{{ x.photographGr }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Datum</th>
+                                            <td>{{ x.date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Τόπος/Περιοχή</th>
+                                            <td>{{ x.placeRegionGr }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Χώρα</th>
+                                            <td>{{ x.countryGr }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Χώρα (Ιστορικά)</th>
+                                            <td>{{ x.countryHistoryGr }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tagebuchtitel</th>
+                                            <td>{{ x.journalTitle1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Relation 1 (Reisetagebuch)</th>
+                                            <td>{{ x.relation1 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Reisetagebuch Facsimile 1</th>
+                                            <td>{{ x.journalSignature1 }}</td>
+                                        </tr>
+                                        {% if x.relation2 is string %}
+                                        <tr>
+                                            <th>Relation 2 (Reisetagebuch)</th>
+                                            <td>{{ x.relation2 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Reisetagebuch Facsimile 2</th>
+                                            <td>{{ x.journalSignature2 }}</td>
+                                        </tr> 
+                                        {% endif %} 
+                                        <tr>
+                                            <th>Reisetagebuch Link extern</th>
+                                            <td>
+                                                <a target="_blank"
+                                                    title="OENB"
+                                                    href="{{ x.journalLink }}">
+                                                    {{ x.journalLink }}
+                                                </a>
+                                            </td>
+                                        </tr>  
+                                        {% if x.persons is string %}
+                                        <tr>
+                                            <th>Abgebildete Personen</th>
+                                            <td>{{ x.persons }}</td>
+                                        </tr>  
+                                        {% endif %}   
+                                    </tbody>         
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div id='map'></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Ort der Photoaufnahme</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id='map'></div>
+                    </div>
+                </div>                
                 <script>
                     var map = L.map('map').setView([40.28333, 19.45], 5);
                     var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
