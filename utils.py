@@ -37,18 +37,18 @@ def make_index_html(df):
         file_name = f"{object_id}.html"
         data_src = f"data/{object_id}.geojson"
         item = {
-            "object_id": "a" + object_id.replace('-', '_'),
+            "object_id": f"a{object_id.replace('-', '_')}",
             "url": file_name,
             "data_src": data_src, 
             "title": gr,
             "metadata": []
         }
-        for i, row in df.iterrows():
-            item['collection'] = row[1]
-            item['titleOrig'] = row[6]
+        for i, cell in df.iterrows():
+            item['collection'] = cell[1]
+            item['titleOrig'] = cell[6]
             station = {}
-            for x in row.keys():
-                station[x] = row[x]
+            for x in cell.keys():
+                station[x] = cell[x]
             station["fileName"] = file_name
             item['metadata'].append(station)
             rows.append(station)

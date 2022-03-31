@@ -1,5 +1,5 @@
 {% extends "templates/base.html" %}
-{% block title%} Alle Biographien auf einer Karte {% endblock %}
+{% block title%} Alle Orte auf einer Karte {% endblock %}
 {% block scriptHeader %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -9,7 +9,7 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Alle Biograhpien</li>
+        <li class="breadcrumb-item active" aria-current="page">Alle Orte</li>
     </ol>
 </nav>
 <div class="text-center container">
@@ -23,7 +23,7 @@
     <div id='map'></div>
     <script>
         var dataSourceList = [
-                {% for x in objects %}"{{ x.data_src}}"{% if not loop.last %}, {% endif %}{% endfor %}
+                {% for x in objects %}"{{ x.data_src }}"{% if not loop.last %}, {% endif %}{% endfor %}
             ]
         var map = L.map('map').setView([41.12066, 16.86982], 5);
         var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -50,7 +50,7 @@
         };
         var overlays = {
             "Alle Objekte": allObjects,
-            {% for x in objects %}"{{ x.title}}": {{ x.object_id }}{% if not loop.last %}, {% endif %}{% endfor %}
+            {% for x in objects %}"{{ x.title }}": {{ x.object_id }}{% if not loop.last %}, {% endif %}{% endfor %}
         };
         var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
     </script>
