@@ -25,6 +25,7 @@
     <table id="myTable" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>Index</th>
                 <th>Titel</th>
                 <th>Photograph/in</th>
                 <th>Beschreibung</th>
@@ -38,6 +39,7 @@
         <tbody>
         {% for x in objects %}
             <tr>
+                <td>{{ loop.index }}</td>
                 <td><a href="{{ x.fileName }}">{{x.titleOriginal}}</a></td>
                 <td>{{x.photographDe}}</td>
                 <td>
@@ -55,6 +57,7 @@
         </tbody>
         <tfoot>
             <tr>
+                <th>Index</th>
                 <th>Titel</th>
                 <th>Photograph/in</th>
                 <th>Beschreibung</th>
