@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
 {% endblock %}
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
@@ -12,54 +13,173 @@
         <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
     </ol>
 </nav>
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        {% for x in metadata %}            
-        <h1 class="fw-light">{{ x.titleGerman }}</h1>         
-        {% endfor %}
+<div class="container">
+    <div class="row">
+        {% for x in metadata %}    
+            <div class="col-md-8">  
+                <div class="card">   
+                    <div class="card-header">
+                        <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table" id="res-table">
+                            <tbody>
+                                <tr>
+                                    <th>Titel (Original)</th>
+                                    <td>{{ x.titleOriginal }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Titel (Übersetzung)</th>
+                                    <td>{{ x.titleDe }}</td>
+                                </tr>
+                                <tr>
+                                    {% if x.descriptionDe is string %}
+                                        <th>Beschreibung</th>
+                                        <td>{{ x.description }}</td>
+                                    {% endif %} 
+                                </tr>
+                                <tr>
+                                    <th>Signatur/Inv-Nr.</th>
+                                    <td>{{ x.singatureInv }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Signatur Link</th>
+                                    <td>
+                                        <a target="_blank"
+                                            title="OENB"
+                                            href="{{ x.oenbLink }}">
+                                            {{ x.oenbLink }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Photograph/in</th>
+                                    <td>{{ x.photographDe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Datum</th>
+                                    <td>{{ x.date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ort/Region</th>
+                                    <td>{{ x.placeRegionDe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Land</th>
+                                    <td>{{ x.countryDe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Land (historisch)</th>
+                                    <td>{{ x.countryHistoryDe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tagebuchtitel</th>
+                                    <td>{{ x.journalTitle1 }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Relation 1 (Reisetagebuch)</th>
+                                    <td>{{ x.relation1 }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Reisetagebuch Facsimile 1</th>
+                                    <td>{{ x.journalSignature1 }}</td>
+                                </tr>
+                                {% if x.relation2 is string %}
+                                <tr>
+                                    <th>Relation 2 (Reisetagebuch)</th>
+                                    <td>{{ x.relation2 }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Reisetagebuch Facsimile 2</th>
+                                    <td>{{ x.journalSignature2 }}</td>
+                                </tr> 
+                                {% endif %} 
+                                <tr>
+                                    <th>Reisetagebuch Link extern</th>
+                                    <td>
+                                        <a target="_blank"
+                                            title="OENB"
+                                            href="{{ x.journalLink }}">
+                                            {{ x.journalLink }}
+                                        </a>
+                                    </td>
+                                </tr>  
+                                {% if x.persons is string %}
+                                <tr>
+                                    <th>Abgebildete Personen</th>
+                                    <td>{{ x.persons }}</td>
+                                </tr>  
+                                {% endif %}   
+                            </tbody>         
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id='map'></div>
+                <script>
+                    var map = L.map('map').setView([40.28333, 19.45], 5);
+                    var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 18,
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    }).addTo(map);
+    
+                    function popUp(f,l){
+                        var out = [];
+                        if (f.properties){
+                            for(key in f.properties){
+                                out.push(key+": "+f.properties[key]);
+                            }
+                            l.bindPopup(out.join("<br />"));
+                        }
+                    };
+                    var jsonTest = new L.GeoJSON.AJAX(["{{ data_src }}"],{onEachFeature:popUp}).addTo(map);
+                </script>
+            </div>
+            <div class="col-md-6" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">
+                <div class="card">
+                    <div class="card-body" id="img-front-body">
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var imgURL = $("#img-front").attr('data-target');
+                $("#img-front-body").css({
+                    'height': '800px'
+                });
+                var viewer = OpenSeadragon({
+                    id: 'img-front-body',
+                    prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                    // sequenceMode: true,
+                    // showReferenceStrip: true,
+                    // showNavigator: true,
+                    // imageLoaderLimit: 10,
+                    tileSources: imgURL
+                });
+            </script>
+            <div class="col-md-6" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
+                <div class="card">
+                    <div class="card-body" id="img-back-body">
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var imgURL = $("#img-back").attr('data-target');
+                $("#img-back-body").css({
+                    'height': '800px'
+                });
+                var viewer = OpenSeadragon({
+                    id: 'img-back-body',
+                    prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                    // sequenceMode: true,
+                    // showReferenceStrip: true,
+                    // showNavigator: true,
+                    // imageLoaderLimit: 10,
+                    tileSources: imgURL
+                });
+            </script>  
+        {% endfor %}       
         
-        <ul>
-        {% for x in metadata %}
-            
-            <li>{{x.directory}}</li>
-            <li>{{x.file1}}</li>
-            <li>{{x.file2}}</li>
-            <li>{{x.titleOriginal}}</li>
-            <li>{{x.titleGerman}}</li>
-            <li>{{x.titleGr}}</li>
-            {% if x.description is string %}
-                <li>{{x.description}}</li>
-                <li>{{x.descriptionGr}}</li>
-            {% endif %}            
-            
-        {% endfor %}
-        </ul>
-        <p class="lead text-muted"><strong>{{ title }}</strong> </p>
-        <!-- <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p> -->
-      </div>
     </div>
-    <div id='map'></div>
-    <script>
-        var map = L.map('map').setView([52.5082874814, 13.3666105], 5);
-        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
-
-        function popUp(f,l){
-            var out = [];
-            if (f.properties){
-                for(key in f.properties){
-                    out.push(key+": "+f.properties[key]);
-                }
-                l.bindPopup(out.join("<br />"));
-            }
-        };
-        var jsonTest = new L.GeoJSON.AJAX(["{{ data_src }}"],{onEachFeature:popUp}).addTo(map);
-    </script>
-</section>
+</div>
 {% endblock %}

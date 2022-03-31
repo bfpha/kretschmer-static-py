@@ -21,3 +21,23 @@
     border: 1px solid rgb(152, 153, 152);
     padding: 10px;
 }
+
+.card {
+    margin-bottom: 1.5em;
+}
+
+.fade {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#res-table th, #res-table td {
+    border: none;
+}
+
+#res-table th {
+    border-right: 1px solid lightgrey;
+}
