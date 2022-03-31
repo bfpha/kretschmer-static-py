@@ -45,6 +45,7 @@ def make_index_html(df):
         }
         for i, row in df.iterrows():
             item['collection'] = row[1]
+            item['titleOrig'] = row[6]
             station = {}
             for x in row.keys():
                 station[x] = row[x]

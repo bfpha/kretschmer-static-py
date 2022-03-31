@@ -10,7 +10,7 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }}</li>
     </ol>
 </nav>
 <div class="container">
@@ -99,10 +99,11 @@
                                         <tr>
                                             <th>Land (historisch)</th>
                                             <td>{{ x.countryHistoryDe }}</td>
-                                        </tr>
+                                        </tr> 
+                                        {% if x.journalTitle1 is string %}                                       
                                         <tr>
                                             <th>Tagebuchtitel</th>
-                                            <td>{{ x.journalTitle1 }}</td>
+                                            <td>{{ x.journalTitle1 }}</td>                                            
                                         </tr>
                                         <tr>
                                             <th>Relation 1 (Reisetagebuch)</th>
@@ -112,6 +113,7 @@
                                             <th>Reisetagebuch Facsimile 1</th>
                                             <td>{{ x.journalSignature1 }}</td>
                                         </tr>
+                                        {% endif %} 
                                         {% if x.relation2 is string %}
                                         <tr>
                                             <th>Relation 2 (Reisetagebuch)</th>
@@ -122,6 +124,7 @@
                                             <td>{{ x.journalSignature2 }}</td>
                                         </tr> 
                                         {% endif %} 
+                                        {% if x.journalLink is string %}
                                         <tr>
                                             <th>Reisetagebuch Link extern</th>
                                             <td>
@@ -132,6 +135,7 @@
                                                 </a>
                                             </td>
                                         </tr>  
+                                        {% endif %} 
                                         {% if x.persons is string %}
                                         <tr>
                                             <th>Abgebildete Personen</th>
