@@ -3,6 +3,8 @@
 html/data
 html/*.html
 venv-kretschmer
+dl_fundament.sh
+dl_imprint.sh
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
