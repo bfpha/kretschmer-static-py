@@ -19,51 +19,40 @@
     </div>
   </section>
   <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="tab-content">
-        {% for collection, items in objects|groupby('collection') %}
-          <div class="tab-pane active" id="{{ collection }}" role="tabpanel">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
-              {% for x in items %}
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <!-- <svg class="bd-placeholder-img card-img-top"
-                      width="100%"
-                      height="225"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: {{ x.title }}"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false">
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c"/>
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ x.title }}</text>
-                    </svg>  -->
-                    <div class="card-header text-center">
-                      {% for x in x.metadata %}
-                        <img title="{{ x.titleOriginal }}"
-                          src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg"                        
-                        />                  
-                      {% endfor %}
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text"></p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <p>{{ x.title.replace('0', '') }}</p>
-                        <div class="btn-group">                        
-                          <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ x.url }}">Ansehen</a>
-                          <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+    <div class="container tab-content">
+        
+          {% for col, items in objects|groupby('collection') %}
+            <div class="row tab-pane active" id="{{ col }}" role="tabpanel">    
+              
+                {% for res in items %}
+                  <div class="col">
+                  
+                    <div class="card shadow-sm">
+                      <div class="card-header text-center">
+                        {% for x in res.metadata %}
+                          <img title="{{ x.titleOriginal }}"
+                            src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg"                        
+                          />                  
+                        {% endfor %}
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <p>{{ res.title.replace('0', '') }}</p>
+                          <div class="btn-group">                        
+                            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ res.url }}">Ansehen</a>
+                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                          </div>
+                          <!-- <small class="text-muted">9 mins</small> -->
                         </div>
-                        <!-- <small class="text-muted">9 mins</small> -->
                       </div>
                     </div>
                   </div>
-                </div>
-              {% endfor %}
-            </div
-          </div>
-        {% endfor %}
-      </div>
+                {% endfor %}
+              
+            </div>
+          {% endfor %}
+
     </div>
   </div>
 

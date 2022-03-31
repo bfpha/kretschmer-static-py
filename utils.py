@@ -62,7 +62,6 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/table.html')
     with open('./html/table.html', 'w') as f:
         f.write(template.render({"objects": rows}))
-    print(rows[1])
     return items
 
 
@@ -86,7 +85,7 @@ def make_geojsons(df):
                 }
         }
         for i, row in df.iterrows():
-            coords = list(reversed([float(x) for x in row['coordinates'].replace(' ', '').split(';')]))
+            coords = list(reversed([float(x) for x in row['coordinates'].replace(' ', '').split(',')]))
             feature_line['geometry']['coordinates'].append(coords)
             feature_point = {
                 "type": "Feature",
