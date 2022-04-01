@@ -30,7 +30,7 @@ def gsheet_to_df():
 def make_index_html(df):
     os.makedirs('./html', exist_ok=True)
     items = []
-    rows = []
+    rows = []       
     template = templateEnv.get_template('./templates/object.html')
     for gr, df in df.groupby('ordering'):
         object_id = slugify(gr)
@@ -43,12 +43,14 @@ def make_index_html(df):
             "title": gr,
             "metadata": []
         }
-        for i, cell in df.iterrows():
-            item['collection'] = cell[1]
-            item['titleOrig'] = cell[6]
+        for i, row in df.iterrows():
+            item['prev'] = slugify(row[1]) + ".html"
+            item['next'] = slugify(row[2]) + ".html"
+            item['collection'] = row[3]
+            item['titleOrig'] = row[8]
             station = {}
-            for x in cell.keys():
-                station[x] = cell[x]
+            for x in row.keys():
+                station[x] = row[x]
             station["fileName"] = file_name
             item['metadata'].append(station)
             rows.append(station)
