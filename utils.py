@@ -26,7 +26,6 @@ def gsheet_to_df():
 
 # df.to_csv('data_dump.csv', index=False)
 
-
 def make_index_html(df):
     os.makedirs('./html', exist_ok=True)
     items = []
@@ -68,7 +67,6 @@ def make_index_html(df):
         f.write(template.render({"objects": rows}))
     return items
 
-
 def make_geojsons(df):
     items = []
     for gr, df in df.groupby('ordering'):
@@ -107,4 +105,41 @@ def make_geojsons(df):
         with open(f'./html/data/{file_name}', 'w', encoding='utf-8') as f:
             json.dump(item, f, ensure_ascii=False, indent=4)
         items.append(item)
+    return items
+
+GDRIVE_URL2 = "https://docs.google.com/spreadsheet/ccc?key=1O_BGOyzf1d-1qJGwPrIr1EHTxP3ThpTWxUVnkH5l_NQ"
+
+def gsheet2_to_df():
+    url = f"{GDRIVE_URL2}&output=csv"
+    r = requests.get(url)
+    print(r.status_code)
+    data = r.content
+    df = pd.read_csv(BytesIO(data), on_bad_lines='skip')
+    # df = pd.read_csv('./data_dump.csv')
+    # print(df)
+    return df
+
+def make_person_html(df):
+    os.makedirs('./html', exist_ok=True)
+    items = []
+    rows = []       
+    template = templateEnv.get_template('./templates/persons.html')
+    for gr, df in df.groupby('id'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.html"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            station = {}
+            for x in row.keys():
+                station[x] = row[x]
+            item['metadata'].append(station)
+            rows.append(station)
+        items.append(item)
+        with open(f"./html/{file_name}", 'w') as f:
+            f.write(template.render(**item))
     return items

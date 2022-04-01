@@ -1,0 +1,159 @@
+{% extends "templates/base.html" %}
+{% block title%} {{ title }} {% endblock %}
+{% block scriptHeader %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+{% endblock %}
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Start</a></li>   
+        {% for x in metadata %}     
+            <li class="breadcrumb-item active" aria-current="page">{{ x.Familienname }} {{ x.Vorname }}</li>    
+        {% endfor %}    
+    </ol>
+</nav>
+<div class="container">
+    <div id="tab-navigation">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active"
+                id="meta-german-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#meta-german"
+                role="tab"
+                aria-controls="meta-german"
+                type="button"
+                aria-selected="true"
+              >
+                Deutsch
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link"
+                  id="meta-creek-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#meta-creek"
+                  role="tab"
+                  aria-controls="meta-creek"
+                  type="button"
+                  aria-selected="false"
+                >
+                  Ελληνική
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        {% for x in metadata %}    
+            <div class="col-md-12">                
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
+                        <div class="card" style="margin-bottom:8em;">   
+                            <div class="card-header">
+                                <h1 class="fw-light">{{ x.Familienname }} {{ x.Vorname }}</h1>   
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table" id="res-table">
+                                    <tbody>
+                                        {% if x.Familienname is string %}
+                                        <tr>
+                                            <th style="width:30%;">Familienname</th>
+                                            <td>{{ x.Familienname }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Vorname is string %}
+                                        <tr>
+                                            <th style="width:30%;">Vorname</th>
+                                            <td>{{ x.Vorname }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Geburtsdatum is string %}
+                                        <tr>
+                                            <th style="width:30%;">Geburtsdatum</th>
+                                            <td>{{ x.Geburtsdatum }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Sterbedatum is string %}
+                                        <tr>
+                                            <th style="width:30%;">Sterbedatum</th>
+                                            <td>{{ x.Sterbedatum }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Link1 is string %}
+                                        <tr>
+                                            <th style="width:30%;">Link extern</th>
+                                            <td>
+                                                <ul>
+                                                    <li><a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a></li>
+                                                    {% if x.Link2 is string %}
+                                                        <li><a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </td>
+                                        </tr>  
+                                        {% endif %}                                      
+                                    </tbody>        
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="meta-creek" tabindex="-1">
+                        <div class="card" style="margin-bottom:8em;">   
+                            <div class="card-header">
+                                <h1 class="fw-light">{{ x.Familienname_gr }} {{ x.Vorname_gr }}</h1>    
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table" id="res-table">
+                                    <tbody>
+                                        {% if x.Familienname_gr is string %}
+                                        <tr>
+                                            <th style="width:30%;">Familienname</th>
+                                            <td>{{ x.Familienname_gr }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Vorname_gr is string %}
+                                        <tr>
+                                            <th style="width:30%;">Vorname</th>
+                                            <td>{{ x.Vorname_gr }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Geburtsdatum is string %}
+                                        <tr>
+                                            <th style="width:30%;">Geburtsdatum</th>
+                                            <td>{{ x.Geburtsdatum }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Sterbedatum is string %}
+                                        <tr>
+                                            <th style="width:30%;">Sterbedatum</th>
+                                            <td>{{ x.Sterbedatum }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if x.Link1 is string %}
+                                        <tr>
+                                            <th style="width:30%;">Link extern</th>
+                                            <td>
+                                                <ul>
+                                                    <li><a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a></li>
+                                                    {% if x.Link2 is string %}
+                                                        <li><a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </td>
+                                        </tr>  
+                                        {% endif %}                                      
+                                    </tbody>         
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}      
+        
+    </div>
+</div>
+{% endblock %}
