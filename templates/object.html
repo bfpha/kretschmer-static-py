@@ -5,6 +5,11 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+    <style>
+        .container-fluid{
+            max-width: 100%;
+        }
+    </style>
 {% endblock %}
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
@@ -15,7 +20,7 @@
         <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }}</a></li>
     </ol>
 </nav>
-<div class="container">
+<div class="container container-fluid">
     <div id="tab-navigation">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
