@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
 {% endblock %}
 {% block content %}
-<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+<nav style="--bs-breadcrumb-divider: '>>'; margin-bottom: 4em;" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>   
         <li class="breadcrumb-item"><a href="person-index.html">Alle Personen als Tabelle</a></li>
@@ -52,7 +52,7 @@
             <div class="col-md-12">                
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
-                        <div class="card" style="margin-bottom:8em;">   
+                        <div class="card" style="margin-bottom:10em;">   
                             <div class="card-header">
                                 <h1 class="fw-light">{{ x.Familienname }} {{ x.Vorname }}</h1>   
                             </div>
@@ -71,16 +71,16 @@
                                             <td>{{ x.Vorname }}</td>
                                         </tr>
                                         {% endif %}
-                                        {% if x.Geburtsdatum is string %}
+                                        {% if x.Geburtsdatum | int() != 0 %}
                                         <tr>
                                             <th style="width:30%;">Geburtsdatum</th>
-                                            <td>{{ x.Geburtsdatum }}</td>
+                                            <td>{{ x.Geburtsdatum | int() }}</td>
                                         </tr>
                                         {% endif %}
-                                        {% if x.Sterbedatum is string %}
+                                        {% if x.Sterbedatum | int() != 0 %}
                                         <tr>
                                             <th style="width:30%;">Sterbedatum</th>
-                                            <td>{{ x.Sterbedatum }}</td>
+                                            <td>{{ x.Sterbedatum | int() }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Link1 is string %}
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="meta-creek" tabindex="-1">
-                        <div class="card" style="margin-bottom:8em;">   
+                        <div class="card" style="margin-bottom:10em;">   
                             <div class="card-header">
                                 <h1 class="fw-light">{{ x.Familienname_gr }} {{ x.Vorname_gr }}</h1>    
                             </div>
@@ -121,16 +121,16 @@
                                             <td>{{ x.Vorname_gr }}</td>
                                         </tr>
                                         {% endif %}
-                                        {% if x.Geburtsdatum is string %}
+                                        {% if x.Geburtsdatum | int() != 0 %}
                                         <tr>
                                             <th style="width:30%;">Geburtsdatum</th>
-                                            <td>{{ x.Geburtsdatum }}</td>
+                                            <td>{{ x.Geburtsdatum | int() }}</td>
                                         </tr>
                                         {% endif %}
-                                        {% if x.Sterbedatum is string %}
+                                        {% if x.Sterbedatum | int() != 0 %}
                                         <tr>
                                             <th style="width:30%;">Sterbedatum</th>
-                                            <td>{{ x.Sterbedatum }}</td>
+                                            <td>{{ x.Sterbedatum | int() }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Link1 is string %}

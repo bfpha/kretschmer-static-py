@@ -68,7 +68,19 @@ ul {
     padding-left: 0;
 }
 
+#myTable_wrapper {
+    margin-bottom: 2em;
+}
+
 @media (max-width: 1024px) { 
+
+    .card-header > img {
+        height:200px;
+    }
+
+}
+
+@media (max-width: 1680px) { 
 
     .card-header > img {
         height:200px;

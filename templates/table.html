@@ -14,7 +14,7 @@
         <li class="breadcrumb-item active" aria-current="page">Alle Fotographien als Tabelle</li>
     </ol>
 </nav>
-<section class="py-5 text-center container">
+<div class="text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Alle Fotographien</h1>
@@ -22,7 +22,7 @@
         
       </div>
     </div>
-    <table id="myTable" class="display" style="width:100%">
+    <table id="myTable" class="display" style="width:100%;">
         <thead>
             <tr>
                 <th>Index</th>
@@ -70,7 +70,7 @@
         </tfoot>
     </table>
     
-</section>
+</div>
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable(
