@@ -57,9 +57,9 @@ echo '<head>
         </div>
       </div>
     </header>'  >> ${IMPRINT_XML}
-echo "<body><main>" >> ${IMPRINT_XML}
+echo "<body><div class='container'><div class='card' style='margin-top:2em;'><div class='card-body'>" >> ${IMPRINT_XML}
 curl https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID=${REDMINE_ID} >> ${IMPRINT_XML}
-echo "</main>" >> ${IMPRINT_XML}
+echo "</div></div></div>" >> ${IMPRINT_XML}
 echo '<div class="wrapper bg-dark" style="color:lightgrey;">
       <div class="container" style="padding:2em;" tabindex="-1">
           <div class="row">
