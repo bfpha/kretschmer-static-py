@@ -29,9 +29,6 @@
         <th>Vorname griechisch</th>
         <th>Nachname</th>
         <th>Nachname griechisch</th>
-        <th>Geburtsdatum</th>
-        <th>Sterbedatum</th>
-        <th>Link</th>
       </tr>
     </thead>
     <tbody>
@@ -61,25 +58,6 @@
             {{ x.Familienname_gr }}
             {% endif %}                  
           </td>
-          <td>
-            {% if x.Geburtsdatum | int() != 0 %}
-            {{ x.Geburtsdatum | int() }}
-            {% endif %}                  
-          </td>
-          <td>
-            {% if x.Sterbedatum | int() != 0 %}
-            {{ x.Sterbedatum | int() }}
-            {% endif %}                    
-          </td>
-          <td>
-            {% if x.Link1 is string %}
-            <a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a>
-            {% endif %}
-            <br>
-            {% if x.Link2 is string %}
-            <a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a>
-            {% endif %}
-          </td>
         </tr>
         {% endfor %}
       {% endfor %}
@@ -102,14 +80,8 @@
                     searchPanes: {
                         show: true
                     },
-                    targets: [1]
+                    targets: [1, 2, 3, 4]
                 },
-                {
-                    searchPanes: {
-                        show: false
-                    },
-                    targets: [1, 2, 3]
-                }
             ]
           }   
       );
