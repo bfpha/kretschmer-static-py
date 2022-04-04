@@ -317,50 +317,16 @@
                                     <h5>Abgebildete Personen</h5>
                                 </div>
                                 <div class="card-body">
-                                    {% if x.persons|length == 17 %}
-                                        <ul>
-                                            <li><strong>ID</strong></li>
-                                            <li>
-                                                <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                    {{ x.persons.split(' ')[0] }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                    {{ x.persons.split(' ')[1] }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ x.persons.split(' ')[2] }}.html">
-                                                    {{ x.persons.split(' ')[2] }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    {% elif x.persons|length == 11 %}
-                                        <ul>
-                                            <li><strong>ID</strong></li>
-                                            <li>
-                                                <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                    {{ x.persons.split(' ')[0] }}
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                    {{ x.persons.split(' ')[1] }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    {% elif x.persons|length == 5 %} 
-                                        <ul>
-                                            <li><strong>ID</strong></li>
-                                            <li>
-                                                <a href="{{ x.persons }}.html">
-                                                    {{ x.persons }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    {% endif %}   
-                                    
+                                    <ul>
+                                        <li><strong>ID</strong></li>
+                                        {% for x in x.persons.split(' ') %}                                        
+                                        <li>
+                                            <a href="{{ x }}.html">
+                                                {{ x }}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
