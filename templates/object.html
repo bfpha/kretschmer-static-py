@@ -10,9 +10,9 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
-        <li class="breadcrumb-item"><a href="{{ prev }}">vorheriges Foto</a></li>   
+        <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitle.lstrip('0') }}</a></li>   
         <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }}</li>        
-        <li class="breadcrumb-item"><a href="{{ next }}">nächstes Foto</a></li>
+        <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }}</a></li>
     </ol>
 </nav>
 <div class="container">
@@ -48,434 +48,458 @@
     </div>
     <div class="row">
         {% for x in metadata %}    
-            <div class="col-md-8">                
-                <div class="tab-content">
-                    <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
-                        <div class="card">   
-                            <div class="card-header">
-                                <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+            <div class="col-md-6">   
+                <div class="row">     
+                    <div class="col-md-12">        
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
+                                <div class="card">   
+                                    <div class="card-header">
+                                        <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                                    </div>
+                                    <div class="card-body table-responsive">
+                                        <table class="table" id="res-table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Titel (Übersetzung)</th>
+                                                    <td>{{ x.titleDe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    {% if x.descriptionDe is string %}
+                                                        <th>Beschreibung</th>
+                                                        <td>{{ x.descriptionDe }}</td>
+                                                    {% endif %} 
+                                                </tr>
+                                                <tr>
+                                                    <th>Signatur/Inv-Nr.</th>
+                                                    <td>{{ x.singatureInv }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Signatur Link</th>
+                                                    <td>
+                                                        <a target="_blank"
+                                                            title="OENB"
+                                                            href="{{ x.oenbLink }}">
+                                                            {{ x.oenbLink }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Photograph/in</th>
+                                                    <td>{{ x.photographDe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Datum</th>
+                                                    <td>{{ x.date }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ort/Region</th>
+                                                    <td>{{ x.placeRegionDe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Land</th>
+                                                    <td>{{ x.countryDe }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Land (historisch)</th>
+                                                    <td>{{ x.countryHistoryDe }}</td>
+                                                </tr> 
+                                                {% if x.journalTitle1 is string %}                                       
+                                                <tr>
+                                                    <th>Reisetagebuch (Titel)</th>
+                                                    <td>{{ x.journalTitle1 }}</td>                                            
+                                                </tr>
+                                                <tr>
+                                                    <th>Reisetagebuch (Zitat 1)</th>
+                                                    <td>
+                                                        {{ x.relation1 | replace('\n', '<br>') }}
+                                                        <br>
+                                                        <a target="_blank"
+                                                            title="{{ x.journalSignature1 }}"
+                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
+                                                            {{ x.journalSignature1 }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endif %} 
+                                                {% if x.relation2 is string %}
+                                                <tr>
+                                                    <th>Reisetagebuch (Zitat 2)</th>
+                                                    <td>
+                                                        {{ x.relation2 | replace('\n', '<br>')  }}
+                                                        <br>
+                                                        <a target="_blank"
+                                                            title="{{ x.journalSignature2 }}"
+                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            {{ x.journalSignature2 }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endif %} 
+                                                {% if x.journalLink is string %}
+                                                <tr>
+                                                    <th>Reisetagebuch (Link)</th>
+                                                    <td>
+                                                        <a target="_blank"
+                                                            title="OENB"
+                                                            href="{{ x.journalLink }}">
+                                                            {{ x.journalLink }}
+                                                        </a>
+                                                    </td>
+                                                </tr>  
+                                                {% endif %} 
+                                                {% if x.imageSize is string %}
+                                                <tr>
+                                                    <th>Bildgröße</th>
+                                                    <td>
+                                                        {{ x.imageSize }}
+                                                        <br>
+                                                        {{ x.px }}
+                                                    </td>
+                                                </tr>  
+                                                {% endif %} 
+                                                {% if x.persons is string and x.persons|length == 17 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[0] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[1] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[2] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% elif x.persons is string and x.persons|length == 11 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[0] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[1] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% elif x.persons is string and x.persons|length == 5 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% endif %}   
+                                            </tbody>         
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body table-responsive">
-                                <table class="table" id="res-table">
-                                    <tbody>
-                                        <tr>
-                                            <th>Titel (Übersetzung)</th>
-                                            <td>{{ x.titleDe }}</td>
-                                        </tr>
-                                        <tr>
-                                            {% if x.descriptionDe is string %}
-                                                <th>Beschreibung</th>
-                                                <td>{{ x.descriptionDe }}</td>
-                                            {% endif %} 
-                                        </tr>
-                                        <tr>
-                                            <th>Signatur/Inv-Nr.</th>
-                                            <td>{{ x.singatureInv }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Signatur Link</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="OENB"
-                                                    href="{{ x.oenbLink }}">
-                                                    {{ x.oenbLink }}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Photograph/in</th>
-                                            <td>{{ x.photographDe }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Datum</th>
-                                            <td>{{ x.date }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Ort/Region</th>
-                                            <td>{{ x.placeRegionDe }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Land</th>
-                                            <td>{{ x.countryDe }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Land (historisch)</th>
-                                            <td>{{ x.countryHistoryDe }}</td>
-                                        </tr> 
-                                        {% if x.journalTitle1 is string %}                                       
-                                        <tr>
-                                            <th>Tagebuchtitel</th>
-                                            <td>{{ x.journalTitle1 }}</td>                                            
-                                        </tr>
-                                        <tr>
-                                            <th>Relation 1 (Reisetagebuch)</th>
-                                            <td>{{ x.relation1 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Reisetagebuch Facsimile 1</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="{{ x.journalSignature1 }}"
-                                                    href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
-                                                    {{ x.journalSignature1 }}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endif %} 
-                                        {% if x.relation2 is string %}
-                                        <tr>
-                                            <th>Relation 2 (Reisetagebuch)</th>
-                                            <td>{{ x.relation2 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Reisetagebuch Facsimile 2</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="{{ x.journalSignature2 }}"
-                                                    href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
-                                                    {{ x.journalSignature2 }}
-                                                </a>
-                                            </td>
-                                        </tr> 
-                                        {% endif %} 
-                                        {% if x.journalLink is string %}
-                                        <tr>
-                                            <th>Reisetagebuch Link extern</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="OENB"
-                                                    href="{{ x.journalLink }}">
-                                                    {{ x.journalLink }}
-                                                </a>
-                                            </td>
-                                        </tr>  
-                                        {% endif %} 
-                                        {% if x.persons is string and x.persons|length == 17 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
+                            <div class="tab-pane fade" id="meta-creek" tabindex="-1">
+                                <div class="card">   
+                                    <div class="card-header">
+                                        <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                                    </div>
+                                    <div class="card-body table-responsive">
+                                        <table class="table" id="res-table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Τίτλος (Μετάφραση)</th>
+                                                    <td>{{ x.titleGr }}</td>
+                                                </tr>
+                                                <tr>
+                                                    {% if x.descriptionGr is string %}
+                                                        <th>Περιγραφή</th>
+                                                        <td>{{ x.descriptionGr }}</td>
+                                                    {% endif %} 
+                                                </tr>
+                                                <tr>
+                                                    <th>Αριθμός Εισαγωγής</th>
+                                                    <td>{{ x.singatureInv }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Αριθμός Εισαγωγής  (Link)</th>
+                                                    <td>
+                                                        <a target="_blank"
+                                                            title="OENB"
+                                                            href="{{ x.oenbLink }}">
+                                                            {{ x.oenbLink }}
                                                         </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Φωτογράφος</th>
+                                                    <td>{{ x.photographGr }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ημερομηνία</th>
+                                                    <td>{{ x.date }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Τόπος/Περιοχή</th>
+                                                    <td>{{ x.placeRegionGr }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Χώρα</th>
+                                                    <td>{{ x.countryGr }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Χώρα (Ιστορικά)</th>
+                                                    <td>{{ x.countryHistoryGr }}</td>
+                                                </tr>
+                                                {% if x.journalTitle1 is string %}                                       
+                                                <tr>
+                                                    <th>Ημερολόγιο (Τίτλος)</th>
+                                                    <td>{{ x.journalTitle1 }}</td>                                            
+                                                </tr>
+                                                <tr>
+                                                    <th>Ημερολόγιο (Πηγή 1)</th>
+                                                    <td>
+                                                        {{ x.relation1 | replace('\n', '<br>') }}
+                                                        <br>
+                                                        <a target="_blank"
+                                                            title="{{ x.journalSignature1 }}"
+                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
+                                                            {{ x.journalSignature1 }}
                                                         </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[2] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
+                                                    </td>
+                                                </tr>
+                                                {% endif %} 
+                                                {% if x.relation2 is string %}
+                                                <tr>
+                                                    <th>Ημερολόγιο (Πηγή 2)</th>
+                                                    <td>
+                                                        {{ x.relation2 | replace('\n', '<br>')  }}
+                                                        <br>
+                                                        <a target="_blank"
+                                                            title="{{ x.journalSignature2 }}"
+                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            {{ x.journalSignature2 }}
                                                         </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% elif x.persons is string and x.persons|length == 11 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
+                                                    </td>
+                                                </tr>
+                                                {% endif %} 
+                                                {% if x.journalLink is string %}
+                                                <tr>
+                                                    <th>Ημερολόγιο (Link)</th>
+                                                    <td>
+                                                        <a target="_blank"
+                                                            title="OENB"
+                                                            href="{{ x.journalLink }}">
+                                                            {{ x.journalLink }}
                                                         </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% elif x.persons is string and x.persons|length == 5 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% endif %}   
-                                    </tbody>         
-                                </table>
+                                                    </td>
+                                                </tr>  
+                                                {% endif %} 
+                                                {% if x.imageSize is string %}
+                                                <tr>
+                                                    <th>Μέγεθος Εικόνας</th>
+                                                    <td>
+                                                        {{ x.imageSize }}
+                                                        <br>
+                                                        {{ x.px }}
+                                                    </td>
+                                                </tr>  
+                                                {% endif %} 
+                                                {% if x.persons is string and x.persons|length == 17 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[0] }}.html">
+                                                                    {{ x.Vorname }}
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[1] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[2] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% elif x.persons is string and x.persons|length == 11 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[0] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ x.persons.split(' ')[1] }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% elif x.persons is string and x.persons|length == 5 %}
+                                                <tr>
+                                                    <th>Abgebildete Personen</th>
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ x.persons }}.html">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                                                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% endif %}
+                                            </tbody>         
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="meta-creek" tabindex="-1">
-                        <div class="card">   
+                    <div class="col-md-6">
+                        <div class="card">
                             <div class="card-header">
-                                <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
+                                <h5>Ort der Fotoaufnahme</h5>
                             </div>
-                            <div class="card-body table-responsive">
-                                <table class="table" id="res-table">
-                                    <tbody>
-                                        <tr>
-                                            <th>Τίτλος (Μετάφραση)</th>
-                                            <td>{{ x.titleGr }}</td>
-                                        </tr>
-                                        <tr>
-                                            {% if x.descriptionGr is string %}
-                                                <th>Περιγραφή</th>
-                                                <td>{{ x.descriptionGr }}</td>
-                                            {% endif %} 
-                                        </tr>
-                                        <tr>
-                                            <th>Signatur/Inv-Nr.</th>
-                                            <td>{{ x.singatureInv }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Signatur Link</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="OENB"
-                                                    href="{{ x.oenbLink }}">
-                                                    {{ x.oenbLink }}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Φωτογράφος</th>
-                                            <td>{{ x.photographGr }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Datum</th>
-                                            <td>{{ x.date }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Τόπος/Περιοχή</th>
-                                            <td>{{ x.placeRegionGr }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Χώρα</th>
-                                            <td>{{ x.countryGr }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Χώρα (Ιστορικά)</th>
-                                            <td>{{ x.countryHistoryGr }}</td>
-                                        </tr>
-                                        {% if x.journalTitle1 is string %}                                       
-                                        <tr>
-                                            <th>Tagebuchtitel</th>
-                                            <td>{{ x.journalTitle1 }}</td>                                            
-                                        </tr>
-                                        <tr>
-                                            <th>Relation 1 (Reisetagebuch)</th>
-                                            <td>{{ x.relation1 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Reisetagebuch Facsimile 1</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="{{ x.journalSignature1 }}"
-                                                    href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
-                                                    {{ x.journalSignature1 }}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endif %} 
-                                        {% if x.relation2 is string %}
-                                        <tr>
-                                            <th>Relation 2 (Reisetagebuch)</th>
-                                            <td>{{ x.relation2 }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Reisetagebuch Facsimile 2</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="{{ x.journalSignature2 }}"
-                                                    href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
-                                                    {{ x.journalSignature2 }}
-                                                </a>
-                                            </td>
-                                        </tr> 
-                                        {% endif %} 
-                                        <tr>
-                                            <th>Reisetagebuch Link extern</th>
-                                            <td>
-                                                <a target="_blank"
-                                                    title="OENB"
-                                                    href="{{ x.journalLink }}">
-                                                    {{ x.journalLink }}
-                                                </a>
-                                            </td>
-                                        </tr>  
-                                        {% if x.persons is string and x.persons|length == 17 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[2] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% elif x.persons is string and x.persons|length == 11 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[0] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ x.persons.split(' ')[1] }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% elif x.persons is string and x.persons|length == 5 %}
-                                        <tr>
-                                            <th>Abgebildete Personen</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ x.persons }}.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                                            </svg>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% endif %}
-                                    </tbody>         
-                                </table>
+                            <div class="card-body">
+                                <div id="map-object"></div>
+                            </div>
+                        </div>                
+                        <script>
+                            var map = L.map('map-object').setView([41.12066, 16.86982], 4);
+                            var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 18,
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                            }).addTo(map);
+            
+                            function popUp(f,l){
+                                var out = [];
+                                if (f.properties){
+                                    for(key in f.properties){
+                                        out.push(key+": "+f.properties[key]);
+                                    }
+                                    l.bindPopup(out.join("<br />"));
+                                }
+                            };
+                            var jsonTest = new L.GeoJSON.AJAX(["{{ data_src }}"],{onEachFeature:popUp}).addTo(map);
+                        </script>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-6">    
+                <div class="row">       
+                    <div class="col-md-12" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">
+                        <div class="card">
+                            <div class="card-body" id="img-front-body">
                             </div>
                         </div>
                     </div>
+                    <script type="text/javascript">
+                        var imgURL = $("#img-front").attr('data-target');
+                        $("#img-front-body").css({
+                            'height': '600px'
+                        });
+                        var viewer = OpenSeadragon({
+                            id: 'img-front-body',
+                            prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                            // sequenceMode: true,
+                            // showReferenceStrip: true,
+                            // showNavigator: true,
+                            // imageLoaderLimit: 10,
+                            tileSources: imgURL
+                        });
+                    </script>
+                    <div class="col-md-12" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
+                        <div class="card">
+                            <div class="card-body" id="img-back-body">
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var imgURL = $("#img-back").attr('data-target');
+                        $("#img-back-body").css({
+                            'height': '600px'
+                        });
+                        var viewer = OpenSeadragon({
+                            id: 'img-back-body',
+                            prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                            // sequenceMode: true,
+                            // showReferenceStrip: true,
+                            // showNavigator: true,
+                            // imageLoaderLimit: 10,
+                            tileSources: imgURL
+                        });
+                    </script>  
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Ort der Fotoaufnahme</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="map-object"></div>
-                    </div>
-                </div>                
-                <script>
-                    var map = L.map('map-object').setView([41.12066, 16.86982], 4);
-                    var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 18,
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                    }).addTo(map);
-    
-                    function popUp(f,l){
-                        var out = [];
-                        if (f.properties){
-                            for(key in f.properties){
-                                out.push(key+": "+f.properties[key]);
-                            }
-                            l.bindPopup(out.join("<br />"));
-                        }
-                    };
-                    var jsonTest = new L.GeoJSON.AJAX(["{{ data_src }}"],{onEachFeature:popUp}).addTo(map);
-                </script>
-            </div>
-            <div class="col-md-6" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">
-                <div class="card">
-                    <div class="card-body" id="img-front-body">
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                var imgURL = $("#img-front").attr('data-target');
-                $("#img-front-body").css({
-                    'height': '800px'
-                });
-                var viewer = OpenSeadragon({
-                    id: 'img-front-body',
-                    prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
-                    // sequenceMode: true,
-                    // showReferenceStrip: true,
-                    // showNavigator: true,
-                    // imageLoaderLimit: 10,
-                    tileSources: imgURL
-                });
-            </script>
-            <div class="col-md-6" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
-                <div class="card">
-                    <div class="card-body" id="img-back-body">
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                var imgURL = $("#img-back").attr('data-target');
-                $("#img-back-body").css({
-                    'height': '800px'
-                });
-                var viewer = OpenSeadragon({
-                    id: 'img-back-body',
-                    prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
-                    // sequenceMode: true,
-                    // showReferenceStrip: true,
-                    // showNavigator: true,
-                    // imageLoaderLimit: 10,
-                    tileSources: imgURL
-                });
-            </script>  
+            
         {% endfor %}       
         
     </div>

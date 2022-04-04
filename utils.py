@@ -45,6 +45,8 @@ def make_index_html(df):
         for i, row in df.iterrows():
             item['prev'] = slugify(row[1]) + ".html"
             item['next'] = slugify(row[2]) + ".html"
+            item['prevTitle'] = row[1]
+            item['nextTitle'] = row[2]
             item['collection'] = row[3]
             item['titleOrig'] = row[8]
             station = {}
@@ -128,7 +130,7 @@ def make_person_html(df):
         object_id = slugify(gr)
         file_name = f"{object_id}.html"
         item = {
-            "object_id": f"a{object_id.replace('-', '_')}",
+            "object_id": f"{object_id.replace('-', '_')}",
             "url": file_name,
             "title": gr,
             "metadata": []
@@ -142,4 +144,7 @@ def make_person_html(df):
         items.append(item)
         with open(f"./html/{file_name}", 'w') as f:
             f.write(template.render(**item))
+    template = templateEnv.get_template('./templates/person-index.html')
+    with open('./html/person-index.html', 'w') as f:
+        f.write(template.render({"objects": items}))
     return items

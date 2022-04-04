@@ -56,6 +56,7 @@
 
 #res-table th {
     border-right: 1px solid lightgrey;
+    width: 30%;
 }
 
 .nav-tabs {
@@ -65,4 +66,8 @@
 ul {
     list-style: none;
     padding-left: 0;
+}
+
+.container{
+    max-width: 100%;
 }

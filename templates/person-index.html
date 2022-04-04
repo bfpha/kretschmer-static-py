@@ -1,0 +1,112 @@
+{% extends "templates/base.html" %}
+{% block title%} Personenindex {% endblock %}
+{% block scriptHeader %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+{% endblock %}
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Alle Personen als Tabelle</li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Personenindex</h3>
+        </div>
+        <div class="card-body">
+          <table class="table" id="myTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Geburtsdatum</th>
+                <th>Sterbedatum</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in objects %}
+                {% for x in item.metadata %}
+                <tr>
+                  <td>
+                    <a href="{{ x.id }}.html">{{ x.id }}</a>
+                  </td>
+                  <td>
+                    {% if x.Vorname is string %}
+                    {{ x.Vorname }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if x.Familienname is string %}
+                    {{ x.Familienname }}
+                    {% endif %}                  
+                  </td>
+                  <td>
+                    {% if x.Geburtsdatum | int() != 0 %}
+                    {{ x.Geburtsdatum | int() }}
+                    {% endif %}                  
+                  </td>
+                  <td>
+                    {% if x.Sterbedatum | int() != 0 %}
+                    {{ x.Sterbedatum | int() }}
+                    {% endif %}                    
+                  </td>
+                  <td>
+                    {% if x.Link1 is string %}
+                    <a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a>
+                    {% endif %}
+                    <br>
+                    {% if x.Link2 is string %}
+                    <a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+      $('#myTable').DataTable(
+          {
+            dom: 'PfrtipB',
+            searchPanes: {
+                initCollapsed: true
+            },
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            columnDefs: [
+                {
+                    searchPanes: {
+                        show: true
+                    },
+                    targets: [1]
+                },
+                {
+                    searchPanes: {
+                        show: false
+                    },
+                    targets: [1, 2, 3]
+                }
+            ]
+          }   
+      );
+  } );
+</script>
+
+{% endblock %}
