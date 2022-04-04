@@ -1,6 +1,6 @@
 # bin/bash
 
-REDMINE_ID=20226
+REDMINE_ID=20278
 IMPRINT_XML=./templates/imprint.html
 rm ${IMPRINT_XML}
 echo '<html lang="en">'  >> ${IMPRINT_XML}
@@ -10,21 +10,11 @@ echo '<head>
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title> 0001. Triest </title>
+    <title> Imprint </title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
-    <style>
-        .container-fluid{
-            max-width: 100%;
-        }
-    </style>
   </head>
   <body>
     <header>
