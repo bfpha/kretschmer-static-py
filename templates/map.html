@@ -34,9 +34,8 @@
         function popUp(f,l){
             var out = [];
             if (f.properties){
-                for(key in f.properties){
-                    out.push(key+": "+f.properties[key]);
-                }
+                out.push("Ortsname: "+f.properties['title']);
+                out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitle']}</a>`);                
                 l.bindPopup(out.join("<br />"));
             }
         };

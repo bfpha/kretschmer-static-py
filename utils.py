@@ -43,12 +43,12 @@ def make_index_html(df):
             "metadata": []
         }
         for i, row in df.iterrows():
-            item['prev'] = slugify(row[1]) + ".html"
-            item['next'] = slugify(row[2]) + ".html"
-            item['prevTitle'] = row[1]
-            item['nextTitle'] = row[2]
-            item['collection'] = row[3]
-            item['titleOrig'] = row[8]
+            item['prev'] = slugify(row['previous']) + ".html"
+            item['next'] = slugify(row['next']) + ".html"
+            item['prevTitle'] = row['previous']
+            item['nextTitle'] = row['next']
+            item['collection'] = row['archeCollection']
+            item['titleOrig'] = row['titleOriginal']
             station = {}
             for x in row.keys():
                 station[x] = row[x]
@@ -85,7 +85,7 @@ def make_geojsons(df):
                 "coordinates": []
             },
             "properties": {
-                    "title": f"{gr}"
+                    "link": slugify(gr),
                 }
         }
         for i, row in df.iterrows():
@@ -98,7 +98,9 @@ def make_geojsons(df):
                     "coordinates": coords
                 },
                 "properties": {
-                    "title": row['placeRegionDe']
+                    "title": row['placeRegionDe'],
+                    "link": slugify(gr),
+                    "linkTitle": row['titleOriginal']
                 }
             }
             item["features"].append(feature_point)
