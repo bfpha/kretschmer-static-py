@@ -1,0 +1,141 @@
+{% extends "templates/base.html" %}
+{% block title%} Personenindex {% endblock %}
+{% block scriptHeader %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+{% endblock %}
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Alle Personen als Tabelle</li>
+  </ol>
+</nav>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Alle Orte</h1>
+      <p class="lead text-muted">Visualisierte Orte aller <strong>Fotographien</strong> </p>
+      
+    </div>
+  </div>
+  <table id="myTable" class="display" style="width:100%;">
+    <thead>
+      <tr>
+        <th>Ortsname</th>
+        <th>Ortsname gr</th>
+        <th>Geonames</th>
+        <th>Koordinaten</th>
+        <th>Land</th>
+        <th>Land gr</th>
+        <th>Land (historisch)</th>
+        <th>Land (historisch) gr</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in objects %}
+        <tr>
+          <td>
+            {{ item.titleDe }}
+          </td>
+          <td>
+            {{ item.titleGr }}
+          </td>
+          <td>
+            <a href="{{ item.geonamesPlace }}">{{ item.geonamesPlace }}</a>
+          </td>
+          <td>
+            {{ item.coordinates }}              
+          </td>
+          <td>
+            {{ item.countryDe }}             
+          </td>
+          <td>
+            {{ item.countryGr }}             
+          </td>
+          <td>
+            {{ item.countryHistoryDe }}             
+          </td>
+          <td>
+            {{ item.countryHistoryGr }}             
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Ortsname</th>
+        <th>Ortsname gr</th>
+        <th>Geonames</th>
+        <th>Koordinaten</th>
+        <th>Land</th>
+        <th>Land gr</th>
+        <th>Land (historisch)</th>
+        <th>Land (historisch) gr</th>
+      </tr>
+    </tfoot>
+  </table>
+  <div id='map'></div>
+  <script>
+      var dataSourceList = [
+              {% for x in objects %}"{{ x.data_src }}"{% if not loop.last %}, {% endif %}{% endfor %}
+          ]
+      var map = L.map('map').setView([41.12066, 16.86982], 5);
+      var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      function popUp(f,l){
+          var out = [];
+          if (f.properties){
+              out.push("Ortsname: "+f.properties['title']);
+              out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitle']}</a>`);                
+              l.bindPopup(out.join("<br />"));
+          }
+      };
+      {% for x in objects %}
+          var {{ x.object_id }} = new L.GeoJSON.AJAX(["{{x.data_src}}"],{onEachFeature:popUp});
+      {% endfor %}
+      var allObjects = new L.GeoJSON.AJAX(dataSourceList,{onEachFeature:popUp}).addTo(map);
+
+      var baseLayers = {
+          'Map': tiles
+      };
+      var overlays = {
+          "Alle Objekte": allObjects,
+          {% for x in objects %}"{{ x.title }}": {{ x.object_id }}{% if not loop.last %}, {% endif %}{% endfor %}
+      };
+      var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+  </script>
+  <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable(
+            {
+              dom: 'PfrtipB',
+              searchPanes: {
+                  initCollapsed: true
+              },
+              buttons: [
+                  'copy', 'excel', 'pdf'
+              ],
+              columnDefs: [
+                  {
+                      searchPanes: {
+                          show: true
+                      },
+                      targets: [1, 2, 3, 4]
+                  },
+              ]
+            }   
+        );
+    } );
+  </script>
+</div>
+{% endblock %}

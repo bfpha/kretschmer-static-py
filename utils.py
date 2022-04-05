@@ -29,7 +29,8 @@ def gsheet_to_df():
 def make_index_html(df):
     os.makedirs('./html', exist_ok=True)
     items = []
-    rows = []       
+    rows = []     
+    places = []  
     template = templateEnv.get_template('./templates/object.html')
     for gr, df in df.groupby('ordering'):
         object_id = slugify(gr)
@@ -42,6 +43,7 @@ def make_index_html(df):
             "title": gr,
             "metadata": []
         }
+        place = {}
         for i, row in df.iterrows():
             item['prev'] = slugify(row['previous']) + ".html"
             item['next'] = slugify(row['next']) + ".html"
@@ -50,6 +52,20 @@ def make_index_html(df):
             item['collection'] = row['archeCollection']
             item['titleOrig'] = row['titleOriginal']
             station = {}
+            placeKey = slugify(row['placeRegionDe'])
+            place[placeKey] = {
+                "titleDe": row['placeRegionDe'],
+                "titleGr": row['placeRegionGr'],
+                "coordinates": row['coordinates'],
+                "countryDe": row['countryDe'],
+                "countryGr": row['countryGr'],
+                "countryHistoryDe": row['countryHistoryDe'],
+                "countryHistoryGr": row['countryHistoryGr'],
+                "geonamesPlace": row['placeGeonames'],
+                "data_src": data_src,
+                "object_id": f"a{object_id.replace('-', '_')}",
+            }
+            places.append(place)
             for x in row.keys():
                 station[x] = row[x]
             station["fileName"] = file_name
@@ -67,6 +83,14 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/table.html')
     with open('./html/table.html', 'w') as f:
         f.write(template.render({"objects": rows}))
+    tmp_places = []
+    for obj in places:    
+        for x in obj.keys():
+           tmp_places.append(obj[x]) 
+    template = templateEnv.get_template('./templates/place-index.html')
+    with open('./html/place-index.html', 'w') as f:
+        f.write(template.render({"objects": tmp_places}))
+    # print(tmp_places)
     return items
 
 def make_geojsons(df):
