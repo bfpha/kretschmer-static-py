@@ -64,8 +64,7 @@ def make_index_html(df):
                 "geonamesPlace": row['placeGeonames'],
                 "data_src": data_src,
                 "object_id": f"a{object_id.replace('-', '_')}",
-            }
-            places.append(place)
+            }            
             for x in row.keys():
                 station[x] = row[x]
             station["fileName"] = file_name
@@ -74,6 +73,23 @@ def make_index_html(df):
         items.append(item)
         with open(f"./html/{file_name}", 'w') as f:
             f.write(template.render(**item))
+        places.append(place)
+    tmp_names = []
+    tmp_places = []
+    places_map = []
+    for obj in places:    
+        for x in obj.keys():
+            if x not in tmp_names:
+                tmp_names.append(x)
+                tmp_places.append(obj[x])
+            else:
+                places_map.append(obj[x])
+    places = {
+        "unique": [],
+        "map": []
+    }
+    places['unique'].append(tmp_places)
+    places['map'].append(places_map)
     template = templateEnv.get_template('./templates/index.html')
     with open('./html/index.html', 'w') as f:
         f.write(template.render({"objects": items}))
@@ -83,14 +99,10 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/table.html')
     with open('./html/table.html', 'w') as f:
         f.write(template.render({"objects": rows}))
-    tmp_places = []
-    for obj in places:    
-        for x in obj.keys():
-           tmp_places.append(obj[x]) 
     template = templateEnv.get_template('./templates/place-index.html')
     with open('./html/place-index.html', 'w') as f:
-        f.write(template.render({"objects": tmp_places}))
-    # print(tmp_places)
+        f.write(template.render({"objects": places}))
+    # print(places)
     return items
 
 def make_geojsons(df):
