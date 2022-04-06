@@ -115,16 +115,11 @@
       {% endfor %}
       var allObjects = new L.GeoJSON.AJAX(dataSourceList,{onEachFeature:popUp});
 
-      var markers = L.markerClusterGroup();   
+      var markers = L.markerClusterGroup();
       allObjects.on('data:loaded', function () {
         markers.addLayer(allObjects);
         map.addLayer(markers);
       });
-      try {
-        map.fitBounds(markers.getBounds());
-      } catch (err) {
-          console.log(err);
-      }
 
       var baseLayers = {
           'Map': tiles

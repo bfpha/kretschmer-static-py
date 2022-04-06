@@ -99,7 +99,12 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Ort/Region</th>
-                                                    <td>{{ x.placeRegionDe }}</td>
+                                                    <td>
+                                                        <span id="region-coords"
+                                                            data-target="{{ x.coordinates }}">
+                                                            {{ x.placeRegionDe }}
+                                                        </span>                                                        
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Land</th>
@@ -289,9 +294,12 @@
                             <div class="card-body">
                                 <div id="map-object"></div>
                             </div>
-                        </div>                
+                        </div>
                         <script>
-                            var map = L.map('map-object').setView([41.12066, 16.86982], 4);
+                            var coords = $("#region-coords").attr("data-target");
+                            var lat = coords.split(', ')[0]
+                            var long = coords.split(', ')[1]
+                            var map = L.map('map-object').setView([lat, long], 13);
                             var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 18,
                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -300,9 +308,8 @@
                             function popUp(f,l){
                                 var out = [];
                                 if (f.properties){
-                                    for(key in f.properties){
-                                        out.push(key+": "+f.properties[key]);
-                                    }
+                                    out.push("Ortsname: "+f.properties["title"]);
+                                    out.push("Foto: "+f.properties["linkTitle"]);
                                     l.bindPopup(out.join("<br />"));
                                 }
                             };
