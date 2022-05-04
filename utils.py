@@ -186,3 +186,28 @@ def make_person_html(df):
     with open('./html/person-index.html', 'w') as f:
         f.write(template.render({"objects": items}))
     return items
+
+def make_rdf_ttl(df):
+    os.makedirs('./rdf', exist_ok=True)
+    items = []
+    rows = []     
+    template = templateEnv.get_template('./templates/katalog_fotos.ttl')
+    for gr, df in df.groupby('ordering'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.xml"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            station = {}         
+            for x in row.keys():
+                station[x] = row[x]
+            item['metadata'].append(station)
+            rows.append(station)
+        items.append(item)
+    with open('./rdf/katalog_fotos.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    return items
