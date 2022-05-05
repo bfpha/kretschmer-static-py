@@ -49,7 +49,7 @@ def make_index_html(df):
             item['next'] = slugify(row['next']) + ".html"
             item['prevTitle'] = row['previous']
             item['nextTitle'] = row['next']
-            item['collection'] = row['archeCollection']
+            item['collection'] = row['collection']
             item['titleOrig'] = row['titleOriginal']
             station = {}
             placeKey = slugify(row['placeRegionDe'])
@@ -93,15 +93,15 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/index.html')
     with open('./html/index.html', 'w') as f:
         f.write(template.render({"objects": items}))
-    template = templateEnv.get_template('./templates/map.html')
-    with open('./html/map.html', 'w') as f:
-        f.write(template.render({"objects": items}))
+    # template = templateEnv.get_template('./templates/map.html')
+    # with open('./html/map.html', 'w') as f:
+    #     f.write(template.render({"objects": items}))
     template = templateEnv.get_template('./templates/table.html')
     with open('./html/table.html', 'w') as f:
         f.write(template.render({"objects": rows}))
     template = templateEnv.get_template('./templates/place-index.html')
     with open('./html/place-index.html', 'w') as f:
-        f.write(template.render({"objects": places}))
+        f.write(template.render({"objects": items}))
     # print(places)
     return items
 
@@ -136,7 +136,9 @@ def make_geojsons(df):
                 "properties": {
                     "title": row['placeRegionDe'],
                     "link": slugify(gr),
-                    "linkTitle": row['titleOriginal']
+                    "titleGr": row['placeRegionGr'],
+                    "linkTitleDe": row['titleDe'],
+                    "linkTitleGr": row['titleGr'],
                 }
             }
             item["features"].append(feature_point)

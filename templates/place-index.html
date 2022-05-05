@@ -28,71 +28,85 @@
       
     </div>
   </div>
-  <table id="myTable" class="display" style="width:100%;">
-    <thead>
-      <tr>
-        <th>Ortsname</th>
-        <th>Ortsname gr</th>
-        <th>Geonames</th>
-        <th>Koordinaten</th>
-        <th>Land</th>
-        <th>Land gr</th>
-        <th>Land (historisch)</th>
-        <th>Land (historisch) gr</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for x in objects.unique %}
-        {% for item in x  %}
-        <tr>
-          <td>
-            {{ item.titleDe }}
-          </td>
-          <td>
-            {{ item.titleGr }}
-          </td>
-          <td>
-            <a target="_blank"
-              href="{{ item.geonamesPlace }}">
-              {{ item.geonamesPlace }}
-            </a>
-          </td>
-          <td>
-            {{ item.coordinates }}              
-          </td>
-          <td>
-            {{ item.countryDe }}             
-          </td>
-          <td>
-            {{ item.countryGr }}             
-          </td>
-          <td>
-            {{ item.countryHistoryDe }}             
-          </td>
-          <td>
-            {{ item.countryHistoryGr }}             
-          </td>
-        </tr>
-        {% endfor %}
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Ortsname</th>
-        <th>Ortsname gr</th>
-        <th>Geonames</th>
-        <th>Koordinaten</th>
-        <th>Land</th>
-        <th>Land gr</th>
-        <th>Land (historisch)</th>
-        <th>Land (historisch) gr</th>
-      </tr>
-    </tfoot>
-  </table>
-  <div id='map'></div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 mx-auto">
+        <div id='map'></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 mx-auto">
+      <table id="myTable" class="display" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Ortsname</th>
+            <th>Ortsname gr</th>
+            <th>Fotoaufnahme</th>
+            <th>Geonames</th>
+            <th>Koordinaten</th>
+            <th>Land</th>
+            <th>Land gr</th>
+            <th>Land (historisch)</th>
+            <th>Land (historisch) gr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in objects %}
+            {% for item in x.metadata  %}
+            <tr>
+              <td>
+                {{ item.placeRegionDe }}
+              </td>
+              <td>
+                {{ item.placeRegionGr }}
+              </td>
+              <td>
+                <a alt="{{ item.titleDe }}" href="{{ item.fileName }}">{{ item.titleDe }}</a>
+              </td>
+              <td>
+                <a target="_blank"
+                  href="{{ item.placeGeonames }}">
+                  {{ item.placeGeonames }}
+                </a>
+              </td>
+              <td>
+                {{ item.coordinates }}              
+              </td>
+              <td>
+                {{ item.countryDe }}             
+              </td>
+              <td>
+                {{ item.countryGr }}             
+              </td>
+              <td>
+                {{ item.countryHistoryDe }}             
+              </td>
+              <td>
+                {{ item.countryHistoryGr }}             
+              </td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Ortsname</th>
+            <th>Ortsname gr</th>
+            <th>Fotoaufnahme</th>
+            <th>Geonames</th>
+            <th>Koordinaten</th>
+            <th>Land</th>
+            <th>Land gr</th>
+            <th>Land (historisch)</th>
+            <th>Land (historisch) gr</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  
   <script>
       var dataSourceList = [
-              {% for x in objects.map %}{% for item in x %}"{{ item.data_src }}"{% if not loop.last %}, {% endif %}{% endfor %}{% endfor %}
+              {% for x in objects %}"{{ x.data_src }}"{% if not loop.last %}, {% endif %}{% endfor %}
           ]
       var map = L.map('map').setView([41.12066, 16.86982], 6);
       var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -104,14 +118,16 @@
           var out = [];
           if (f.properties){
               out.push("Ortsname: "+f.properties['title']);
-              out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitle']}</a>`);                
+              out.push(`Όνομα τόπου: <a href='${f.properties['link']}.html'>${f.properties['titleGr']}</a>`);   
+              out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitleDe']}</a>`);    
+              out.push(`Φωτογραφία: <a href='${f.properties['link']}.html'>${f.properties['linkTitleGr']}</a>`);            
               l.bindPopup(out.join("<br />"));
           }
       };
-      {% for x in objects.map %}
-        {% for item in x %}
-          var {{ item.object_id }} = new L.GeoJSON.AJAX(["{{ item.data_src }}"],{onEachFeature:popUp});
-        {% endfor %}
+      {% for x in objects %}
+        
+          var {{ x.object_id }} = new L.GeoJSON.AJAX(["{{ x.data_src }}"],{onEachFeature:popUp});
+        
       {% endfor %}
       var allObjects = new L.GeoJSON.AJAX(dataSourceList,{onEachFeature:popUp});
 
@@ -126,7 +142,7 @@
       };
       var overlays = {
           "Alle Objekte": allObjects,
-          {% for x in objects.map %}{% for item in x %}"{{ item.titleDe }}": {{ item.object_id }}{% if not loop.last %}, {% endif %}{% endfor %}{% endfor %}
+          {% for x in objects %}"{{ x.titleDe }}": {{ x.object_id }}{% if not loop.last %}, {% endif %}{% endfor %}
       };
       var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
   </script>

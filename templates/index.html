@@ -24,7 +24,7 @@
       {% for col, items in objects|groupby('collection') %}
         <li class="nav-item" role="presentation">
           <button class=
-            "{% if col == 'Photos_0001-0028' %}
+            "{% if col == 'Fotos_0001-0028' %}
               nav-link active
             {% else %}
               nav-link
@@ -36,7 +36,7 @@
             aria-controls="{{ col|lower }}"
             type="button"
             aria-selected=
-            "{% if col == 'Photos_0001-0028' %}
+            "{% if col == 'Fotos_1-28' %}
               true
             {% else %}
               false
@@ -53,7 +53,7 @@
       <div class="container">        
         {% for col, items in objects|groupby('collection') %}
           <div class=
-            "{% if col == 'Photos_0001-0028' %}
+            "{% if col == 'Fotos_0001-0028' %}
               tab-pane fade show active
             {% else %}
               tab-pane fade
