@@ -1,0 +1,40 @@
+name: ARCHE-Ingest
+
+on:
+  workflow_dispatch
+
+jobs:
+  build_pages:
+    name: Ingest Data into ARCHE
+    runs-on: ubuntu-latest
+    env:
+      ANT_OPTS: -Xmx5g
+    steps:
+    - name: Perform Checkout
+      uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_test.txt') }}  
+    - name: Install dependencies
+      run: |
+        pip install --upgrade --upgrade-strategy eager -r requirements.txt
+    - name: build ttl data
+      run: |
+        python run_ttl.py
+    - name: ingestion dependencies
+      run: |
+        composer require "acdh-oeaw/arche-ingest:^1"
+    - name: ingest resources
+      run: |
+        vendor/bin/arche-import-metadata rdf/rdf_constants.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_place.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_person.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_journal.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_journal2.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_fotos.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
+        vendor/bin/arche-import-metadata rdf/katalog_tonaufnahmen.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict 25
