@@ -1,0 +1,201 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+acdhi:sanagnostou acdh:hasTitle "Spyridon  Anagnostou"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Σπυρίδων Αναγνώστου"@mus;
+acdh:hasFirstName "Spyridon "@de,"Σπυρίδων"@mus;
+acdh:hasLastName "Anagnostou"@de,"Αναγνώστου"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0001> .acdhi:aathinaios acdh:hasTitle "Ant. I. Athinaios"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Αντ. Ι. Αθηναίος"@mus;
+acdh:hasFirstName "Ant. I."@de,"Αντ. Ι."@mus;
+acdh:hasLastName "Athinaios"@de,"Αθηναίος"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0002> .acdhi:meuthymiadis acdh:hasTitle "Michail  Euthymiadis"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Μιχαήλ Ευθυμιάδης"@mus;
+acdh:hasFirstName "Michail "@de,"Μιχαήλ"@mus;
+acdh:hasLastName "Euthymiadis"@de,"Ευθυμιάδης"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0003> .acdhi:rheberdey acdh:hasTitle "Rudolf Heberdey"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Ρούντολφ Χέμπερνταϊ"@mus;
+acdh:hasFirstName "Rudolf"@de,"Ρούντολφ"@mus;
+acdh:hasLastName "Heberdey"@de,"Χέμπερνταϊ"@mus;
+acdh:hasIdentifier <https://www.biographien.ac.at/oebl/oebl_H/Heberdey_Rudolf_1864_1936.xml>;
+acdh:hasIdentifier <https://d-nb.info/gnd/116555556>;
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0004> .acdhi:kamaros acdh:hasTitle "nan Kamaros"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "nan Καμαρός"@mus;
+
+acdh:hasLastName "Kamaros"@de,"Καμαρός"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0005> .acdhi:akamatera acdh:hasTitle "Athina G. Kamatera"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Αθηνά Γ. Καματερά"@mus;
+acdh:hasFirstName "Athina G."@de,"Αθηνά Γ."@mus;
+acdh:hasLastName "Kamatera"@de,"Καματερά"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0006> .acdhi:pkamatera acdh:hasTitle "Persefoni G. Kamatera"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Περσεφόνη Γ. Καματερά"@mus;
+acdh:hasFirstName "Persefoni G."@de,"Περσεφόνη Γ."@mus;
+acdh:hasLastName "Kamatera"@de,"Καματερά"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0007> .acdhi:ekampas acdh:hasTitle "Evst. Kampas"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Ευστ. Καμπάς"@mus;
+acdh:hasFirstName "Evst."@de,"Ευστ."@mus;
+acdh:hasLastName "Kampas"@de,"Καμπάς"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0008> .acdhi:ekaragianni acdh:hasTitle "Eirini  Karagianni"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Ειρήνη  Καράγιαννη"@mus;
+acdh:hasFirstName "Eirini "@de,"Ειρήνη "@mus;
+acdh:hasLastName "Karagianni"@de,"Καράγιαννη"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0009> .acdhi:pkoulaxizeli acdh:hasTitle "Panagioutouda Koulaxizeli"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Παναγιουτούδα Κουλαξιζέλη"@mus;
+acdh:hasFirstName "Panagioutouda"@de,"Παναγιουτούδα"@mus;
+acdh:hasLastName "Koulaxizeli"@de,"Κουλαξιζέλη"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0010> .acdhi:lkretschmer acdh:hasTitle "Leona Kretschmer"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Λεόνα Κρέτσμερ"@mus;
+acdh:hasFirstName "Leona"@de,"Λεόνα"@mus;
+acdh:hasLastName "Kretschmer"@de,"Κρέτσμερ"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0011> .acdhi:pkretschmer acdh:hasTitle "Paul Kretschmer"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Πάουλ Κρέτσμερ"@mus;
+acdh:hasFirstName "Paul"@de,"Πάουλ"@mus;
+acdh:hasLastName "Kretschmer"@de,"Κρέτσμερ"@mus;
+acdh:hasIdentifier <https://geschichte.univie.ac.at/de/personen/paul-kretschmer-univ-prof-dr>;
+acdh:hasIdentifier <https://d-nb.info/gnd/118888455>;
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0012> .acdhi:knan acdh:hasTitle "Kyprianos nan"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Κυπριανός nan"@mus;
+acdh:hasFirstName "Kyprianos"@de,"Κυπριανός"@mus;
+
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0013> .acdhi:dkyprios acdh:hasTitle "Dimitrios  Kyprios"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Δημήτριος Κύπριος"@mus;
+acdh:hasFirstName "Dimitrios "@de,"Δημήτριος"@mus;
+acdh:hasLastName "Kyprios"@de,"Κύπριος"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0014> .acdhi:pkyprios acdh:hasTitle "Panagiotis Kyprios"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Παναγιώτης Κύπριος"@mus;
+acdh:hasFirstName "Panagiotis"@de,"Παναγιώτης"@mus;
+acdh:hasLastName "Kyprios"@de,"Κύπριος"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0015> .acdhi:skypriou acdh:hasTitle "Stavroula Kypriou"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Σταυρούλα Κυπρίου"@mus;
+acdh:hasFirstName "Stavroula"@de,"Σταυρούλα"@mus;
+acdh:hasLastName "Kypriou"@de,"Κυπρίου"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0016> .acdhi:middelkamp acdh:hasTitle "nan Middelkamp"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "nan Μίντελκαμπ"@mus;
+
+acdh:hasLastName "Middelkamp"@de,"Μίντελκαμπ"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0017> .acdhi:gniemann acdh:hasTitle "Georg(e) Niemann"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Γκέοργκ(ε) Νίμαν"@mus;
+acdh:hasFirstName "Georg(e)"@de,"Γκέοργκ(ε)"@mus;
+acdh:hasLastName "Niemann"@de,"Νίμαν"@mus;
+acdh:hasIdentifier <https://www.biographien.ac.at/oebl/oebl_N/Niemann_Georg_1841_1912.xml;internal&action=hilite.action&Parameter=Niemann*>;
+acdh:hasIdentifier <https://d-nb.info/gnd/117001848>;
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0018> .acdhi:mstefanidis acdh:hasTitle "Michail K.  Stefanidis"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Μιχαήλ Κ. Στεφανίδης"@mus;
+acdh:hasFirstName "Michail K. "@de,"Μιχαήλ Κ."@mus;
+acdh:hasLastName "Stefanidis"@de,"Στεφανίδης"@mus;
+acdh:hasIdentifier <http://jupiter.chem.uoa.gr/pchem/lab/stefanidis.html>;
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0019> .acdhi:sterioglidis acdh:hasTitle "nan Sterioglidis"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "nan Στεριογλίδης"@mus;
+
+acdh:hasLastName "Sterioglidis"@de,"Στεριογλίδης"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0020> .acdhi:strauss acdh:hasTitle "nan Strauss"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "nan Στράους"@mus;
+
+acdh:hasLastName "Strauss"@de,"Στράους"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0021> .acdhi:atserigotou acdh:hasTitle "Amirsouda D. Tserigotou"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Αμιρσούδα Δ. Τσεριγότου"@mus;
+acdh:hasFirstName "Amirsouda D."@de,"Αμιρσούδα Δ."@mus;
+acdh:hasLastName "Tserigotou"@de,"Τσεριγότου"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0022> .acdhi:ptserigotou acdh:hasTitle "Palougou D. Tserigotou"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Παλουγού Δ. Τσεριγότου"@mus;
+acdh:hasFirstName "Palougou D."@de,"Παλουγού Δ."@mus;
+acdh:hasLastName "Tserigotou"@de,"Τσεριγότου"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0023> .acdhi:mtzanavarina acdh:hasTitle "Maria Tzanavarina"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Μαρία Τζαναβάρινα"@mus;
+acdh:hasFirstName "Maria"@de,"Μαρία"@mus;
+acdh:hasLastName "Tzanavarina"@de,"Τζαναβάρινα"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0024> .acdhi:svatanelis acdh:hasTitle "Stavrelis Vatanelis"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Σταυρέλης Βατανέλης"@mus;
+acdh:hasFirstName "Stavrelis"@de,"Σταυρέλης"@mus;
+acdh:hasLastName "Vatanelis"@de,"Βατανέλης"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0025> .acdhi:mkountouris acdh:hasTitle "Malangas P.  Kountouris"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Μαλάγγας Π. Κουντουρής"@mus;
+acdh:hasFirstName "Malangas P. "@de,"Μαλάγγας Π."@mus;
+acdh:hasLastName "Kountouris"@de,"Κουντουρής"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0026> .acdhi:ekamatera  acdh:hasTitle "Eirini G. Kamatera "@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Ειρήνη Γ. Καματερά"@mus;
+acdh:hasFirstName "Eirini G."@de,"Ειρήνη Γ."@mus;
+acdh:hasLastName "Kamatera "@de,"Καματερά"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0027> .acdhi:akountouris acdh:hasTitle "Aristeidis I. Kountouris"@de;
+a acdh:Person;
+acdh:hasAlternativeTitle "Αριστείδης Ι. Κουντουρής"@mus;
+acdh:hasFirstName "Aristeidis I."@de,"Αριστείδης Ι."@mus;
+acdh:hasLastName "Kountouris"@de,"Κουντουρής"@mus;
+
+
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/p0028> .

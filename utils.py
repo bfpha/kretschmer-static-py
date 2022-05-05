@@ -12,10 +12,10 @@ templateLoader = jinja2.FileSystemLoader(searchpath=".")
 templateEnv = jinja2.Environment(loader=templateLoader)
 template = templateEnv.get_template('./templates/index.html')
 
-GDRIVE_URL = "https://docs.google.com/spreadsheet/ccc?key=1CZdnY39HSsE0C9eSMdvuCoRxJhSxnwlcUxr80qv96uY"
+GDRIVE_URL_FOTOS = "https://docs.google.com/spreadsheet/ccc?key=1aJz8-2rj-d2a62ciBH2j-ehzp4f0EgPF_Qg554W2IFA"
 
 def gsheet_to_df():
-    url = f"{GDRIVE_URL}&output=csv"
+    url = f"{GDRIVE_URL_FOTOS}&output=csv"
     r = requests.get(url)
     print(r.status_code)
     data = r.content
@@ -147,10 +147,10 @@ def make_geojsons(df):
         items.append(item)
     return items
 
-GDRIVE_URL2 = "https://docs.google.com/spreadsheet/ccc?key=1O_BGOyzf1d-1qJGwPrIr1EHTxP3ThpTWxUVnkH5l_NQ"
+GDRIVE_URL_PERSON = "https://docs.google.com/spreadsheet/ccc?key=1frs9RF7kqAmbl3W1PWPRJyq1iGBxHIQikrNr9yXkkyQ"
 
 def gsheet2_to_df():
-    url = f"{GDRIVE_URL2}&output=csv"
+    url = f"{GDRIVE_URL_PERSON}&output=csv"
     r = requests.get(url)
     print(r.status_code)
     data = r.content
@@ -187,6 +187,8 @@ def make_person_html(df):
         f.write(template.render({"objects": items}))
     return items
 
+# creating rdf ttl files
+
 def make_rdf_ttl(df):
     os.makedirs('./rdf', exist_ok=True)
     items = []
@@ -209,5 +211,76 @@ def make_rdf_ttl(df):
             rows.append(station)
         items.append(item)
     with open('./rdf/katalog_fotos.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/katalog_journal.ttl')
+    with open('./rdf/katalog_journal.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/katalog_place.ttl')
+    with open('./rdf/katalog_place.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    return items
+
+GDRIVE_URL_TONAUFNAHMEN = "https://docs.google.com/spreadsheet/ccc?key=16HRSdXvbUiTrQaxWoDjXiY3KfOFKUGwCoWE4S9TgcmU"
+
+def gsheet3_to_df():
+    url = f"{GDRIVE_URL_TONAUFNAHMEN}&output=csv"
+    r = requests.get(url)
+    print(r.status_code)
+    data = r.content
+    df = pd.read_csv(BytesIO(data), on_bad_lines='skip')
+    # df = pd.read_csv('./data_dump.csv')
+    # print(df)
+    return df
+
+def make_rdf_tonaufnahmen_ttl(df):
+    os.makedirs('./rdf', exist_ok=True)
+    items = []
+    rows = []     
+    template = templateEnv.get_template('./templates/katalog_tonaufnahmen.ttl')
+    for gr, df in df.groupby('ordering'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.xml"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            station = {}         
+            for x in row.keys():
+                station[x] = row[x]
+            item['metadata'].append(station)
+            rows.append(station)
+        items.append(item)
+    with open('./rdf/katalog_tonaufnahmen.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/katalog_journal.ttl')
+    with open('./rdf/katalog_journal2.ttl', 'w') as f:
+        f.write(template.render({"objects": items}))
+    return items
+
+def make_rdf_person_ttl(df):
+    os.makedirs('./rdf', exist_ok=True)
+    items = []
+    rows = []     
+    template = templateEnv.get_template('./templates/katalog_person.ttl')
+    for gr, df in df.groupby('id'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.xml"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            station = {}         
+            for x in row.keys():
+                station[x] = row[x]
+            item['metadata'].append(station)
+            rows.append(station)
+        items.append(item)
+    with open('./rdf/katalog_person.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     return items

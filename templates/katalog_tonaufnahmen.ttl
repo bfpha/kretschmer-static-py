@@ -1,0 +1,37 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+{% for items in objects %}<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}> a acdh:Resource;
+acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording>;
+acdh:hasTitle "{% for md in items.metadata %}{{ md.titleDe }}{% endfor %}"@de;
+acdh:hasAlternativeTitle "{% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@mus;
+acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}";
+acdh:hasPrincipalInvestigator acdhi:enikolaros;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
+acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
+acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/audioVisual>;
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
+acdh:hasCreatedStartDate "2019-12-01"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCreator acdhi:enikolaros;
+acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>;
+acdh:hasMetadataCreator acdhi:dstoxreiter;
+{% for md in items.metadata %}{% if md.descriptionDe is string %}acdh:hasDescription "{{ md.descriptionDe }}"@de;{% endif %}{% endfor %}
+{% for md in items.metadata %}{% if md.descriptionGr is string %}acdh:hasDescription "{{ md.descriptionGr }}"@mus;{% endif %}{% endfor %}
+acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.signatureInv }}{% endfor %}";
+acdh:hasUrl "{% for md in items.metadata %}{{ md.linkAudio }}{% endfor %}";
+acdh:hasAuthor acdhi:pkretschmer;
+acdh:hasSpatialCoverage {% for md in items.metadata %}<{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>{% endfor %};
+{% for md in items.metadata %}{% if md.journalFile1 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;{% endif %}{% endfor %}
+{% for md in items.metadata %}{% if md.journalFile2 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;{% endif %}{% endfor %}
+acdh:hasCoverageEndDate "{% for md in items.metadata %}{{ md.dateEnd }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasDepositor acdhi:enikolaros;
+acdh:hasSubject "griechenland"@de;
+acdh:hasOwner acdhi:none;
+acdh:hasRightsHolder acdhi:none;
+acdh:hasLicensor acdhi:acdh;
+acdh:hasCurator acdhi:dstoxreiter;
+{% for md in items.metadata %}{% if md.persons is string %}{% if md.persons.split(" ") | length > 1 %}{% for x in md.persons.split(" ") %}acdh:hasActor <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ x }}>;{% endfor %}{% else %}acdh:hasActor <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ md.persons }}>;{% endif %}{% endif %}{% endfor %}
+acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .{% endfor %}

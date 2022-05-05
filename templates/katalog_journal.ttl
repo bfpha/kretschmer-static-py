@@ -1,109 +1,47 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
-{% for items in objects %}
-{% for md in items.metadata %}
-{% if md.journalFile1 is string %}
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}> a acdh:Resource;
+
+{% for items in objects %}{% for md in items.metadata %}{% if md.journalFile1 is string %}<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal>;
-acdh:hasTitle "{% for md in items.metadata %}{{ md.journalTitle1 }} {{ md.journalSignature1 | split(" ")[6] }}{% endfor %}"@de;
-acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.journalSignature1 }}{% endfor %}";
-acdh:hasUrl "{% for md in items.metadata %}{{ md.journalLink }}{% endfor %}";
+acdh:hasTitle "{{ md.journalTitle1 }} {{ md.journalSignature1.split(" ")[6] }}"@de;
+acdh:hasNonLinkedIdentifier "{{ md.journalSignature1 }}";
+acdh:hasNonLinkedIdentifier "{{ md.journalFile1 }}";
+acdh:hasUrl "{{ md.journalLink }}";
 acdh:hasCreator acdhi:enikolaros;
 acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
 acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/public>;
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
-acdh:hasOwner acdhi:oeaw;
+acdh:hasOwner acdhi:none;
 acdh:hasLicensor acdhi:acdh;
-acdh:hasRightsHolder acdhi:oeaw;
-acdh:hasTemporalCoverage "{% for md in items.metadata %}{{ md.journalTitle1 }}{% endfor %}"@de;
-acdh:hasDescription """
-{% for md in items.metadata %}{{ md.relation1 }}{% endfor %}
-
-{% for md in items.metadata %}{{ md.relation2 }}{% endfor %}
-"""@de;
+acdh:hasRightsHolder acdhi:none;
+acdh:hasTemporalCoverage "{{ md.journalTitle1 }}"@de;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
-
-{% endif %}
-{% endfor %}
-{% endfor %}
-
-
-
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{% for md in items.metadata %}{{ md.archeCollection | replace('F', 'Ph') | lower }}{% endfor %}> a acdh:Collection;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos>;
-acdh:hasPid "create";
-acdh:hasTitle "{% for md in items.metadata %}{{ md.archeCollection | replace('_', ' ') }}{% endfor %}"@de;
+acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .{% endif %}{% endfor %}{% endfor %}
+{% for items in objects %}{% for md in items.metadata %}{% if md.journalFile2 is string %}<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}> a acdh:Resource;
+acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal>;
+acdh:hasTitle "{{ md.journalTitle2 }} {{ md.journalSignature2.split(" ")[6] }}"@de;
+acdh:hasNonLinkedIdentifier "{{ md.journalSignature2 }}";
+acdh:hasUrl "{{ md.journalLink }}";
 acdh:hasCreator acdhi:enikolaros;
+acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasPrincipalInvestigator acdhi:enikolaros;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
-acdh:hasLicensor acdhi:acdh;
-acdh:hasContact acdhi:enikolaros;
-acdh:hasOwner acdhi:oeaw;
-acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasRightsHolder acdhi:oeaw;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>;
-acdh:hasCreatedStartDate "2019-12-01"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "griechenland"@de;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{% for md in items.metadata %}{{ md.file1 }}{% endfor %}> a acdh:Resource;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{% for md in items.metadata %}{{ md.archeCollection | replace('F', 'Ph') | lower }}{% endfor %}>;
-acdh:hasTitle "Vorderseite: {% for md in items.metadata %}{{ md.titleDe }}{% endfor %}"@de;
-acdh:hasAlternativeTitle "πρόσοψη: {% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@mus;
-acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.file1 }}{% endfor %}";
-acdh:hasPrincipalInvestigator acdhi:enikolaros;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
+acdh:hasCurator acdhi:dstoxreiter;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
 acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/public>;
-acdh:hasCreatedStartDate "2019-12-01"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCreator acdhi:enikolaros;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>;
-acdh:hasMetadataCreator acdhi:dstoxreiter;
-acdh:continues <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{% for md in items.metadata %}{{ md.file2 }}{% endfor %}>;
-{% for md in items.metadata %}
-{% if md.descriptionDe is string %}
-acdh:hasDescription "{{ md.descriptionDe }}"@de;
-{% endif %}
-{% endfor %}
-{% for md in items.metadata %}
-{% if md.descriptionGr is string %}
-acdh:hasDescription "{{ md.descriptionGr }}"@mus;
-{% endif %}
-{% endfor %}
-acdh:hasExtent "{% for md in items.metadata %}{{ md.imageSize }}; {{ md.px }}{% endfor %}"@und;
-acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.singatureInv }}{% endfor %}";
-acdh:hasUrl "{% for md in items.metadata %}{{ md.oenbLink }}{% endfor %}";
-acdh:hasAuthor acdhi:pkretschmer;
-acdh:hasSpatialCoverage {% for md in items.metadata %}<{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>{% endfor %};
-{% for md in items.metadata %}
-{% if md.journalFile1 is string %}
-acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;
-{% endif %}
-{% endfor %}
-{% for md in items.metadata %}
-{% if md.journalFile2 is string %}
-acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;
-{% endif %}
-{% endfor %}
-acdh:hasCoverageEndDate "{% for md in items.metadata %}{{ md.dateEnd }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "griechenland"@de;
-acdh:hasOwner acdhi:oeaw;
-acdh:hasRightsHolder acdhi:oeaw;
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
+acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
+acdh:hasOwner acdhi:none;
 acdh:hasLicensor acdhi:acdh;
-acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
-{% endfor %}
+acdh:hasRightsHolder acdhi:none;
+acdh:hasTemporalCoverage "{{ md.journalTitle2 }}"@de;
+acdh:hasPrincipalInvestigator acdhi:enikolaros;
+acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .{% endif %}{% endfor %}{% endfor %}
