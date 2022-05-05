@@ -4,6 +4,8 @@ html/data
 html/*.html
 venv-kretschmer
 dl_fundament.sh
+katalog*.ttl 
+objects_kretschmer_all.ttl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

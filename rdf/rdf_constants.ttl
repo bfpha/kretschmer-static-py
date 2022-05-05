@@ -38,19 +38,26 @@ acdh:hasPrincipalInvestigator acdhi:enikolaros;
 a acdh:TopCollection;
 acdh:hasContact acdhi:enikolaros;
 acdh:hasTitle "Paul Kretschmer und seine Reise von Wien nach Lesbos 1901"@de;
-acdh:hasDescription "Diese Kollektion ist Ergebnis des Projekts unter dem Titel: Paul Kretschmer und seine Reise von Wien nach Lesbos 1901. Kontextualisierung und Restudy, das 2019 von Stadt-Wien finanziert wurde. Das ursprüngliche Ziel des Projekts war einerseits die Drehung eines Dokumentarfilmes über die 1901 von Paul Kretschmer (1866-1956) gemachten Tonaufnahmen in Mytilini, andererseits die Erforschung der Nachhaltigkeit dieses Audiomaterials durch live-Interviews in Lesbos. Der Ausbruch des Coronavirus (COVID-19) führte zur Umplanung des Projekts, da der beantragte Aufenthalt in Lesbos für den Dokumentarfilm sowie für die Durchführung von Interviews nicht mehr möglich war. Diese Entwicklung, zusätzlich zur steigenden virtuellen Realität, die die Pandemie mit sich brachte, hat die Idee einer Online-Edition aller audiovisuellen Objekte Kretschmers Reise (131 Fotos und 3 Tonaufnahmen) geboren, die auf einer Website präsentiert werden. Damit das Publikum Griechenlands und besonders die source community in Lesbos Zugang zu Kretschmers Archivmaterial hat, wird die Website zweisprachig (Deutsch/Griechisch) gestaltet. Die Kontextualisierung des Materials stützt sich einerseits auf die unveröffentlichten Tagebücher der Lesbos Reise, die sich im Nachlass Kretschmer an der Österreichischen National Bibliothek (ÖNB) befinden, andererseits auf die Quellen des Phonogrammarchivs (PhA) der ÖAW in Wien."@de;
-acdh:hasArrangement "Das Datenset besteht aus den drei Kollektion: Fotos, Tonaufnahmen und Tagebucher. Die Kollektion der Fotos enthält weitere neun Kollektionen die jeweils aus ca. 15 Fotoaufnahmen bestehen. Pro Foto gibt es ein Facsimile für Vorder- und Rückseite. Die Kollektion der Tagebücher enthält ausgewählte Facsimiles der Tagebuchseiten Paul Kretschmers, die mit den Fotos in Verbindung gebracht werden konnten. Die Kollektion Tonaufahmen enthält drei Tonaufnahmen von der Reise und eine Tonaufnahme mit dem Sprachbild Paul Kretschmers."@de;
+acdh:hasDescription """
+Paul Kretschmer, Professor für vergleichende Sprachwissenschaften an der Universität Wien reiste zwischen 5. August und Oktober 1901 nach Griechenland zur Insel Lesbos. Das Ziel war es Dialekte zu erforschen. Auf seiner Reise nahm er einen Phonographen das heutigen Phonogrammarchiv mit und erstellte mehrere audiovisuelle Aufnahmen. Zusätzlich erstellte Kretschmer Fotoaufnahmen und führte ein Tagebuch. 132 Fotoaufnahmen und mehrere Tagebücher befinden sich als Quellen an der Österreichischen Nationalbibliothek (ÖNB). Die Tonaufnahmen befinden sich im Phonogrammarchiv (PhA) der ÖAW in Wien.
+
+Im Zuge des Forschungsprojekts: “PAUL KRETSCHMER UND SEINE REISE VON WIEN NACH LESBOS (GRIECHENLAND) 1901. KONTEXTUALISIERUNG UND RESTUDY”, wurden 132 Fotoaufnahmen digitalisiert und jeweil zwei Facsimiles (Dateiformat: .tif) für die Vorderseite und Rückseite der Fotos erstellt. Von den Tagebüchern wurden 57 Tagebuchseiten (Dateiformat: .jpg) digitalisiert. Es handelt sich um jene Tagebuchseiten, welche mit den Fotoaufnahmen oder Tonaufnahmen in Verbindung gebracht werden konnten. Das Phonogrammarchiv (PhA) hat für 3 Tonaufnahmen Untertitel erstellt und aus den original Tonaufnahmen ein Video (Dateiformat: .mkv) erstellt.
+
+Die Kollektionen Fotos, Tonaufnahmen und Tagebücher enthalten alle erwähnten Digitalisate. Insgesamt handelt es sich um 262 Facsimiles, 57 Tagebuchseiten und 3 Tonaufnahmen. 
+"""@de;
+acdh:hasArrangement "Die Hauptkollektion (Top Collection) besteht aus den drei Kollektion: Fotos, Tonaufnahmen und Tagebücher. Die Kollektion der Fotos enthält weitere neun Kollektionen die jeweils aus ca. 15 Fotoaufnahmen bestehen. Je Foto gibt es ein Facsimile von Vorder- und Rückseite. Das Dateiformat is TIF. Die Kollektion der Tagebücher enthält ausgewählte Facsimiles der Tagebuchseiten Paul Kretschmers, welche mit den Fotos oder Tonaufnahmen in Verbindung gebracht werden konnten. Es handelt sich um 57 Facsimiles im Dateiformat JPG. Die Kollektion Tonaufnahmen enthält 3 Tonaufnahmen. Die original Tonaufnahmen wurde mit Untertitel ergänzt und sind im Videoformat MKV verfügbar."@de;
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasCurator acdhi:dstoxreiter;
 acdh:hasMetadataCreator acdhi:dstoxreiter,acdhi:enikolaros;
-acdh:hasRightsHolder acdhi:oeaw;
+acdh:hasRightsHolder acdhi:none;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
 acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu>,<https://vocabs.acdh.oeaw.ac.at/iso6393/mus>;
-acdh:hasSubject "griechenland"@de .
+acdh:hasUrl <https://www.oeaw.ac.at/phonogrammarchiv/forschung/wissenschaftshistorische-forschung/wissenschaftsgeschichtliche-forschungen-ueber-tonaufnahmen-des-sammlungsschwerpunkts-afrika-1>;
+acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Fotoaufnahmen","Tonaufnahmen","Tagebücher"@de .
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
-acdh:hasOwner acdhi:oeaw;
+acdh:hasOwner acdhi:none;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 a acdh:Collection;
 acdh:isPartOf acdhi:kretschmer-lesbos;
@@ -58,7 +65,7 @@ acdh:hasContact acdhi:enikolaros;
 acdh:hasPid "create";
 acdh:hasRightsHolder acdhi:oeaw;
 acdh:hasTitle "Fotos"@de;
-acdh:hasDescription "Insgesamt hat Paul Kretschmer, laut seiner Nummerierung auf der Rückseite der Fotos, 176 Aufnahmen gemacht. In dieser Kollektion werden die übrig gebliebenen Fotos (131 Stücke) präsentiert, die sich in seinem Nachlass an der ÖNB befinden. Die 131 unveröffentlichten Objekte wurden auf Kosten unseren Projekts in der höchsten Auflösung (hochauflösende Scans mehr als 300ppi, tiff; ohne Wasserzeichen) digitalisiert. Die Digitalisierung übernahm die ÖNB. Die Metadaten für die Dokumentation der Fotos in der Website stützen sich einerseits auf die Beschriftung der Rückseite, andererseits auf die Reisetagebücher von Paul Kretschmer."@de;
+acdh:hasDescription "Insgesamt hat Paul Kretschmer, laut seiner Nummerierung auf der Rückseite der Fotos, 176 Aufnahmen gemacht. In dieser Kollektion werden die übrig gebliebenen Fotos (131 Stücke) präsentiert, die sich in seinem Nachlass an der ÖNB befinden. Die 131 unveröffentlichten Objekte wurden auf Kosten unseren Projekts in der höchsten Auflösung (hochauflösende Scans mehr als 300ppi, tiff; ohne Wasserzeichen) digitalisiert. Die Digitalisierung übernahm die ÖNB. Die Metadaten für die Dokumentation der Fotos in der Website stützen sich einerseits auf die Beschriftung der Rückseite, andererseits auf die Reisetagebücher von Paul Kretschmer. Bei den 262 Ressourcen handelt es sich um die Vorder- und Rückseite der Fotos. Weitere Informationen zu den einzelnen Fotoaufnahmen sind als Beschreibung in den Metadaten der Ressourcen vorhanden."@de;
 acdh:hasLicensor acdhi:acdh;
 acdh:hasCurator acdhi:dstoxreiter;
 acdh:hasCreator acdhi:enikolaros;
@@ -66,37 +73,37 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
 acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "griechenland"@de .
+acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Fotoaufnahmen"@de .
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal> acdh:hasLicensor acdhi:acdh;
 acdh:isPartOf acdhi:kretschmer-lesbos;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 acdh:hasPid "create";
-acdh:hasDescription "Die 13 unveröffentlichten Tagebücher Kretschmers Reise bilden die wichtigste Quelle für seine Tätigkeiten in Lesbos sowie für die Dokumentation der Fotos. Einige Metadaten (Datum, abgebildete Personen) stützen sich zur Gänze auf Kretschmers täglichen Erzählungen. Aus diesem Grund wurde die der jeweiligen Foto entsprechenden Stellen in den Tagebüchern (wo es vorhanden ist) transkribiert und in den Metadaten präsentiert. Darüber hinaus wird die entsprechende Seite der Transkription aus den Tagebüchern als Facsimile zugänglich gemacht. Die Transkriptionen wurden nicht übersetzt."@de;
+acdh:hasDescription "13 unveröffentlichten Tagebücher Kretschmers Reise bilden die wichtigste Quelle für seine Tätigkeiten in Lesbos sowie für die Dokumentation der Fotos und Tonaufnahmen. Einige Metadaten (Datum, abgebildete Personen) stützen sich zur Gänze auf Kretschmers täglichen Erzählungen. Insgesamt handelt es sich um 57 Tagebuchseiten die im Format JPG verfügbar sind. Alle Tagebuchseiten stehen in Verbindung mit den Fotos und Tonaufnahmen."@de;
 a acdh:Collection;
 acdh:hasCreator acdhi:enikolaros;
 acdh:hasTitle "Tagebücher"@de;
 acdh:hasMetadataCreator acdhi:dstoxreiter,acdhi:enikolaros;
 acdh:hasContact acdhi:enikolaros;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
-acdh:hasOwner acdhi:oeaw;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
+acdh:hasOwner acdhi:none;
 acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasRightsHolder acdhi:oeaw;
+acdh:hasRightsHolder acdhi:none;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
 acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "griechenland"@de .
+acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Tagebücher"@de .
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording> acdh:hasLicensor acdhi:acdh;
 acdh:isPartOf acdhi:kretschmer-lesbos;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 acdh:hasPid "create";
-acdh:hasDescription "Insgesamt hat Paul Kretschmer nach seiner Rückkehr in Wien 3 Tonaufnahmen im PhA abgeliefert, die in dieser Kollektion verfügbar gemacht werden. Diese Tonuafnahmen sind schon unter der folgenden CD-Edition publiziert: The first expeditions 1901 to Croatia, Brazil, and the isle Lesbos. Die Dokumentation der 3 Lieder stützt sich auf die Protokolle der Aufnahmen, die wie im Fall der Tasgebücher als Facsimile verfügbar gemacht werden."@de;
+acdh:hasDescription "Insgesamt hat Paul Kretschmer nach seiner Rückkehr in Wien 3 Tonaufnahmen im PhA abgeliefert, die in dieser Kollektion verfügbar gemacht werden. Diese Tonaufnahmen sind schon unter der folgenden CD-Edition publiziert: The first expeditions 1901 to Croatia, Brazil, and the isle Lesbos. Im Zuge des Forschungsprojekts wurde die 3 Tonaufnahmen mit Untertitel ergänzt und das Audio gemeinsam mit den Untertitel stehen als Video Dateien im Format MKV zu Verfügung."@de;
 a acdh:Collection;
 acdh:hasCreator acdhi:enikolaros;
 acdh:hasTitle "Tonaufnahmen"@de;
 acdh:hasMetadataCreator acdhi:dstoxreiter,acdhi:enikolaros;
 acdh:hasContact acdhi:enikolaros;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0>;
+acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasOwner acdhi:oeaw;
 acdh:hasUrl "https://www.oeaw.ac.at/phonogrammarchiv/publikationen/audio-und-video-veroeffentlichungen-des-pha/gesamtausgabe-der-historischen-bestaende";
 acdh:hasCurator acdhi:dstoxreiter;
