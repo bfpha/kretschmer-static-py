@@ -7,17 +7,24 @@
 acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@und;
 acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@mus;
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
+{% if md.placeRegionWikidata is string %}
+acdh:hasIdentifier <{{ md.placeRegionWikidata }}>;
+{% endif %}
 acdh:hasLatitude "{{ md.coordinates.split(", ")[0] }}";
 acdh:hasLongitude "{{ md.coordinates.split(", ")[1] }}" .
 
 <{{ md.countryID }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryDe }}"@und;
 acdh:hasAlternativeTitle "{{ md.countryGr }}"@mus;
+{% if md.countryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryWikidata }}>;
+{% endif %}
 acdh:hasIdentifier <{{ md.countryGeonames }}> .
 
 <{{ md.countryHistoryID }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryHistoryDe }}"@und;
 acdh:hasAlternativeTitle "{{ md.countryHistoryGr }}"@mus;
+{% if md.countryHistoryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryHistoryWikidata }}> .
+{% endif %}
 {% endfor %}{% endfor %}
