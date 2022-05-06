@@ -2,9 +2,11 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-{% for items in objects %}{% for md in items.metadata %}acdhi:{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }} acdh:hasTitle "{{ md.Vorname }} {{ md.Familienname }}"@de;
+{% for items in objects %}{% for md in items.metadata %}
+acdhi:{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }}{% elif md.Vorname is string %}{{ md.Vorname | lower }}{% elif md.Familienname is string %}{{ md.Familienname | lower }}{% endif %}
+acdh:hasTitle "{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname }} {{ md.Familienname }}{% elif md.Vorname is string %}{{ md.Vorname }}{% elif md.Familienname is string %}{{ md.Familienname }}{% endif %}"@de;
 a acdh:Person;
-acdh:hasAlternativeTitle "{{ md.Vorname_gr }} {{ md.Familienname_gr }}"@mus;
+acdh:hasAlternativeTitle "{% if md.VornameGr is string and md.FamiliennameGr is string %}{{ md.VornameGr }} {{ md.FamiliennameGr }}{% elif md.VornameGr is string %}{{ md.VornameGr }}{% elif md.FamiliennameGr is string %}{{ md.FamiliennameGr }}{% endif %}"@mus;
 {% if md.Vorname is string%}acdh:hasFirstName "{{ md.Vorname }}"@de,"{{ md.Vorname_gr }}"@mus;{% endif %}
 {% if md.Familienname is string%}acdh:hasLastName "{{ md.Familienname }}"@de,"{{ md.Familienname_gr }}"@mus;{% endif %}
 {% if md.Link1 is string%}acdh:hasIdentifier <{{ md.Link1 }}>;{% endif %}

@@ -6,7 +6,9 @@
 <{{ md.placeRegionID }}> a acdh:Place;
 acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@und;
 acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@mus;
+{% if md.placeGeonames is string %}
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
+{% endif %}
 {% if md.placeRegionWikidata is string %}
 acdh:hasIdentifier <{{ md.placeRegionWikidata }}>;
 {% endif %}
@@ -19,7 +21,8 @@ acdh:hasAlternativeTitle "{{ md.countryGr }}"@mus;
 {% if md.countryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryWikidata }}>;
 {% endif %}
-acdh:hasIdentifier <{{ md.countryGeonames }}> .
+{% if md.countryGeonames is string %}
+acdh:hasIdentifier <{{ md.countryGeonames }}>{% endif %} .
 
 <{{ md.countryHistoryID }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryHistoryDe }}"@und;
