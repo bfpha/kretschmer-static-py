@@ -12,6 +12,36 @@
     }
 }
 
+body {
+    flex-flow: column;
+}
+
+.navbar {
+    display: grid;
+    border: none;
+}
+
+.navbar .nav-link {
+    font-size: 24px !important;
+    color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+    color: #f1f1 !important;
+}
+
+#navbarNavDropdown {
+    margin-left: 4em !important;
+}
+
+.wrapper_navbar {
+    z-index: 9999;
+}
+
+#map {
+    z-index: 1;
+}
+
 #map {
     height: 800px;
     width: 100%;
@@ -36,6 +66,7 @@
 
 .breadcrumb {
     padding: 1em;
+    background-color: #f1f1f1;
 }
 
 .card {

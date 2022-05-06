@@ -1,16 +1,16 @@
 {% extends "templates/base.html" %}
 {% block title%} Paul Kretschmer Reise Griechenland/Lesbos {% endblock %}
 {% block content %}
-  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
           <li class="breadcrumb-item active" aria-current="page">Start</li>
       </ol>
   </nav>
-  <div class="py-5 text-center container">
-    <div class="row py-lg-5">
+  <div class="container">
+    <div class="row">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Paul Kretschmer</h1>
-        <p class="lead text-muted">Reise nach Griechenland/Lesbos</p>
+        <h1 class="fw-light">Die Reise von Paul und Leona Kretschmer nach Lesbos</h1>
+        <p class="lead text-muted">Fotos und Tonaufnahmen einer Expedition um 1901</p>
         <p>
           <a href="table.html" class="btn btn-primary my-2">Alle Fotographien als Tabelle</a>
           <a href="place-index.html" class="btn btn-secondary my-2">Alle Orte auf einer Karte</a>          
@@ -48,7 +48,7 @@
       {% endfor %}
     </ul>
   </div>
-  <div class="album py-5 bg-light">
+  <div class="album bg-light">
     <div class="tab-content" id="nav-index">
       <div class="container">        
         {% for col, items in objects|groupby('collection') %}

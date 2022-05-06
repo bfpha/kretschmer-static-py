@@ -1,5 +1,5 @@
 # bin/bash
-BOOTSTRAP_VERSION=5.0.2
+BOOTSTRAP_VERSION=5.1.3
 BOOTSTRAP=bootstrap-${BOOTSTRAP_VERSION}-examples
 mkdir ./html
 rm -rf ${BOOTSTRAP} && rm -rf ./html/assets

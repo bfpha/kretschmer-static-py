@@ -101,7 +101,7 @@ def make_index_html(df):
         f.write(template.render({"objects": rows}))
     template = templateEnv.get_template('./templates/place-index.html')
     with open('./html/place-index.html', 'w') as f:
-        f.write(template.render({"objects": items}))
+        f.write(template.render({"objects": items,"places": places}))
     # print(places)
     return items
 
