@@ -15,12 +15,13 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+        <li class="breadcrumb-item active" href="fotos-detail.html">Fotos</li>
         <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitle.lstrip('0') }}</a></li>   
         <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }}</li>        
         <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }}</a></li>
     </ol>
 </nav>
-<div class="container container-fluid">
+<div class="container-fluid">
     <div id="tab-navigation">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">

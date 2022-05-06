@@ -6,93 +6,31 @@
           <li class="breadcrumb-item active" aria-current="page">Start</li>
       </ol>
   </nav>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="col-lg-8 col-md-8 mx-auto text-center" id="index-title">
         <h1 class="fw-light">Die Reise von Paul und Leona Kretschmer nach Lesbos</h1>
-        <p class="lead text-muted">Fotos und Tonaufnahmen einer Expedition um 1901</p>
-        <p>
-          <a href="table.html" class="btn btn-primary my-2">Alle Fotographien als Tabelle</a>
-          <a href="place-index.html" class="btn btn-secondary my-2">Alle Orte auf einer Karte</a>          
-          <a href="person-index.html" class="btn btn-secondary my-2">Alle Personen als Tabelle</a>
-        </p>
+        <p class="lead text-muted">Fotos und Tonaufnahmen einer Expedition um 1901</p>        
       </div>
     </div>
-  </div>
-  <div id="tab-navigation">
-    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-      {% for col, items in objects|groupby('collection') %}
-        <li class="nav-item" role="presentation">
-          <button class=
-            "{% if col == 'Fotos_0001-0028' %}
-              nav-link active
-            {% else %}
-              nav-link
-            {% endif %}"
-            id="{{ col|lower }}-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#{{ col|lower }}"
-            role="tab"
-            aria-controls="{{ col|lower }}"
-            type="button"
-            aria-selected=
-            "{% if col == 'Fotos_1-28' %}
-              true
-            {% else %}
-              false
-            {% endif %}"
-          >
-            {{ loop.index }}
-          </button>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="album bg-light">
-    <div class="tab-content" id="nav-index">
-      <div class="container">        
-        {% for col, items in objects|groupby('collection') %}
-          <div class=
-            "{% if col == 'Fotos_0001-0028' %}
-              tab-pane fade show active
-            {% else %}
-              tab-pane fade
-            {% endif %}"
-            id="{{ col|lower }}"
-            role="tabpanel"
-            aria-labelledby="{{ col|lower }}-tab"
-          >
-            <div class="row">    
-                {% for res in items %}
-                  <div class="col-md-4">
-
-                    <div class="card shadow-sm">
-                      <div class="card-header text-center">
-                        {% for x in res.metadata %}
-                          <img title="{{ x.titleOriginal }}"
-                            src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg"                        
-                          />                  
-                        {% endfor %}
-                      </div>
-
-                      <div class="card-body">
-                        <p class="card-text"></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <p>{{ res.titleOrig }}</p>
-                          <div class="btn-group">                        
-                            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ res.url }}">Ansehen</a>
-                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                          </div>
-                          <!-- <small class="text-muted">9 mins</small> -->
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                {% endfor %}
-            </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 mx-auto text-center" id="index-title">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="fotos-detail.html">
+              <div class="card">
+                Fotos
+              </div>
+            </a>
           </div>
-        {% endfor %}
+          <div class="col-md-6">
+            <a href="tonaufnahmen-detail.html">
+              <div class="card">
+                Tonaufnahmen
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
