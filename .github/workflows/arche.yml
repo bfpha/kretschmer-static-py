@@ -29,5 +29,5 @@ jobs:
         composer require "acdh-oeaw/arche-ingest:^1"
     - name: ingest resources
       run: |
-        vendor/bin/arche-import-metadata rdf/objects_kretschmer_all.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}}--retriesOnConflict
+        vendor/bin/arche-import-metadata rdf/objects_kretschmer_all.ttl https://arche-curation.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PASSWORD}} --retriesOnConflict
 
