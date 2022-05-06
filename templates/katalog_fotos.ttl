@@ -53,8 +53,8 @@ acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasSpatialCoverage <{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>;
 {% if md.journalFile1 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;{% endif %}
 {% if md.journalFile2 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;{% endif %}
-acdh:hasCoverageEndDate "{{ md.dateEnd }}"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCoverageStartDate "{{ md.dateStart }}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageEndDate "{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageStartDate "{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasSubject "griechenland"@de;
 acdh:hasOwner acdhi:none;
@@ -66,7 +66,7 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/60100
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file2 }}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}>;
 acdh:hasTitle "Rückseite: {{ md.titleDe }}"@de;
-acdh:hasAlternativeTitle "πρόσοψη: {{ md.titleGr }}"@mus;
+acdh:hasAlternativeTitle "πίσω όψη: {{ md.titleGr }}"@mus;
 acdh:hasNonLinkedIdentifier "{{ md.file2 }}";
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
@@ -95,8 +95,8 @@ acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasSpatialCoverage <{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>;
 {% if md.journalFile1 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;{% endif %}
 {% if md.journalFile2 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;{% endif %}
-acdh:hasCoverageEndDate "{{ md.dateEnd }}"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCoverageStartDate "{{ md.dateStart }}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageEndDate "{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageStartDate "{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasSubject "griechenland"@de;
 acdh:hasOwner acdhi:none;
