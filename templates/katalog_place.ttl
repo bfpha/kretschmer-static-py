@@ -3,17 +3,17 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
 {% for items in objects %}{% for md in items.metadata %}<{{ md.placeRegionID }}> a acdh:Place;
-acdh:hasTitle "{{ md.placeRegionDe }}"@de;
+acdh:hasTitle "{{ md.placeRegionDe }}"@und;
 acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@mus;
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
 acdh:hasLatitude "{{ md.coordinates.split(", ")[0] }}";
 acdh:hasLongitude "{{ md.coordinates.split(", ")[1] }}" .
 <{{ md.countryID }}> a acdh:Place;
-acdh:hasTitle "{{ md.countryDe }}"@de;
+acdh:hasTitle "{{ md.countryDe }}"@und;
 acdh:hasAlternativeTitle "{{ md.countryGr }}"@mus;
 acdh:hasIdentifier <{{ md.countryWikidata }}>;
 acdh:hasIdentifier <{{ md.countryGeonames }}> .
 <{{ md.countryHistoryID }}> a acdh:Place;
-acdh:hasTitle "{{ md.countryHistoryDe }}"@de;
+acdh:hasTitle "{{ md.countryHistoryDe }}"@und;
 acdh:hasAlternativeTitle "{{ md.countryHistoryGr }}"@mus;
 acdh:hasIdentifier <{{ md.countryHistoryWikidata }}> .{% endfor %}{% endfor %}
