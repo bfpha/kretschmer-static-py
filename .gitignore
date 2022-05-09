@@ -1,5 +1,4 @@
 *.ipynb
-*.csv
 html/data
 html/*.html
 venv-kretschmer
