@@ -4,7 +4,7 @@
 
 acdhi:onb acdh:hasTitle "Österreichische Nationalbibliothek"@und;
 a acdh:Organisation;
-acdhi:hasIdentifier <https://id.acdh.oeaw.ac.at/pmb/29349>,<https://d-nb.info/gnd/2020893-5>;
+acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/pmb/29349>,<https://d-nb.info/gnd/2020893-5>;
 acdh:hasAddressLine1 "Josefsplatz 1, Postfach 25";
 acdh:hasCity "Wien"@de,"Vienna"@en;
 acdh:hasCountry "Österreich"@de,"Austria"@en;
@@ -14,7 +14,7 @@ acdh:hasUrl "https://www.onb.ac.at" .
 
 acdhi:pha-oeaw acdh:hasTitle "Phonogrammarchiv"@und;
 a acdh:Organisation;
-acdhi:hasIdentifier <https://d-nb.info/gnd/2017727-6>;
+acdh:hasIdentifier <https://d-nb.info/gnd/2017727-6>;
 acdh:hasAddressLine1 "Liebiggasse 5";
 acdh:hasCity "Wien"@de,"Vienna"@en;
 acdh:hasCountry "Österreich"@de,"Austria"@en;
@@ -46,7 +46,7 @@ acdh:hasLastName "Graf"@und .
 
 acdhi:kretschmer-lesbos-project acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_151-180>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_1-28>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_91-120>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_29-60>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_61-90>;
 a acdh:Project;
-acdh:hasTitle "Paul Kretschmer Griechenland/Lesbos Projekt"@de;
+acdh:hasTitle "Paul Kretschmer und seine Reise von Wien nach Lesbos 1901"@de;
 acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_121-150>,acdhi:kretschmer-lesbos,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_181-210>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_211-240>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_241-262>;
 acdh:hasDescription "create"@de;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
