@@ -14,62 +14,68 @@
       <li class="breadcrumb-item active" aria-current="page">Alle Personen als Tabelle</li>
   </ol>
 </nav>
-<div class="container text-center">
-  <div class="col-lg-8 col-md-8 mx-auto">
-    <h1 class="fw-light">Alle Personen</h1>
-    <p class="lead text-muted">Personen abgebildet auf den Fotos von <strong>Paul Kretschmer</strong> </p>
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 mx-auto">
+      <h1 class="fw-light">Alle Personen</h1>
+      <p class="lead text-muted">Personen abgebildet auf den Fotos von <strong>Paul Kretschmer</strong> </p>
+    </div>
   </div>
-  <table id="myTable" class="display" style="width:100%;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Vorname griechisch</th>
-        <th>Nachname</th>
-        <th>Nachname griechisch</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in objects %}
-        {% for x in item.metadata %}
-        <tr>
-          <td>
-            <a href="{{ x.id }}.html">{{ x.id }}</a>
-          </td>
-          <td>
-            {% if x.Vorname is string %}
-            {{ x.Vorname }}
-            {% endif %}
-          </td>
-          <td>
-            {% if x.Vorname_gr is string %}
-            {{ x.Vorname_gr }}
-            {% endif %}
-          </td>
-          <td>
-            {% if x.Familienname is string %}
-            {{ x.Familienname }}
-            {% endif %}                  
-          </td>
-          <td>
-            {% if x.Familienname_gr is string %}
-            {{ x.Familienname_gr }}
-            {% endif %}                  
-          </td>
-        </tr>
-        {% endfor %}
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Vorname griechisch</th>
-        <th>Nachname</th>
-        <th>Nachname griechisch</th>
-      </tr>
-    </tfoot>
-  </table>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 mx-auto">
+      <table id="myTable" class="display" style="width:100%;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Vorname</th>
+            <th>Vorname griechisch</th>
+            <th>Nachname</th>
+            <th>Nachname griechisch</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in objects %}
+            {% for x in item.metadata %}
+            <tr>
+              <td>
+                <a href="{{ x.id }}.html">{{ x.id }}</a>
+              </td>
+              <td>
+                {% if x.Vorname is string %}
+                {{ x.Vorname }}
+                {% endif %}
+              </td>
+              <td>
+                {% if x.Vorname_gr is string %}
+                {{ x.Vorname_gr }}
+                {% endif %}
+              </td>
+              <td>
+                {% if x.Familienname is string %}
+                {{ x.Familienname }}
+                {% endif %}                  
+              </td>
+              <td>
+                {% if x.Familienname_gr is string %}
+                {{ x.Familienname_gr }}
+                {% endif %}                  
+              </td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>ID</th>
+            <th>Vorname</th>
+            <th>Vorname griechisch</th>
+            <th>Nachname</th>
+            <th>Nachname griechisch</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
 </div>
 <script>
   $(document).ready(function() {

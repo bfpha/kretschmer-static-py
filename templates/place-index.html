@@ -67,10 +67,12 @@
                 {{ item.countryHistoryGr }}
               </td>
               <td>
+                {% if item.placeGeonames is string %}
                 <a target="_blank"
                   href="{{ item.placeGeonames }}">
-                  {{ item.placeGeonames }}
+                  {{ item.placeGeonames.replace("https://www.geonames.org/", "") }}
                 </a>
+                {% endif %}
               </td>
               <td>
                 {{ item.coordinates }}              
