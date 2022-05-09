@@ -10,7 +10,7 @@ acdh:hasCity "Wien"@de,"Vienna"@en;
 acdh:hasCountry "Österreich"@de,"Austria"@en;
 acdh:hasPostcode "1015";
 acdh:hasRegion "Österreich"@de,"Austria"@en;
-acdh:hasUrl "https://www.onb.ac.at";
+acdh:hasUrl "https://www.onb.ac.at" .
 
 acdhi:pha-oeaw acdh:hasTitle "Phonogrammarchiv"@und;
 a acdh:Organisation;
