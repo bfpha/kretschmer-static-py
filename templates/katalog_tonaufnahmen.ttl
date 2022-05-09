@@ -22,7 +22,7 @@ acdh:hasMetadataCreator acdhi:dstoxreiter;
 {% for md in items.metadata %}{% if md.descriptionGr is string %}acdh:hasDescription "{{ md.descriptionGr }}"@mus;{% endif %}{% endfor %}
 acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.signatureInv }}{% endfor %}";
 acdh:hasUrl "{% for md in items.metadata %}{{ md.linkAudio }}{% endfor %}";
-acdh:hasAuthor acdhi:pkretschmer;
+acdh:hasActor acdhi:pkretschmer;
 acdh:hasSpatialCoverage {% for md in items.metadata %}<{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>{% endfor %};
 {% for md in items.metadata %}{% if md.journalFile1 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;{% endif %}{% endfor %}
 {% for md in items.metadata %}{% if md.journalFile2 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;{% endif %}{% endfor %}

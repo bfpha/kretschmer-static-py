@@ -4,7 +4,7 @@
 
 acdhi:onb acdh:hasTitle "Österreichische Nationalbibliothek"@und;
 a acdh:Organisation;
-acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/pmb/29349>,<https://d-nb.info/gnd/2020893-5>;
+acdh:hasIdentifier <https://d-nb.info/gnd/2020893-5>;
 acdh:hasAddressLine1 "Josefsplatz 1, Postfach 25";
 acdh:hasCity "Wien"@de,"Vienna"@en;
 acdh:hasCountry "Österreich"@de,"Austria"@en;
