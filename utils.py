@@ -238,7 +238,7 @@ def make_rdf_tonaufnahmen_ttl(df):
     os.makedirs('./rdf', exist_ok=True)
     items = []
     rows = []     
-    template = templateEnv.get_template('./templates/deleted/katalog_tonaufnahmen.ttl')
+    template = templateEnv.get_template('./templates/katalog_tonaufnahmen.ttl')
     for gr, df in df.groupby('ordering'):
         object_id = slugify(gr)
         file_name = f"{object_id}.xml"

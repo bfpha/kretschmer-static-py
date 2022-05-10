@@ -25,10 +25,10 @@ acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasSpatialCoverage {% for md in items.metadata %}<{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.countryHistoryID }}>{% endfor %};
 {% for md in items.metadata %}{% if md.journalFile1 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}>;{% endif %}{% endfor %}
 {% for md in items.metadata %}{% if md.journalFile2 is string %}acdh:relation <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}>;{% endif %}{% endfor %}
-acdh:hasCoverageEndDate "{% for md in items.metadata %}{{ md.dateEnd }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageEndDate "{% for md in items.metadata %}{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "griechenland"@de;
+acdh:hasSubject "Griechenland","Tonaufnahmen","Lesbos"@de;
 acdh:hasOwner acdhi:pha-oeaw;
 acdh:hasRightsHolder acdhi:pha-oeaw;
 acdh:hasLicensor acdhi:pha-oeaw;
