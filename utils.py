@@ -105,6 +105,15 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/place-index.html')
     with open('./html/place-index.html', 'w') as f:
         f.write(template.render({"objects": items,"places": places}))
+    template = templateEnv.get_template('./templates/about.html')
+    with open('./html/about.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/team.html')
+    with open('./html/team.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/journey.html')
+    with open('./html/journey.html', 'w') as f:
+        f.write(template.render({"objects": items}))
     # print(places)
     return items
 

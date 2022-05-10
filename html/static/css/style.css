@@ -21,7 +21,19 @@ body {
     border: none;
 }
 
+h3 {
+    margin-top: 2em;
+}
+
+h4 {
+    margin-top: 1em;
+}
+
 .navbar .nav-link {
+    color: #fff !important;
+}
+
+.btn a:hover {
     color: #fff !important;
 }
 
@@ -31,6 +43,14 @@ body {
 
 .wrapper_navbar {
     z-index: 9999;
+}
+
+li {
+    list-style: none;
+}
+
+.underlined {
+    text-decoration: underline;
 }
 
 #map {
