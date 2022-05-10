@@ -3,5 +3,6 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
 {% for items in objects %}
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}>  <delete://delete> acdh:hasPrincipalInvestigator .
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}> <delete://delete> acdh:hasPrincipalInvestigator;
+<delete://delete> acdh:hasCreator .
 {% endfor %}
