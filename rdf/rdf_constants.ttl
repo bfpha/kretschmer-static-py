@@ -87,7 +87,6 @@ acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Fotoaufnahmen","Tona
 acdh:hasNote "Nach umfangreicher Recherche hat das ACDH-CH gemeinsam mit dem PhA der OEAW festgestellt, dass es keine bekannten Rechtsinabher der Sammlung gibt. In Folge dessen wird die Sammlung als 'Orphan Work' eingetragen. Die Eintragung ist derzeit in Bearbeitung und wird in Kürze erfolgen."@de .
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 a acdh:Collection;
