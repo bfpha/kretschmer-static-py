@@ -2,4 +2,4 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> <delete://delete> acdh:hasLicense .
+<https://arche-curation.acdh-dev.oeaw.ac.at/api/452711> <delete://delete> acdh:hasLicense .
