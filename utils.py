@@ -212,9 +212,9 @@ def make_rdf_ttl(df):
             item['metadata'].append(station)
             rows.append(station)
         items.append(item)
-    with open('./rdf/deleted/katalog_fotos.ttl', 'w') as f:
+    with open('./rdf/katalog_fotos.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
-    template = templateEnv.get_template('./templates/deleted/katalog_journal.ttl')
+    template = templateEnv.get_template('./templates/katalog_journal.ttl')
     with open('./rdf/deleted/katalog_journal.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     template = templateEnv.get_template('./templates/katalog_place.ttl')
@@ -255,10 +255,10 @@ def make_rdf_tonaufnahmen_ttl(df):
             item['metadata'].append(station)
             rows.append(station)
         items.append(item)
-    with open('./rdf/deleted/katalog_tonaufnahmen.ttl', 'w') as f:
+    with open('./rdf/katalog_tonaufnahmen.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     template = templateEnv.get_template('./templates/deleted/katalog_journal.ttl')
-    with open('./rdf/deleted/katalog_journal2.ttl', 'w') as f:
+    with open('./rdf/katalog_journal2.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     return items
 
