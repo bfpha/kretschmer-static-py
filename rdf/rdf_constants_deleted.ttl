@@ -5,3 +5,5 @@
 acdhi:kretschmer-lesbos <delete://delete> acdh:hasOwner;
 <delete://delete> acdh:hasLicensor;
 <delete://delete> acdh:hasRightsHolder .
+
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> <delete://delete> acdh:hasLicense .
