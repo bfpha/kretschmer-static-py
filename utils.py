@@ -214,8 +214,8 @@ def make_rdf_ttl(df):
         items.append(item)
     with open('./rdf/katalog_fotos.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
-    template = templateEnv.get_template('./templates/katalog_journal.ttl')
-    with open('./rdf/deleted/katalog_journal.ttl', 'w') as f:
+    template = templateEnv.get_template('./templates/deleted/katalog_journal.ttl')
+    with open('./rdf/katalog_journal.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     template = templateEnv.get_template('./templates/katalog_place.ttl')
     with open('./rdf/katalog_place.ttl', 'w') as f:
