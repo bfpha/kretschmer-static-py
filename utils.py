@@ -195,7 +195,7 @@ def make_rdf_ttl(df):
     os.makedirs('./rdf', exist_ok=True)
     items = []
     rows = []     
-    template = templateEnv.get_template('./templates/katalog_fotos.ttl')
+    template = templateEnv.get_template('./templates/deleted/katalog_fotos.ttl')
     for gr, df in df.groupby('ordering'):
         object_id = slugify(gr)
         file_name = f"{object_id}.xml"
@@ -212,10 +212,10 @@ def make_rdf_ttl(df):
             item['metadata'].append(station)
             rows.append(station)
         items.append(item)
-    with open('./rdf/katalog_fotos.ttl', 'w') as f:
+    with open('./rdf/deleted/katalog_fotos.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
-    template = templateEnv.get_template('./templates/katalog_journal.ttl')
-    with open('./rdf/katalog_journal.ttl', 'w') as f:
+    template = templateEnv.get_template('./templates/deleted/katalog_journal.ttl')
+    with open('./rdf/deleted/katalog_journal.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     template = templateEnv.get_template('./templates/katalog_place.ttl')
     with open('./rdf/katalog_place.ttl', 'w') as f:
@@ -238,7 +238,7 @@ def make_rdf_tonaufnahmen_ttl(df):
     os.makedirs('./rdf', exist_ok=True)
     items = []
     rows = []     
-    template = templateEnv.get_template('./templates/katalog_tonaufnahmen.ttl')
+    template = templateEnv.get_template('./templates/deleted/katalog_tonaufnahmen.ttl')
     for gr, df in df.groupby('ordering'):
         object_id = slugify(gr)
         file_name = f"{object_id}.xml"
@@ -255,10 +255,10 @@ def make_rdf_tonaufnahmen_ttl(df):
             item['metadata'].append(station)
             rows.append(station)
         items.append(item)
-    with open('./rdf/katalog_tonaufnahmen.ttl', 'w') as f:
+    with open('./rdf/deleted/katalog_tonaufnahmen.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
-    template = templateEnv.get_template('./templates/katalog_journal.ttl')
-    with open('./rdf/katalog_journal2.ttl', 'w') as f:
+    template = templateEnv.get_template('./templates/deleted/katalog_journal.ttl')
+    with open('./rdf/deleted/katalog_journal2.ttl', 'w') as f:
         f.write(template.render({"objects": items}))
     return items
 

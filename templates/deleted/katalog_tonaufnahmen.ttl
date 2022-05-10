@@ -1,0 +1,7 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+{% for items in objects %}
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}>  <delete://delete> acdh:hasCreator .
+{% endfor %}
