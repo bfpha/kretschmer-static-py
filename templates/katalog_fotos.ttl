@@ -24,8 +24,8 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/60100
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}>;
-acdh:hasTitle "Vorderseite: {{ md.titleDe }} [recto]"@de;
-acdh:hasAlternativeTitle "πρόσοψη: {{ md.titleGr }}"@ell;
+acdh:hasTitle "{{ md.titleDe }} [recto]"@de;
+acdh:hasAlternativeTitle "{{ md.titleGr }} [recto]"@ell;
 acdh:hasNonLinkedIdentifier "{{ md.file1 }}";
 acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc-ow-eu>;
 acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
@@ -67,8 +67,8 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/60100
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file2 }}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}>;
-acdh:hasTitle "Rückseite: {{ md.titleDe }} [verso]"@de;
-acdh:hasAlternativeTitle "πίσω όψη: {{ md.titleGr }}"@ell;
+acdh:hasTitle "{{ md.titleDe }} [verso]"@de;
+acdh:hasAlternativeTitle "{{ md.titleGr }} [verso]"@ell;
 acdh:hasNonLinkedIdentifier "{{ md.file2 }}";
 acdh:hasDigitisingAgent acdhi:onb;
 acdh:hasContact acdhi:enikolaros;
