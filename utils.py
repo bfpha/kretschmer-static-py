@@ -72,6 +72,7 @@ def make_index_html(df):
                 "fileName": file_name,
                 "photoTitleDe": row['titleDe'],
                 "photoTitleGr": row['titleGr'],
+                "placeGeonames": row['placeGeonames']
             }            
             for x in row.keys():
                 station[x] = row[x]
