@@ -2,7 +2,6 @@
 html/data
 html/*.html
 venv-kretschmer
-dl_fundament.sh
 katalog*.ttl 
 objects_kretschmer_all.ttl
 
