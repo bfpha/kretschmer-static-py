@@ -5,7 +5,7 @@
 {% for items in objects %}{% for md in items.metadata %}
 <{{ md.placeRegionID }}> a acdh:Place;
 acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@und;
-acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@mus;
+acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@ell;
 {% if md.placeGeonames is string %}
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
 {% endif %}
@@ -17,7 +17,7 @@ acdh:hasLongitude "{{ md.coordinates.split(", ")[1] }}" .
 
 <{{ md.countryID }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryDe }}"@und;
-acdh:hasAlternativeTitle "{{ md.countryGr }}"@mus;
+acdh:hasAlternativeTitle "{{ md.countryGr }}"@ell;
 {% if md.countryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryWikidata }}>;
 {% endif %}
@@ -26,7 +26,7 @@ acdh:hasIdentifier <{{ md.countryGeonames }}>{% endif %} .
 
 <{{ md.countryHistoryID }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryHistoryDe }}"@und;
-acdh:hasAlternativeTitle "{{ md.countryHistoryGr }}"@mus;
+acdh:hasAlternativeTitle "{{ md.countryHistoryGr }}"@ell;
 {% if md.countryHistoryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryHistoryWikidata }}> .
 {% endif %}

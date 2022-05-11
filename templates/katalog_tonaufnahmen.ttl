@@ -6,7 +6,7 @@
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording>;
 acdh:hasTitle "{% for md in items.metadata %}{{ md.titleDe }}{% endfor %}"@de;
-acdh:hasAlternativeTitle "{% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@mus;
+acdh:hasAlternativeTitle "{% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@ell;
 acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}";
 acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
@@ -18,7 +18,7 @@ acdh:hasEditor acdhi:enikolaros,acdhi:bgraf;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>;
 acdh:hasMetadataCreator acdhi:dstoxreiter;
 {% for md in items.metadata %}{% if md.descriptionDe is string %}acdh:hasDescription "{{ md.descriptionDe }}"@de;{% endif %}{% endfor %}
-{% for md in items.metadata %}{% if md.descriptionGr is string %}acdh:hasDescription "{{ md.descriptionGr }}"@mus;{% endif %}{% endfor %}
+{% for md in items.metadata %}{% if md.descriptionGr is string %}acdh:hasDescription "{{ md.descriptionGr }}"@ell;{% endif %}{% endfor %}
 acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.signatureInv }}{% endfor %}";
 acdh:hasUrl "{% for md in items.metadata %}{{ md.linkAudio }}{% endfor %}";
 acdh:hasAuthor acdhi:pkretschmer;
@@ -30,10 +30,10 @@ acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart.split("
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasSubject "Griechenland","Tonaufnahmen","Lesbos"@de;
 acdh:hasOwner acdhi:pha-oeaw;
-acdh:hasRightsHolder acdhi:pha-oeaw;
+acdh:hasRightsHolder acdhi:oeaw;
 acdh:hasLicensor acdhi:pha-oeaw;
 acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/mus>;
+acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/ell>;
 {% for md in items.metadata %}{% if md.persons is string %}{% if md.persons.split(" ") | length > 1 %}{% for x in md.persons.split(" ") %}acdh:hasActor <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ x }}>;{% endfor %}{% else %}acdh:hasActor <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ md.persons }}>;{% endif %}{% endif %}{% endfor %}
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
 {% endfor %}
