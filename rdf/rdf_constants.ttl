@@ -46,7 +46,7 @@ acdh:hasLastName "Graf"@und .
 
 acdhi:kretschmer-lesbos-project acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_151-180>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_1-28>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_91-120>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_29-60>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_61-90>;
 a acdh:Project;
-acdh:hasTitle "Paul Kretschmer und seine Reise von Wien nach Lesbos 1901"@de;
+acdh:hasTitle "Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901"@de;
 acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_121-150>,acdhi:kretschmer-lesbos,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_181-210>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_211-240>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_241-262>;
 acdh:hasDescription "create"@de;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
@@ -68,7 +68,7 @@ acdh:hasRightsHolder acdhi:oeaw,acdhi:unknown;
 acdh:hasLicensor acdhi:pha-oeaw;
 acdh:hasPrincipalInvestigator acdhi:enikolaros;
 acdh:hasContact acdhi:enikolaros;
-acdh:hasTitle "Paul Kretschmer und seine Reise von Wien nach Lesbos 1901"@de;
+acdh:hasTitle "Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901"@de;
 acdh:hasDescription """Paul Kretschmer (1866-1956), Professor für vergleichende Sprachwissenschaften an der Universität Wien, reiste zwischen 5. August und Ende Oktober 1901 auf die griechische Insel Lesbos um Dialektforschungen durchzuführen. Ausgestattet mit einem Phonographen der Vorgängerinstitution des heutigen Phonogrammarchivs erstellte er Tonaufnahmen griechischer Lieder, fertigte zahlreiche Fotografien an  und führte Tagebuch. Neben 131 Fotografien finden sich mehrere Tagebücher dieser Reise in Kretschmers Nachlass an der Österreichischen Nationalbibliothek (ÖNB), die Tonaufnahmen werden im Phonogrammarchiv (PhA) der Österreichischen Akademie der Wissenschaften (ÖAW) verwahrt.
 
 Im Zuge des Forschungsprojekts „Paul Kretschmer und seine Reise von Wien nach Lesbos (Griechenland) 1901. Kontextualisierung und Restudy.“, wurden sowohl Vorder- als auch Rückseiten der 131 Fotoaufnahmen im TIFF-Format digitalisiert und von 57 Tagebuchseiten, die mit den Fotografien oder Tonaufnahmen in Beziehung stehen, Scans im JPG-Format angefertigt. Aufbauend auf Kretschmers Tondokumenten entstanden am Phonogrammarchiv drei Videos mit Untertiteln im MKV-Format. Insgesamt umfasst diese Sammlung 262 Faksimiles der fotografischen Objekte, 57 Faksimiles ausgewählter Tagebuchseiten und drei Videos.
