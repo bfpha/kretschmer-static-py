@@ -15,7 +15,7 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>     
-        <li class="breadcrumb-item"><a href="fotos-detail.html">Fotos - Ηχογραφήσεις</a></li>
+        <li class="breadcrumb-item"><a href="fotos-detail.html">Tonaufnahmen - Ηχογραφήσεις</a></li>
         <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitle.lstrip('0') }} - {{ prevTitleGr.lstrip('0') }}</a></li>   
         <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }} - {{ titleOrigGr.lstrip('0') }}</li>        
         <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }} - {{ nextTitleGr.lstrip('0') }}</a></li>
@@ -78,25 +78,25 @@
                                                 </tr>
                                                 <tr>
                                                     <th>ONB Signatur/Inv-Nr.</th>
-                                                    <td>{{ x.singatureInv }}</td>
+                                                    <td>{{ x.signatureInv }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>ONB Signatur Link</th>
                                                     <td>
                                                         <a target="_blank"
                                                             title="OENB"
-                                                            href="{{ x.oenbLink }}">
-                                                            {{ x.oenbLink }}
+                                                            href="{{ x.linkAudio }}">
+                                                            {{ x.linkAudio }}
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Photograph/in</th>
-                                                    <td>{{ x.photographDe }}</td>
+                                                    <th>Urherber/in</th>
+                                                    <td>{{ x.authorDe }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Datum</th>
-                                                    <td>{{ x.date }}</td>
+                                                    <td>{{ x.dateStart }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Ort/Region</th>
@@ -164,16 +164,6 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
-                                                {% if x.imageSize is string %}
-                                                <tr>
-                                                    <th>Bildgröße</th>
-                                                    <td>
-                                                        {{ x.imageSize }}
-                                                        <br>
-                                                        {{ x.px }}
-                                                    </td>
-                                                </tr>  
-                                                {% endif %} 
                                                 <tr>
                                                     <th>ARCHE Identifier</th>
                                                     <td>
@@ -182,11 +172,6 @@
                                                                 <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
                                                                     https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
                                                                 </a>  
-                                                            </li>
-                                                            <li>
-                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
-                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
-                                                                </a>
                                                             </li>
                                                             {% if x.relation1 is string %}
                                                             <li>
@@ -206,32 +191,36 @@
                                                     </td>
                                                 </tr> 
                                                 <tr>
-                                                    <th>ARCHE IIIF Server</th>
+                                                    <th>
+                                                        ARCHE Audio Server
+                                                    </th>
                                                     <td>
                                                         <li>                                                            
                                                             <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json
+                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=
                                                             </a>  
-                                                        </li>                                                        
-                                                        <li>
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json
-                                                            </a>
-                                                        </li>    
-                                                        {% if x.relation1 is string %}
-                                                        <li>                                                            
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
-                                                            </a>   
-                                                        </li>        
-                                                        {% endif %}   
-                                                        {% if x.relation2 is string %}
-                                                        <li>                                                            
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
-                                                            </a>       
-                                                        </li>    
-                                                        {% endif %}                                                    
+                                                        </li>                                                          
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ARCHE IIIF Server</th>
+                                                    <td>
+                                                        <ul>                                                             
+                                                            {% if x.relation1 is string %}
+                                                            <li>                                                            
+                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
+                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
+                                                                </a>   
+                                                            </li>        
+                                                            {% endif %}   
+                                                            {% if x.relation2 is string %}
+                                                            <li>                                                            
+                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
+                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
+                                                                </a>       
+                                                            </li>    
+                                                            {% endif %}     
+                                                        </ul>                                               
                                                     </td>
                                                 </tr> 
                                                 <tr>
@@ -240,11 +229,6 @@
                                                         <ul>
                                                             <li style="display:inline;margin-right:1em;">
                                                                 <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=metadata">
-                                                                    <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
-                                                                </a> 
-                                                            </li>
-                                                            <li style="display:inline;margin-right:1em;">
-                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=metadata">
                                                                     <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
                                                                 </a> 
                                                             </li>
@@ -290,25 +274,25 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Αριθμός Εισαγωγής</th>
-                                                    <td>{{ x.singatureInv }}</td>
+                                                    <td>{{ x.signatureInv }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Αριθμός Εισαγωγής  (Link)</th>
                                                     <td>
                                                         <a target="_blank"
                                                             title="OENB"
-                                                            href="{{ x.oenbLink }}">
-                                                            {{ x.oenbLink }}
+                                                            href="{{ x.linkAudio }}">
+                                                            {{ x.linkAudio }}
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Φωτογράφος</th>
-                                                    <td>{{ x.photographGr }}</td>
+                                                    <td>{{ x.authorGr }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Ημερομηνία</th>
-                                                    <td>{{ x.date }}</td>
+                                                    <td>{{ x.dateStart }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Τόπος/Περιοχή</th>
@@ -372,16 +356,6 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
-                                                {% if x.imageSize is string %}
-                                                <tr>
-                                                    <th>Μέγεθος Εικόνας</th>
-                                                    <td>
-                                                        {{ x.imageSize }}
-                                                        <br>
-                                                        {{ x.px }}
-                                                    </td>
-                                                </tr>  
-                                                {% endif %} 
                                                 <tr>
                                                     <th>ARCHE Identifier</th>
                                                     <td>
@@ -390,11 +364,6 @@
                                                                 <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
                                                                     https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
                                                                 </a>  
-                                                            </li>
-                                                            <li>
-                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
-                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
-                                                                </a>
                                                             </li>
                                                             {% if x.relation1 is string %}
                                                             <li>
@@ -414,50 +383,49 @@
                                                     </td>
                                                 </tr> 
                                                 <tr>
-                                                    <th>ARCHE IIIF Server</th>
+                                                    <th>
+                                                        ARCHE Audio Server
+                                                    </th>
                                                     <td>
                                                         <li>                                                            
                                                             <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json
+                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=
                                                             </a>  
-                                                        </li>                                                        
-                                                        <li>
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json
-                                                            </a>
-                                                        </li>    
-                                                        {% if x.relation1 is string %}
-                                                        <li>                                                            
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
-                                                            </a>   
-                                                        </li>        
-                                                        {% endif %}   
-                                                        {% if x.relation2 is string %}
-                                                        <li>                                                            
-                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
-                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
-                                                            </a>       
-                                                        </li>    
-                                                        {% endif %}                                                    
+                                                        </li>                                                          
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ARCHE IIIF Server</th>
+                                                    <td>
+                                                        <ul>                                                             
+                                                            {% if x.relation1 is string %}
+                                                            <li>                                                            
+                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
+                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
+                                                                </a>   
+                                                            </li>        
+                                                            {% endif %}   
+                                                            {% if x.relation2 is string %}
+                                                            <li>                                                            
+                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
+                                                                    https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
+                                                                </a>       
+                                                            </li>    
+                                                            {% endif %}     
+                                                        </ul>                                               
                                                     </td>
                                                 </tr> 
                                                 <tr>
                                                     <th>Download</th>
                                                     <td>
                                                         <ul>
-                                                            <li style="display:inline;">
+                                                            <li style="display:inline;margin-right:1em;">
                                                                 <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=metadata">
                                                                     <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
                                                                 </a> 
                                                             </li>
-                                                            <li style="display:inline;">
-                                                                <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=metadata">
-                                                                    <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
-                                                                </a> 
-                                                            </li>
                                                             {% if x.relation1 is string %}
-                                                            <li style="display:inline;">
+                                                            <li style="display:inline;margin-right:1em;">
                                                                 <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=metadata">
                                                                     <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
                                                                 </a> 
@@ -472,7 +440,7 @@
                                                             {% endif %} 
                                                         <ul>
                                                     </td>
-                                                </tr> 
+                                                </tr>  
                                             </tbody>         
                                         </table>
                                     </div>
@@ -483,7 +451,7 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Ort der Fotoaufnahme</h5>
+                                <h5>Ort der Tonaufnahme - Τοποθεσία της ηχογράφησης </h5>
                             </div>
                             <div class="card-body">
                                 <div id="map-object"></div>
@@ -517,7 +485,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Abgebildete Personen</h5>
+                                    <h5>Abgebildete Personen - Απεικονιζόμενα πρόσωπα </h5>
                                 </div>
                                 <div class="card-body">
                                     <ul>
@@ -542,58 +510,25 @@
                     <div class="col-md-12">
                         <div class="card" style="margin-bottom:0;">
                             <div class="card-header">
-                                <h5>Fotos</h5>
+                                <h5>Tonaufnahme - Ηχογραφήσεις</h5>
                             </div>
                         </div>
                     </div>   
-                    <div class="col-md-12" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">                        
+                    <div class="col-md-12">                        
                         <div class="card">
-                            <div class="card-body" id="img-front-body">
+                            <div class="card-body">
+                                <video width="1000" height="800" controls>
+                                    <source src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}" type="video/mkv">
+                                  </video>
                             </div>
                         </div>
-                    </div>
-                    <script type="text/javascript">
-                        var imgURL = $("#img-front").attr('data-target');
-                        $("#img-front-body").css({
-                            'height': '600px'
-                        });
-                        var viewer = OpenSeadragon({
-                            id: 'img-front-body',
-                            prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
-                            // sequenceMode: true,
-                            // showReferenceStrip: true,
-                            // showNavigator: true,
-                            // imageLoaderLimit: 10,
-                            tileSources: imgURL
-                        });
-                    </script>
-                    <div class="col-md-12" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
-                        <div class="card">
-                            <div class="card-body" id="img-back-body">
-                            </div>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                        var imgURL = $("#img-back").attr('data-target');
-                        $("#img-back-body").css({
-                            'height': '600px'
-                        });
-                        var viewer = OpenSeadragon({
-                            id: 'img-back-body',
-                            prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
-                            // sequenceMode: true,
-                            // showReferenceStrip: true,
-                            // showNavigator: true,
-                            // imageLoaderLimit: 10,
-                            tileSources: imgURL
-                        });
-                    </script>
+                    </div>                    
                     <div class="row">
                         {% if x.relation1 is string %}
                         <div class="col-md-12">
                             <div class="card" style="margin-bottom:0;">
                                 <div class="card-header">
-                                    <h5>Reisetagebuch</h5>
+                                    <h5>Reisetagebuch - Ταξιδιωτικό ημερολόγιο </h5>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 {% extends "templates/base.html" %}
-{% block title%} {{ title }} {% endblock %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
 {% block scriptHeader %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -9,8 +9,8 @@
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>'; margin-bottom: 4em;" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Start</a></li>   
-        <li class="breadcrumb-item"><a href="person-index.html">Alle Personen als Tabelle</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>      
+        <li class="breadcrumb-item"><a href="person-index.html">Personenregister - Άνθρωποι</a></li>
         {% for x in metadata %}     
             <li class="breadcrumb-item active" aria-current="page">{{ x.Familienname }} {{ x.Vorname }}</li>    
         {% endfor %}    

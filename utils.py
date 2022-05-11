@@ -45,12 +45,17 @@ def make_index_html(df):
         }
         place = {}
         for i, row in df.iterrows():
+            item['collection'] = row['collection']
             item['prev'] = slugify(row['previous']) + ".html"
             item['next'] = slugify(row['next']) + ".html"
             item['prevTitle'] = row['previous']
             item['nextTitle'] = row['next']
-            item['collection'] = row['collection']
-            item['titleOrig'] = row['titleOriginal']
+            item['prevGr'] = slugify(row['previousGr']) + ".html"
+            item['nextGr'] = slugify(row['nextGr']) + ".html"
+            item['prevTitleGr'] = row['previousGr']
+            item['nextTitleGr'] = row['nextGr']
+            item['titleOrig'] = row['titleDe']
+            item['titleOrigGr'] = row['titleGr']
             station = {}
             placeKey = slugify(row['placeRegionDe'])
             place[placeKey] = {
@@ -198,6 +203,59 @@ def make_person_html(df):
             f.write(template.render(**item))
     template = templateEnv.get_template('./templates/person-index.html')
     with open('./html/person-index.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    return items
+
+
+GDRIVE_URL_AUDIO = "https://docs.google.com/spreadsheet/ccc?key=16HRSdXvbUiTrQaxWoDjXiY3KfOFKUGwCoWE4S9TgcmU"
+
+def gsheet4_to_df():
+    url = f"{GDRIVE_URL_AUDIO}&output=csv"
+    r = requests.get(url)
+    print(r.status_code)
+    data = r.content
+    df = pd.read_csv(BytesIO(data), on_bad_lines='skip')
+    # df = pd.read_csv('./data_dump.csv')
+    # print(df)
+    return df
+
+def make_audio_html(df):
+    os.makedirs('./html', exist_ok=True)
+    items = []
+    rows = []       
+    template = templateEnv.get_template('./templates/object_audio.html')
+    for gr, df in df.groupby('ordering'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.html"
+        data_src = f"data/{object_id}.geojson"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "data_src": data_src, 
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            item['prev'] = slugify(row['previous']) + ".html"
+            item['next'] = slugify(row['next']) + ".html"
+            item['prevTitle'] = row['previous']
+            item['nextTitle'] = row['next']
+            item['prevGr'] = slugify(row['previousGr']) + ".html"
+            item['nextGr'] = slugify(row['nextGr']) + ".html"
+            item['prevTitleGr'] = row['previousGr']
+            item['nextTitleGr'] = row['nextGr']
+            item['titleOrig'] = row['titleDe']
+            item['titleOrigGr'] = row['titleGr']
+            station = {}
+            for x in row.keys():
+                station[x] = row[x]
+            item['metadata'].append(station)
+            rows.append(station)
+        items.append(item)
+        with open(f"./html/{file_name}", 'w') as f:
+            f.write(template.render(**item))
+    template = templateEnv.get_template('./templates/tonaufnahmen-detail.html')
+    with open('./html/tonaufnahmen-detail.html', 'w') as f:
         f.write(template.render({"objects": items}))
     return items
 

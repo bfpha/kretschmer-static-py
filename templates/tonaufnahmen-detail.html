@@ -1,0 +1,105 @@
+{% extends "templates/base.html" %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
+{% block content %}
+  <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>  
+          <li class="breadcrumb-item active" aria-current="page">Tonaufnahmen - Ηχογραφήσεις</li>
+      </ol>
+  </nav>
+  <div class="container-fluid">    
+    <div class="row">
+      <div class="col-lg-8 col-md-8 mx-auto">       
+        <div class="row"> 
+          <div class="col-md-12">
+            <h1 class="fw-light text-center" style="margin-bottom:1em;">Tonaufnahmen - Ηχογραφήσεις</h1>
+          </div>         
+          <div class="col-md-8">
+            <p class="lead text-muted">
+              Die Besonderheit der Expedition von Kretschmer liegt unter anderem in der Implementierung des Phonographen in der linguistischen Forschung. Nach der Gründung der Phonogrammarchiv-Kommission 1899 (heute Phonogrammarchiv) wurde ein Phonograph (Archivphonograph Typus 1) hergestellt, der 1901 bei drei Expeditionen erprobt wurde: in Südamerika, in Kroatien und schließlich von Kretschmer in Lesbos.
+              <br/><br/>
+              Kretschmer notierte die praktischen Schwierigkeiten in der Handhabung des Apparates vor Ort, der zusammen mit den Aufnahmeplatten 120 kg. wog. Die Angst der Menschen sowie ihre Befangenheit vor dem Apparat erschwerte unter anderem den Aufnahmeprozess, der darin bestand, dass man ungefähr 2 min. lang (Aufnahmedauer einer Platte) durchgehend sehr laut und mit einer klaren Artikulation sprechen sollte.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p class="lead text-muted italic">
+              „Mit dem mir von Wien aus mitgegebenen Phono-<br/>
+              graphen habe ich keine befriedigenden Resulta-<br/>
+              te erzielt. Als ein Hauptmangel muss jedem,<br/>
+              der mit diesem Phonographen reist, seine<br/>
+              Schwere erscheinen. In Salonik brauchte<br/>
+              ich einen Lastwagen, um ihn vom Hafen<br/>
+              zum Hotel zu transportieren. Auf<br/>
+              Lesbos war ich genötigt, ihn in dem Haupt-<br/>
+              ort Mytilini selbst zu belassen, da sein<br/>
+              Transport in die Dörfer, bei den schwie-<br/>
+              rigen Verkehrsverhältnissen <br/>
+              nicht durchführbar <br/>
+              war“<br/>
+              <strong>OeNB: Cod. Ser. 53996, Stueck 3, 14v</strong>
+            </p>
+          </div>
+          <div class="col-md-3">
+            <p class="lead text-muted italic">
+              „Von den Platten waren die<br/>
+              mit Metallhülsen versehenen <br/>
+              nicht fest genug verpackt und<br/>
+              haben sich daher z(um) T(eil) gegenseitig<br/>
+              verschrammt. Die in Schach-<br/>
+              teln verpackten Platten waren<br/>
+              besser erhalten, aber nachdem<br/>
+              ich 11 Aufnahmen damit gemacht <br/>
+              hatte, bestätigte sich die schon<br/>
+              in Wien gehegte Befürchtung, <br/>
+              dass sich die Platten dehnten <br/>
+              und exzentrisch wurden: hier-<br/>
+              durch sind sämtliche Aufnah-<br/>
+              men verdorben“<br/>
+              <strong>OeNB: Cod. Ser. 53996, Stueck 3, 15r</strong><br/>
+            </p>
+          </div>
+          <div class="col-md-9">
+            <p class="lead text-muted">
+              Nach seiner Rückkehr nach Wien lieferte Kretschmer drei griechische Lieder ab, die sich heute im Phonogrammarchiv befinden. Diese Lieder, gesungen vom Kirchensänger Michail Euthymiadis, gehören zu den ältesten publizierten Tonaufnahmen griechischer Musik. Ihre Dokumentation stützt sich auf die Protokolle der Tonaufnahmen, die Kretschmer zusätzlich zum Audiomaterial abgab. In den Protokollen lassen sich Informationen über die jeweilige Aufnahme sowie über die wichtigsten Lebensdaten der aufgenommenen Personen finden.<br/><br/>
+              Die Transkription der drei Lieder in den Metadaten stützt sich auf Kretschmers Notizen im dritten Tagebuch unter dem Titel „Phonographische Aufnahmen“. Da die Lieder lang waren, konnten nicht alle Verse vom Phonographen aufgenommen werden. In Kretschmers Notizen, die die Texte der gesamten Lieder wiedergeben, ist das Ende der Tonaufnahmen mit den Worten „bis hier“ gekennzeichnet. Wiederum führen alle transkribierten Textstellen aus den Reisetagebüchern am Ende einen Link, der zur entsprechenden Seite des Tagebuchs führt. Alle Ergänzungen von unserer Seite werden in den Transkriptionen in eckigen Klammern wiedergegeben. Runde Klammern lösen Abkürzungen aus dem Original auf.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:3em;">
+      <div class="col-lg-8 col-md-8 mx-auto text-center">
+        <div class="album bg-light">     
+          <div class="row">    
+            
+            {% for items in objects %}              
+              <div class="col-md-4">
+                <a href="{{ items.url }}">
+                  <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                      {% for x in items.metadata %}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                      </svg>                
+                      {% endfor %}
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text"></p>
+                      <div class="align-items-center">
+                        {% for x in items.metadata %}
+                        <p>{{ x.titleDe }} <br/> {{ x.titleGr }}</p>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>              
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

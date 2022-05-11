@@ -33,7 +33,7 @@ h4 {
     color: #fff !important;
 }
 
-.btn a:hover {
+a .btn:hover {
     color: #fff !important;
 }
 
@@ -88,6 +88,10 @@ li {
 
 .show {
     display: block;
+}
+
+.italic {
+    font-style: italic;
 }
 
 #index-title {
