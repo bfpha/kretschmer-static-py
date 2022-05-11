@@ -11,14 +11,14 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Fotographieregister</li>
+        <li class="breadcrumb-item active" aria-current="page">Tonaufnahmenregister</li>
     </ol>
 </nav>
 <div class="container-fluid">
     <div class="row">
       <div class="col-lg-8 col-md-8 mx-auto text-center">
-        <h1 class="fw-light">Fotographieregister</h1>
-        <p class="lead text-muted">Visualisierte Fotographien von <strong>Paul Kretschmer</strong> </p>
+        <h1 class="fw-light">Tonaufnahmenregister</h1>
+        <p class="lead text-muted">Tonaufnahmen von <strong>Paul Kretschmer</strong> </p>
         
       </div>
     </div>
@@ -26,10 +26,10 @@
         <div class="col-lg-8 col-md-8 mx-auto text-center">
             <table id="myTable" class="display" style="width:100%;">
                 <thead>
-                    <tr>                        
+                    <tr>
                         <th>No</th>
                         <th>Titel / Τίτλος</th>
-                        <th>Photograph/in / Φωτογράφος</th>
+                        <th>Urheber/in</th>
                         <th>Beschreibung / Περιγραφή</th>
                         <th>Ort / Τόπος</th>
                         <th>Koordinaten</th>
@@ -48,9 +48,9 @@
                             {{x.titleGr}}
                         </a></td>
                         <td>
-                            {{x.photographDe}}
+                            {{x.authorDe}}
                             <br/>
-                            {{x.photographGr}}
+                            {{x.authorGr}}
                         </td>
                         <td>
                             {% if x.descriptionDe is string %}
@@ -78,7 +78,7 @@
                             {{x.countryHistoryGr}}
                         </td>
                         <td>
-                            {{x.date}}
+                            {{x.dateStart}}
                         </td>
                     </tr>
                 {% endfor %}
@@ -87,7 +87,7 @@
                     <tr>
                         <th>No</th>
                         <th>Titel / Τίτλος</th>
-                        <th>Photograph/in / Φωτογράφος</th>
+                        <th>Urheber/in</th>
                         <th>Beschreibung / Περιγραφή</th>
                         <th>Ort / Τόπος</th>
                         <th>Koordinaten</th>
@@ -119,13 +119,13 @@
                         searchPanes: {
                             show: true
                         },
-                        targets: [2]
+                        targets: [1,2,4]
                     },
                     {
                         searchPanes: {
                             show: false
                         },
-                        targets: [5, 6, 7]
+                        targets: [0,3,5,6,7]
                     }
                 ]
             }   

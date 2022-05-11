@@ -9,7 +9,7 @@
   </nav>
   <div class="container-fluid">
     <div class="row" style="margin-bottom: 2em;">
-      <div class="col-lg-8 col-md-8 mx-auto">
+      <div class="col-lg-6 col-md-6 mx-auto">
         <h1 class="fw-light text-center" style="margin-bottom:1em;">Fotos</h1>
         <p class="lead text-muted">
           Kretschmer versuchte auch mithilfe der Photographie örtliche und volkskundliche Besonderheiten festzuhalten. Unsere Informationen über den Fotoapparat der Reise sind beschränkt. Die Reisetagebücher führen nur die Information an, dass es sich um ein Gerät der Firma Kodak handelte, ohne weitere Angaben über das konkrete Model zu machen. <br/><br/>
@@ -25,23 +25,14 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
             {% for col, items in objects|groupby('collection') %}
               <li class="nav-item" role="presentation">
                 <button class=
-                  "{% if col == 'Fotos_0001-0028' %}
-                    nav-link active
-                  {% else %}
-                    nav-link
-                  {% endif %}"
+                  {% if col == 'Fotos_0001-0028' %}"nav-link active"{% else %}"nav-link"{% endif %}
                   id="{{ col|lower }}-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#{{ col|lower }}"
                   role="tab"
                   aria-controls="{{ col|lower }}"
                   type="button"
-                  aria-selected=
-                  "{% if col == 'Fotos_1-28' %}
-                    true
-                  {% else %}
-                    false
-                  {% endif %}"
+                  aria-selected={% if col == 'Fotos_1-28' %}"true"{% else %}"false"{% endif %}
                 >
                   {{ loop.index }}
                 </button>
@@ -54,11 +45,7 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
             <div class="container-fluid">        
               {% for col, items in objects|groupby('collection') %}
                 <div class=
-                  "{% if col == 'Fotos_0001-0028' %}
-                    tab-pane fade show active
-                  {% else %}
-                    tab-pane fade
-                  {% endif %}"
+                  "{% if col == 'Fotos_0001-0028' %}tab-pane fade show active{% else %}tab-pane fade{% endif %}"
                   id="{{ col|lower }}"
                   role="tabpanel"
                   aria-labelledby="{{ col|lower }}-tab"
@@ -70,9 +57,10 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
                             <div class="card shadow-sm">
                               <div class="card-header text-center">
                                 {% for x in res.metadata %}
-                                  <img title="{{ x.titleDe }} / {{ x.titleGr }}"
-                                    src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg"                        
-                                  />                  
+                                  <img id="photo_{{ x.file1.replace(".tif", "") }}"
+                                    src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg" 
+                                    title="{{ x.titleDe }} / {{ x.titleGr }}"/>         
+                                         
                                 {% endfor %}
                               </div>
 
@@ -94,6 +82,7 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
                             </div>
                           </a>
                         </div>
+                        
                       {% endfor %}
                   </div>
                 </div>

@@ -39,7 +39,6 @@
         <thead>
           <tr>
             <th>Ortsname / Τόπος</th>
-            <th>Foto / Φωτογραφία</th>            
             <th>Land / Χώρα</th>
             <th>Land (historisch) / Χώρα (Ιστορικά)</th>
             <th>Geonames ID</th>
@@ -47,17 +46,13 @@
           </tr>
         </thead>
         <tbody>
-          {% for x in objects %}
-            {% for item in x.metadata  %}
+          {% for x in places.unique %}
+            {% for item in x  %}
             <tr>
               <td>
-                {{ item.placeRegionDe }} /
-                {{ item.placeRegionGr }}
-              </td>
-              <td>
-                <a alt="{{ item.titleDe }}" href="{{ item.fileName }}">{{ item.titleDe }}</a> /  
-                <a alt="{{ item.titleGr }}" href="{{ item.fileName }}">{{ item.titleGr }}</a>
-              </td>              
+                {{ item.titleDe }} /
+                {{ item.titleGr }}
+              </td>  
               <td>
                 {{ item.countryDe }} / 
                 {{ item.countryGr }}
@@ -84,7 +79,6 @@
         <tfoot>
           <tr>
             <th>Ortsname / Τόπος</th>
-            <th>Foto / Φωτογραφία</th>            
             <th>Land / Χώρα</th>
             <th>Land (historisch) / Χώρα (Ιστορικά)</th>
             <th>Geonames ID</th>
@@ -156,13 +150,13 @@
                   searchPanes: {
                       show: true
                   },
-                  targets: [0, 1, 2, 3]
+                  targets: [0, 1, 2]
                 },
                 {
                     searchPanes: {
                         show: false
                     },
-                    targets: [4, 5]
+                    targets: [3, 4]
                 }
             ],
             oLanguage: {

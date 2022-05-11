@@ -86,12 +86,24 @@ li {
     margin-bottom: 1.5em;
 }
 
+p a, td a {
+    color: #0d6efd;
+}
+
 .show {
     display: block;
 }
 
 .italic {
     font-style: italic;
+}
+
+.tab-pane:not(.active) {
+    display: none;
+}
+
+#myTable_info {
+    margin-right: 1em;
 }
 
 #index-title {

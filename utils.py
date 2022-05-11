@@ -69,6 +69,9 @@ def make_index_html(df):
                 "geonamesPlace": row['placeGeonames'],
                 "data_src": data_src,
                 "object_id": f"a{object_id.replace('-', '_')}",
+                "fileName": file_name,
+                "photoTitleDe": row['titleDe'],
+                "photoTitleGr": row['titleGr'],
             }            
             for x in row.keys():
                 station[x] = row[x]
@@ -86,7 +89,7 @@ def make_index_html(df):
         for x in obj.keys():
             if x not in tmp_names:
                 tmp_names.append(x)
-                tmp_places.append(obj[x])
+                tmp_places.append(obj[x])                
             else:
                 places_map.append(obj[x])
     places = {
@@ -94,7 +97,7 @@ def make_index_html(df):
         "map": []
     }
     places['unique'].append(tmp_places)
-    places['map'].append(places_map)
+    places['map'].append(places_map) 
     template = templateEnv.get_template('./templates/index.html')
     with open('./html/index.html', 'w') as f:
         f.write(template.render({"objects": items}))
@@ -159,7 +162,6 @@ def make_geojsons(df):
                 }
             }
             item["features"].append(feature_point)
-
         item["features"].append(feature_line)
         with open(f'./html/data/{file_name}', 'w', encoding='utf-8') as f:
             json.dump(item, f, ensure_ascii=False, indent=4)
@@ -257,6 +259,9 @@ def make_audio_html(df):
     template = templateEnv.get_template('./templates/tonaufnahmen-detail.html')
     with open('./html/tonaufnahmen-detail.html', 'w') as f:
         f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/table_audio.html')
+    with open('./html/table_audio.html', 'w') as f:
+        f.write(template.render({"objects": rows}))
     return items
 
 # creating rdf ttl files
