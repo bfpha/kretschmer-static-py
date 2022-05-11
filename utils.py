@@ -252,8 +252,9 @@ def make_audio_html(df):
             station = {}
             for x in row.keys():
                 station[x] = row[x]
+            station["fileName"] = file_name
             item['metadata'].append(station)
-            rows.append(station)
+            rows.append(station)            
         items.append(item)
         with open(f"./html/{file_name}", 'w') as f:
             f.write(template.render(**item))
