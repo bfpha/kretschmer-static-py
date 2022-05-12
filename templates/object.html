@@ -5,6 +5,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+    <script src="https://unpkg.com/arche-api@1.2.1/lib/arche-api.min.js"></script>
     <style>
         .container-fluid{
             max-width: 100%;
@@ -192,7 +193,7 @@
                                                         <table id="arche-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>URI</th>
+                                                                    <th>UID</th>
                                                                     <th>Fotos (IIIF Server)</th>
                                                                     <th>RDF Zugang</th>
                                                                 </tr>
@@ -200,9 +201,9 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
+                                                                        <a target="_blank" id="file1_get" class="file1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
-                                                                        </a>  
+                                                                        </a>                                                                        
                                                                     </td>
                                                                     <td>
                                                                         <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
@@ -217,7 +218,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
+                                                                        <a target="_blank" id="file2_get" class="file2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
                                                                         </a>
                                                                     </td>
@@ -234,7 +235,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
+                                                                        <a target="_blank" id="journalfile1_get" class="journalfile1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}
                                                                         </a> 
                                                                     </td>
@@ -258,7 +259,7 @@
                                                                 <tr>
                                                                     <td>
                                                                         {% if x.relation2 is string %}
-                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
+                                                                            <a target="_blank" id="journalfile2_get" class="journalfile2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
                                                                                 https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}
                                                                             </a>  
                                                                         {% endif %} 
@@ -422,7 +423,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
+                                                                        <a target="_blank" class="file1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
                                                                         </a>  
                                                                     </td>
@@ -439,7 +440,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
+                                                                        <a target="_blank" class="file2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
                                                                         </a>
                                                                     </td>
@@ -456,7 +457,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
+                                                                        <a target="_blank" class="journalfile1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
                                                                             https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}
                                                                         </a> 
                                                                     </td>
@@ -480,7 +481,7 @@
                                                                 <tr>
                                                                     <td>
                                                                         {% if x.relation2 is string %}
-                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
+                                                                            <a target="_blank" class="journalfile2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
                                                                                 https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}
                                                                             </a>  
                                                                         {% endif %} 
@@ -694,7 +695,7 @@
         $(function() {
 
             `
-            replacing citation date of app build with current date
+            replacing uri with pid of app build with current date
             in de and en format.
         
             `
@@ -710,6 +711,31 @@
                     date.toLocaleDateString('de-DE', options)
                 );
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+
+            `
+            replacing citation date of app build with current date
+            in de and en format.
+        
+            `
+            var download = ARCHEapi.ARCHEdownloadResourceIdM;
+            var query = ARCHEapi.ARCHErdfQuery;
+            var arche_id = $("#file1_get").attr("href");
+            var arche_id_md = `${arche_id}?format=metadata`;
+            
+            download({
+                "host": "https://arche.acdh.oeaw.ac.at",
+                "resourceID": "string",
+                "format": "string",
+                "readMode": "string"
+            }).then((data) => {
+                console.log(data);
+            })
+
+
         });
     </script>
 </div>
