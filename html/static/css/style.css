@@ -103,6 +103,22 @@ p a, td a {
     font-style: italic;
 }
 
+.loader {
+    border: 8px solid #f1f1f1; /* Light grey */
+    border-top: 8px solid #0d6efd; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    animation: spin 2s linear infinite;
+    margin: 5em auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .tab-pane:not(.active) {
     display: none;
 }
