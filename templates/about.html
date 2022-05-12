@@ -1,11 +1,24 @@
 {% extends "templates/base.html" %}
 {% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
+{% block scriptHeader %}
+<style>
+    ul li {
+        padding: .3em 0;
+    }
+</style>
+{% endblock %}
 {% block content %}
-  <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>     
-          <li class="breadcrumb-item active" aria-current="page">Über das Projekt - Σχετικά με το έργο</li>
+          <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+          <li class="breadcrumb-item active" aria-current="page">Über das Projekt</li>
       </ol>
+  </nav>
+  <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Σχετικά με το έργο</li>
+    </ol>
   </nav>
   <div class="container-fluid">
     <div class="row">

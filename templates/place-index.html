@@ -12,19 +12,30 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<style>
+    ul li {
+        padding: .3em 0;
+    }
+</style>
 {% endblock %}
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>     
-      <li class="breadcrumb-item active" aria-current="page">Ortsregister - Μητρώο τοποθεσίας</li>
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+      <li class="breadcrumb-item active" aria-current="page">Ortsregister</li>
+  </ol>
+</nav>
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Τόπος Κανω ΕΓΓΡΑΦΗ</li>
   </ol>
 </nav>
 <div class="container-fluid">
   <div class="row text-center">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">Ortsregister - Μητρώο τοποθεσίας</h1>
-      <p class="lead text-muted">Visualisierte Orte aller <strong>Fotographien</strong> </p>
+      <h1 class="fw-light">Ortsregister - Τόπος Κανω ΕΓΓΡΑΦΗ</h1>
+      <p class="lead text-muted">Visualisierte Orte aller <strong>Fotografien</strong> </p>
       
     </div>
   </div>

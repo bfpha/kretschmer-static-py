@@ -6,12 +6,26 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+<style>
+  .container-fluid{
+      max-width: 100%;
+  }
+  ul li {
+      padding: .3em 0;
+  }
+</style>
 {% endblock %}
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>     
-      <li class="breadcrumb-item active" aria-current="page">Personenregister - Μητρώο προσώπων</li>
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+      <li class="breadcrumb-item active" aria-current="page">Personenregister</li>
+  </ol>
+</nav>
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Πρόσωπο Κανω ΕΓΓΡΑΦΗ</li>
   </ol>
 </nav>
 <div class="container-fluid text-center">

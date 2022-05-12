@@ -1,18 +1,31 @@
 {% extends "templates/base.html" %}
 {% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
+{% block scriptHeader %}
+<style>
+    ul li {
+        padding: .3em 0;
+    }
+</style>
+{% endblock %}
 {% block content %}
-  <div style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Start - Έναρξη</a></li>  
-          <li class="breadcrumb-item active" aria-current="page">Tonaufnahmen - Ηχογραφήσεις</li>
+        <li class="breadcrumb-item"><a href="index.html">Start</a></li>  
+          <li class="breadcrumb-item active" aria-current="page">Tonaufnahmen</li>
       </ol>
+  </nav>
+  <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Τόνος Ηχογραφήσεις</li>
+    </ol>
   </nav>
   <div class="container-fluid">    
     <div class="row">
       <div class="col-lg-6 col-md-6 mx-auto">       
         <div class="row"> 
           <div class="col-md-12">
-            <h1 class="fw-light text-center" style="margin-bottom:1em;">Tonaufnahmen - Ηχογραφήσεις</h1>
+            <h1 class="fw-light text-center" style="margin-bottom:1em;">Tonaufnahmen - Τόνος Ηχογραφήσεις<</h1>
           </div>         
           <div class="col-md-8">
             <p class="lead text-muted">

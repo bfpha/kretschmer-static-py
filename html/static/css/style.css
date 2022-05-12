@@ -77,9 +77,14 @@ li {
     z-index: 1;
 }
 
+.navbar .navbar-brand {
+    font-size: 1.1rem;
+}
+
 .breadcrumb {
-    padding: 1em;
+    padding: .5em 1em;
     background-color: #f1f1f1;
+    margin-bottom: 0;
 }
 
 .card {
@@ -118,6 +123,17 @@ p a, td a {
     border-right: 1px solid lightgrey;
     width: 30%;
 }
+
+#arche-table th, #res-table td {
+    border: none;
+}
+
+#arche-table th {
+    border-right: none;
+    border-bottom: 1px solid #f1f1f1;
+    width: 30%;
+}
+
 
 .nav-tabs {
     border-bottom: none;
