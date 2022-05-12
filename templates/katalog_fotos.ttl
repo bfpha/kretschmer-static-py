@@ -25,6 +25,7 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/60100
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}>;
 acdh:hasTitle "{{ md.titleDe }} [recto]"@de;
+acdh:hasPid "create";
 acdh:hasTitle "{{ md.titleGr }} [recto]"@ell;
 acdh:hasNonLinkedIdentifier "{{ md.file1 }}";
 acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc-ow-eu>;
@@ -68,6 +69,7 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/60100
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}>;
 acdh:hasTitle "{{ md.titleDe }} [verso]"@de;
 acdh:hasTitle "{{ md.titleGr }} [verso]"@ell;
+acdh:hasPid "create";
 acdh:hasNonLinkedIdentifier "{{ md.file2 }}";
 acdh:hasDigitisingAgent acdhi:onb;
 acdh:hasContact acdhi:enikolaros;
