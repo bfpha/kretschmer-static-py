@@ -582,23 +582,23 @@
                     <div class="col-md-12">
                         <div class="card" style="margin-bottom:0;">
                             <div class="card-header">
-                                <h5>Fotos / Φωτογραφία</h5>
+                                <h5>Fotografien / Φωτογραφία</h5>
                             </div>
                         </div>
                     </div>   
-                    <div class="col-md-12" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">                        
+                    <div class="col-md-12">                        
                         <div class="card">
-                            <div class="card-body" id="img-front-body">
+                            <div class="card-body" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-front").attr('data-target');
-                        $("#img-front-body").css({
+                        $("#img-front").css({
                             'height': '600px'
                         });
                         var viewer = OpenSeadragon({
-                            id: 'img-front-body',
+                            id: 'img-front',
                             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                             // sequenceMode: true,
                             // showReferenceStrip: true,
@@ -607,19 +607,19 @@
                             tileSources: imgURL
                         });
                     </script>
-                    <div class="col-md-12" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
+                    <div class="col-md-12">
                         <div class="card">
-                            <div class="card-body" id="img-back-body">
+                            <div class="card-body" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-back").attr('data-target');
-                        $("#img-back-body").css({
+                        $("#img-back").css({
                             'height': '600px'
                         });
                         var viewer = OpenSeadragon({
-                            id: 'img-back-body',
+                            id: 'img-back',
                             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                             // sequenceMode: true,
                             // showReferenceStrip: true,
@@ -638,19 +638,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" id="img-journal-1" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/info.json">                            
+                        <div class="col-md-6">                            
                             <div class="card">
-                                <div class="card-body" id="img-journal-1-body">
+                                <div class="card-body" id="img-journal-1" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/info.json">
                                 </div>
                             </div>
                         </div>
                         <script type="text/javascript">
                             var imgURL = $("#img-journal-1").attr('data-target');
-                            $("#img-journal-1-body").css({
+                            $("#img-journal-1").css({
                                 'height': '400px'
                             });
                             var viewer = OpenSeadragon({
-                                id: 'img-journal-1-body',
+                                id: 'img-journal-1',
                                 prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                                 // sequenceMode: true,
                                 // showReferenceStrip: true,
@@ -661,19 +661,19 @@
                         </script>
                         {% endif %}
                         {% if x.relation2 is string %}
-                        <div class="col-md-6" id="img-journal-2" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/info.json">
+                        <div class="col-md-6">
                             <div class="card">                        
-                                <div class="card-body" id="img-journal-2-body">
+                                <div class="card-body" id="img-journal-2" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/info.json">
                                 </div>
                             </div>
                         </div>
                         <script type="text/javascript">
                             var imgURL = $("#img-journal-2").attr('data-target');
-                            $("#img-journal-2-body").css({
+                            $("#img-journal-2").css({
                                 'height': '400px'
                             });
                             var viewer = OpenSeadragon({
-                                id: 'img-journal-2-body',
+                                id: 'img-journal-2',
                                 prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                                 // sequenceMode: true,
                                 // showReferenceStrip: true,
