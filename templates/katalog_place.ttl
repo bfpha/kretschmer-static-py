@@ -4,7 +4,7 @@
 
 {% for items in objects %}{% for md in items.metadata %}
 <{{ md.placeRegionID }}> a acdh:Place;
-acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@de,"{{ md.placeRegionGr }}"@ell,"{{ md.placeRegionEn }}"@en;
+acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@de,"{{ md.placeRegionArcheGr }}"@ell,"{{ md.placeRegionEn }}"@en;
 {% if md.placeGeonames is string %}
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
 {% endif %}
