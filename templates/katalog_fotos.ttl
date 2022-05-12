@@ -19,7 +19,7 @@ acdh:hasCreatedStartDate "2019-12-01"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasDigitisingAgent acdhi:onb;
-acdh:hasSubject "Griechenland","Lesbos","Foto"@de;
+acdh:hasSubject "Griechenland"@de,"Lesbos"@de,"Fotografien"@de;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> a acdh:Resource;
@@ -57,7 +57,6 @@ acdh:hasSpatialCoverage <{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.cou
 acdh:hasCoverageEndDate "{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCoverageStartDate "{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "Griechenland","Lesbos","Foto"@de;
 acdh:hasOwner acdhi:pha-oeaw;
 acdh:hasRightsHolder acdhi:unknown;
 acdh:hasLicensor acdhi:pha-oeaw;
@@ -100,7 +99,6 @@ acdh:hasSpatialCoverage <{{ md.placeRegionID }}>,<{{ md.countryID }}>,<{{ md.cou
 acdh:hasCoverageEndDate "{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCoverageStartDate "{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "Griechenland","Lesbos","Foto"@de;
 acdh:hasOwner acdhi:pha-oeaw;
 acdh:hasRightsHolder acdhi:unknown;
 acdh:hasLicensor acdhi:pha-oeaw;

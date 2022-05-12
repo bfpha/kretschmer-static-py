@@ -44,24 +44,8 @@ a acdh:Person;
 acdh:hasUrl "https://www.oeaw.ac.at/phonogrammarchiv/phonogrammarchiv/team/bernhard-graf";
 acdh:hasLastName "Graf"@und .
 
-acdhi:kretschmer-lesbos-project acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_151-180>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_1-28>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_91-120>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_29-60>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_61-90>;
-a acdh:Project;
-acdh:hasTitle "Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901"@de;
-acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_121-150>,acdhi:kretschmer-lesbos,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_181-210>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_211-240>,<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/photos_241-262>;
-acdh:hasDescription "create"@de;
-acdh:hasPrincipalInvestigator acdhi:enikolaros;
-acdh:hasPid "create";
-acdh:hasContact acdhi:enikolaros;
-acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu>,<https://vocabs.acdh.oeaw.ac.at/iso6393/ell>;
-acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal>;
-acdh:hasSubject "Griechenland"@de;
-acdh:hasStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
-acdh:hasRelatedCollection <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> .
-
 acdhi:kretschmer-lesbos a acdh:TopCollection;
+acdh:hasCreator acdhi:enikolaros;
 acdh:hasPid "create";
 acdh:hasOwner acdhi:pha-oeaw;
 acdh:hasRightsHolder acdhi:oeaw,acdhi:unknown;
@@ -77,11 +61,16 @@ acdh:hasArrangement "Die dreiteilige Sammlung umfasst Fotos, Tonaufnahmen und Ta
 acdh:hasDepositor acdhi:enikolaros;
 acdh:hasActor acdhi:pkretschmer,acdhi:lkretschmer;
 acdh:hasCurator acdhi:dstoxreiter;
+acdh:hasSpatialCoverage acdhi:place-greece;
+acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageStartDate "1901-08-05"^^<http://www.w3.org/2001/XMLSchema#date>;
+acdh:hasCoverageEndDate "1901-10-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasMetadataCreator acdhi:dstoxreiter,acdhi:enikolaros;
 acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035>;
 acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu>,<https://vocabs.acdh.oeaw.ac.at/iso6393/ell>;
 acdh:hasUrl "https://www.oeaw.ac.at/phonogrammarchiv/forschung/wissenschaftshistorische-forschung/wissenschaftsgeschichtliche-forschungen-ueber-tonaufnahmen-des-sammlungsschwerpunkts-afrika-1";
-acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Fotografien","Tonaufnahmen","Tagebücher"@de;
+acdh:hasSubject "Griechenland"@de,"Lesbos"@de,"Phonogrammarchiv"@de,"Fotografien"@de,"Tonaufnahmen"@de,"Tagebücher"@de;
 acdh:hasNote "Trotz umfangreicher Recherchen durch das Phonogrammarchiv konnten für die in diese Sammlung aufgenommenen Fotografien und Auszüge der Tagebücher Kretschmers keine Rechteinhaber ermittelt werden. Aufgrund des aufrechten Urheberrechts bis zum Jahr 2026 nimmt das ACDH-CH die Registrierung der Bilder und Texte als „verwaiste Werke“ in der Urheberrechtsdatenbank EUIPO vor.  Die Registrierung ist derzeit in Vorbereitung und wird zeitnah erfolgen. "@de .
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos> acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
@@ -102,9 +91,8 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
 acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Fotografien"@de;
+acdh:hasSubject "Griechenland"@de,"Lesbos"@de,"Phonogrammarchiv"@de,"Fotografien"@de;
 acdh:hasDigitisingAgent acdhi:onb;
-acdh:hasAuthor acdhi:pkretschmer;
 acdh:hasNote "Trotz umfangreicher Recherchen durch das Phonogrammarchiv konnten für die in diese Sammlung aufgenommenen Fotografien und Auszüge der Tagebücher Kretschmers keine Rechteinhaber ermittelt werden. Aufgrund des aufrechten Urheberrechts bis zum Jahr 2026 nimmt das ACDH-CH die Registrierung der Bilder und Texte als „verwaiste Werke“ in der Urheberrechtsdatenbank EUIPO vor.  Die Registrierung ist derzeit in Vorbereitung und wird zeitnah erfolgen. "@de .
 
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal> acdh:hasLicensor acdhi:pha-oeaw;
@@ -125,7 +113,7 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,
 acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "Griechenland","Lesbos","Phonogrammarchiv","Tagebücher"@de;
+acdh:hasSubject "Griechenland"@de,"Lesbos"@de,"Phonogrammarchiv"@de,"Tagebücher"@de;
 acdh:hasDigitisingAgent acdhi:onb;
 acdh:hasNote "Trotz umfangreicher Recherchen durch das Phonogrammarchiv konnten für die in diese Sammlung aufgenommenen Fotografien und Auszüge der Tagebücher Kretschmers keine Rechteinhaber ermittelt werden. Aufgrund des aufrechten Urheberrechts bis zum Jahr 2026 nimmt das ACDH-CH die Registrierung der Bilder und Texte als „verwaiste Werke“ in der Urheberrechtsdatenbank EUIPO vor.  Die Registrierung ist derzeit in Vorbereitung und wird zeitnah erfolgen."@de .
 
@@ -147,5 +135,4 @@ acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>,
 acdh:hasCreatedStartDate "2019-01-12"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCreatedEndDate "2022-05-31"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasActor acdhi:pkretschmer;
-acdh:hasSubject "Griechenland","Tonaufnahmen","Phonogrammarchiv","Lesbos"@de .
+acdh:hasSubject "Griechenland"@de,"Tonaufnahmen"@de,"Phonogrammarchiv"@de,"Lesbos"@de .

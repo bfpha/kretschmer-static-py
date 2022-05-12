@@ -28,7 +28,6 @@ acdh:hasSpatialCoverage {% for md in items.metadata %}<{{ md.placeRegionID }}>,<
 acdh:hasCoverageEndDate "{% for md in items.metadata %}{{ md.dateEnd.split(".")[2] }}-{{ md.dateEnd.split(".")[1] }}-{{ md.dateEnd.split(".")[0] }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasCoverageStartDate "{% for md in items.metadata %}{{ md.dateStart.split(".")[2] }}-{{ md.dateStart.split(".")[1] }}-{{ md.dateStart.split(".")[0] }}{% endfor %}"^^<http://www.w3.org/2001/XMLSchema#date>;
 acdh:hasDepositor acdhi:enikolaros;
-acdh:hasSubject "Griechenland","Tonaufnahmen","Lesbos"@de;
 acdh:hasOwner acdhi:pha-oeaw;
 acdh:hasRightsHolder acdhi:oeaw;
 acdh:hasLicensor acdhi:pha-oeaw;
