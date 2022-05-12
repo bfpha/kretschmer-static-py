@@ -2,15 +2,15 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-# <https://arche.acdh.oeaw.ac.at/api/143332> acdh:hasTitle "Österreichische Nationalbibliothek"@de,"Austrian National Library"@en;
-# a acdh:Organisation;
-# acdh:hasIdentifier <https://d-nb.info/gnd/2020893-5>, acdhi:onb;
-# acdh:hasAddressLine1 "Josefsplatz 1, Postfach 25";
-# acdh:hasCity "Wien"@de,"Vienna"@en;
-# acdh:hasCountry "Österreich"@de,"Austria"@en;
-# acdh:hasPostcode "1015";
-# acdh:hasRegion "Österreich"@de,"Austria"@en;
-# acdh:hasUrl "https://www.onb.ac.at" .
+<https://arche.acdh.oeaw.ac.at/api/143332> acdh:hasTitle "Österreichische Nationalbibliothek"@de,"Austrian National Library"@en;
+a acdh:Organisation;
+acdh:hasIdentifier <https://d-nb.info/gnd/2020893-5>, acdhi:onb;
+acdh:hasAddressLine1 "Josefsplatz 1, Postfach 25";
+acdh:hasCity "Wien"@de,"Vienna"@en;
+acdh:hasCountry "Österreich"@de,"Austria"@en;
+acdh:hasPostcode "1015";
+acdh:hasRegion "Österreich"@de,"Austria"@en;
+acdh:hasUrl "https://www.onb.ac.at" .
 
 acdhi:pha-oeaw acdh:hasTitle "Phonogrammarchiv | Österreichische Akademie der Wissenschaften"@de,"Phonogrammarchiv | Austrian Academy of Sciences"@en;
 a acdh:Organisation;
