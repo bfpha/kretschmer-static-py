@@ -2,9 +2,9 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-acdhi:onb acdh:hasTitle "Österreichische Nationalbibliothek"@de,"Austrian National Library"@en;
+<https://arche.acdh.oeaw.ac.at/api/143332> acdh:hasTitle "Österreichische Nationalbibliothek"@de,"Austrian National Library"@en;
 a acdh:Organisation;
-acdh:hasIdentifier <https://d-nb.info/gnd/2020893-5>;
+acdh:hasIdentifier <https://d-nb.info/gnd/2020893-5>, acdhi:onb;
 acdh:hasAddressLine1 "Josefsplatz 1, Postfach 25";
 acdh:hasCity "Wien"@de,"Vienna"@en;
 acdh:hasCountry "Österreich"@de,"Austria"@en;

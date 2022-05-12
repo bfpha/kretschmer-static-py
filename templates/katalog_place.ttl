@@ -3,10 +3,13 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
 {% for items in objects %}{% for md in items.metadata %}
-<{{ md.placeRegionID }}> a acdh:Place;
+<{% if md.placeRegionArcheID is string %}{{ md.placeRegionArcheID }}{% else %}{{ md.placeRegionID }}{% endif %}> a acdh:Place;
 acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@de,"{{ md.placeRegionArcheGr }}"@ell,"{{ md.placeRegionEn }}"@en;
 {% if md.placeGeonames is string %}
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
+{% endif %}
+{% if md.placeRegionArcheID is string %}
+acdh:hasIdentifier <{{ md.placeRegionID }}>;
 {% endif %}
 {% if md.placeRegionWikidata is string %}
 acdh:hasIdentifier <{{ md.placeRegionWikidata }}>;
@@ -14,8 +17,9 @@ acdh:hasIdentifier <{{ md.placeRegionWikidata }}>;
 acdh:hasLatitude "{{ md.coordinates.split(", ")[0] }}";
 acdh:hasLongitude "{{ md.coordinates.split(", ")[1] }}" .
 
-<{{ md.countryID }}> a acdh:Place;
+<{{ md.countryArche }}> a acdh:Place;
 acdh:hasTitle "{{ md.countryDe }}"@de,"{{ md.countryGr }}"@ell,"{{ md.countryEn }}"@en;
+acdh:hasIdentifier <{{ md.countryID }}>;
 {% if md.countryWikidata is string %}
 acdh:hasIdentifier <{{ md.countryWikidata }}>;
 {% endif %}
