@@ -83,7 +83,7 @@ acdh:hasLicensor acdhi:pha-oeaw;
 acdh:isPartOf acdhi:kretschmer-lesbos;
 acdh:hasContact acdhi:enikolaros;
 acdh:hasPid "create";
-acdh:hasTitle "Fotos"@de;
+acdh:hasTitle "Fotografien"@de;
 acdh:hasDescription "Laut seiner Nummerierung auf den Fotorückseiten hat Paul Kretschmer während der Reise nach Lesbos insgesamt 176 Aufnahmen gemacht. Diese Sammlung umfasst die Digitalisate von 131 erhalten gebliebenen Fotografien aus seinem Nachlass, der sich heute an der ÖNB befindet. Sowohl von den Vorder- als auch Rückseiten dieser 131 unveröffentlichten Objekte wurden im Rahmen der Projektfinanzierung an der ÖNB hochauflösende Scans (mehr als 300ppi, TIFF-Format; ohne Wasserzeichen) angefertigt. Die Metadaten für die Dokumentation der Fotos stützen sich einerseits auf die Beschriftungen der Bildrückseiten, andererseits auf Kretschmers Reisetagebücher. Weitere Informationen zu den einzelnen Fotoaufnahmen sind den Metadaten der Fotos zu entnehmen."@de;
 acdh:hasCurator acdhi:dstoxreiter;
 acdh:hasCreator acdhi:enikolaros;
