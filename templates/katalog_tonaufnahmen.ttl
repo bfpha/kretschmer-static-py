@@ -6,7 +6,7 @@
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}> a acdh:Resource;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording>;
 acdh:hasTitle "{% for md in items.metadata %}{{ md.titleDe }}{% endfor %}"@de;
-acdh:hasAlternativeTitle "{% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@ell;
+acdh:hasTitle "{% for md in items.metadata %}{{ md.titleGr }}{% endfor %}"@ell;
 acdh:hasNonLinkedIdentifier "{% for md in items.metadata %}{{ md.file1 | lower }}{% endfor %}";
 acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
 acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
