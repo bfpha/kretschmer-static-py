@@ -19,7 +19,7 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
-        <li class="breadcrumb-item"><a href="fotos-detail.html">Fotos</a></li>
+        <li class="breadcrumb-item"><a href="fotos-detail.html">Fotografien</a></li>
         <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitle.lstrip('0') }}</a></li>   
         <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }}</li>        
         <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }}</a></li>
@@ -193,7 +193,7 @@
                                                         <table id="arche-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>UID</th>
+                                                                    <th>PID</th>
                                                                     <th>Fotos (IIIF Server)</th>
                                                                     <th>RDF Zugang</th>
                                                                 </tr>
@@ -285,11 +285,27 @@
                                                     </td>
                                                 </tr> 
                                                 <tr>
-                                                    <th>Zitiervorschlag</th>
+                                                    <th>Zitiervorschlag Web</th>
                                                     <td>
                                                         {{ x.photographDe }}. {{ x.titleDe }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Zitiervorschlag ARCHE</th>
+                                                    <td>
+                                                        {{ x.photographDe }}. {{ x.titleDe }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
+                                                        , <a class="file2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}</a>
+                                                        {% if x.journalFile1 is string %}
+                                                        , <a class="journalfile1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}</a>
+                                                        {% endif %}
+                                                        {% if x.journalFile2 is string %}
+                                                        , <a class="journalfile2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}</a>
+                                                        {% endif %}
+                                                        ), aufgerufen am <span class="current-date">Datum</span>.
                                                     </td>
                                                 </tr>
                                             </tbody>         
@@ -415,7 +431,7 @@
                                                         <table id="arche-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>URI</th>
+                                                                    <th>PID</th>
                                                                     <th>Fotos (IIIF Server)</th>
                                                                     <th>RDF Zugang</th>
                                                                 </tr>
@@ -507,11 +523,27 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Zitiervorschlag</th>
+                                                    <th>Zitiervorschlag Web</th>
                                                     <td>
                                                         {{ x.photographGr }}. {{ x.titleGr }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Zitiervorschlag ARCHE</th>
+                                                    <td>
+                                                        {{ x.photographGr }}. {{ x.titleGr }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
+                                                            , <a class="file2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}</a>
+                                                        {% if x.journalFile1 is string %}
+                                                            , <a class="journalfile1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}</a>
+                                                        {% endif %}
+                                                        {% if x.journalFile2 is string %}
+                                                            , <a class="journalfile2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}</a>
+                                                        {% endif %}
+                                                        ), aufgerufen am <span class="current-date">Datum</span>.
                                                     </td>
                                                 </tr>
                                             </tbody>         
@@ -713,30 +745,6 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $(function() {
-
-            `
-            replacing citation date of app build with current date
-            in de and en format.
-        
-            `
-            var download = ARCHEapi.ARCHEdownloadResourceIdM;
-            var query = ARCHEapi.ARCHErdfQuery;
-            var arche_id = $("#file1_get").attr("href");
-            var arche_id_md = `${arche_id}?format=metadata`;
-            
-            download({
-                "host": "https://arche.acdh.oeaw.ac.at",
-                "resourceID": "string",
-                "format": "string",
-                "readMode": "string"
-            }).then((data) => {
-                console.log(data);
-            })
-
-
-        });
-    </script>
+    <script type="text/javascript" src="static/js/get_handle.js"></script>
 </div>
 {% endblock %}

@@ -11,7 +11,7 @@
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
-          <li class="breadcrumb-item active" aria-current="page">Fotos</li>
+          <li class="breadcrumb-item active" aria-current="page">Fotografien</li>
       </ol>
   </nav>
   <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
@@ -28,8 +28,17 @@
           Kretschmer versuchte auch mithilfe der Photographie örtliche und volkskundliche Besonderheiten festzuhalten. Unsere Informationen über den Fotoapparat der Reise sind beschränkt. Die Reisetagebücher führen nur die Information an, dass es sich um ein Gerät der Firma Kodak handelte, ohne weitere Angaben über das konkrete Model zu machen. <br/><br/>
 Das Paar Kretschmer nahm in dieser Expedition etwa 176 Fotos auf, von denen die Mehrheit aus dem Osmanischen Reich bzw. aus Lesbos stammt. In dieser Edition werden die 131 übrig gebliebenen Reisefotos präsentiert, die im Nachlass Kretschmers aufbewahrt werden. Kretschmer nummerierte nach seiner Rückkehr in Wien die Fotos auf der Rückseite durch und notierte meistens den Aufnahmeort oder in manchen Fällen die abgebildeten Personen. Sehr seltene Beispiele führen nur eine Nummer oder gar keine Auskunft. Alle diese Informationen auf der Rückseite der Fotos fungieren in der Edition als Titel der Metadaten. Eine Übersetzung des Titels wird auch angegeben. <br/><br/>
 Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer Rückseite, sondern auch auf die Informationen aus den Reisetagebüchern. Hierfür werden Transkriptionen der entsprechenden Stellen der Tagebücher zitiert, die Informationen über die abgebildeten Personen, das Datum und oft den genauen Aufnahmeort liefern. Die Beschreibung der Fotos in den Metadaten stützt sich auf diese Informationen. Der transkribierte Text führt am Ende einen Link, der zur entsprechenden Seite des Tagebuchs führt. Alle Ergänzungen von unserer Seite werden in den Transkriptionen in eckigen Klammern wiedergegeben. Runde Klammern lösen Abkürzungen aus dem Original auf.
-        </p>
-      </div>
+        </p>        
+      </div>        
+    </div>
+    <div class="row" style="margin-bottom: 3em;">
+      <div class="col-lg-6 col-md-6 mx-auto text-center">
+        <a href="table.html">
+          <button class="btn btn-round" class="lead text-muted">
+            Fotografieregister
+          </button>  
+        </a>        
+      </div>  
     </div>
     <div class="row">
       <div class="col-lg-8 col-md-8 mx-auto text-center">
@@ -83,13 +92,13 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
                                   {% for x in res.metadata %}
                                   <p>{{ x.titleDe }} <br/> {{ x.titleGr }}</p>
                                   {% endfor %}
-                                  <!--
+                                  
                                   <div class="btn-group">                        
                                     <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ res.url }}">Ansehen</a>
                                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> 
                                   </div>
                                   <small class="text-muted">9 mins</small>
-                                  -->
+                                  
                                 </div>
                               </div>
                             </div>
@@ -104,7 +113,7 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
 
 {% endblock %}
