@@ -103,8 +103,21 @@
   $(document).ready(function() {
       $('#myTable').DataTable(
           {
-            "language": {
-              "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+            language: {
+              search: "Suchen / Αναζήτηση ",
+              paginate: {
+                  next: "Nächste / Επόμενο",
+                  previous: "Vorherige / Προηγούμενο"
+              },
+              sInfo: "zeigt _START_ bis _END_ von _TOTAL_ Einträgen",
+              searchPanes: {
+                  collapseMessage: "schließen",
+                  showMessage: "anzeigen",
+                  clearMessage: "leeren",
+                  title: {
+                      _: 'Filter ausgewählt - %d'
+                  }
+              }
             },
             dom: 'PfrtipB',
             searchPanes: {
