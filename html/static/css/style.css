@@ -91,9 +91,10 @@ li {
     margin-bottom: 1.5em;
 }
 
-p a, td a {
+p a, td a, h3 a, h4 a {
     color: #0d6efd;
 }
+
 
 .show {
     display: block;
