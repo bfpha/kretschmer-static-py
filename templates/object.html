@@ -623,6 +623,9 @@
                     </div>   
                     <div class="col-md-12">                        
                         <div class="card">
+                            <div id="spinner_img-1" class="text-center">
+                                <div class="loader"></div>
+                            </div>
                             <div class="card-body" id="img-front" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
                             </div>
                         </div>
@@ -641,9 +644,28 @@
                             // imageLoaderLimit: 10,
                             tileSources: imgURL
                         });
+
+                        viewer.addHandler('open', function() {
+                            var tiledImage = viewer.world.getItemAt(0);
+                            if (tiledImage.getFullyLoaded()) {
+                                hideLoading();
+                            } else {
+                                tiledImage.addOnceHandler('fully-loaded-change', hideLoading);
+                            }
+                        });
+
+                        function hideLoading() {
+                            var spinnerID = "spinner_img-1";
+                            if ( $("#" + spinnerID ) ) {
+                                $("#" + spinnerID ).remove();
+                            }
+                        }
                     </script>
                     <div class="col-md-12">
                         <div class="card">
+                            <div id="spinner_img-2" class="text-center">
+                                <div class="loader"></div>
+                            </div>
                             <div class="card-body" id="img-back" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
                             </div>
                         </div>
@@ -653,7 +675,7 @@
                         $("#img-back").css({
                             'height': '600px'
                         });
-                        var viewer = OpenSeadragon({
+                        var viewer2 = OpenSeadragon({
                             id: 'img-back',
                             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                             // sequenceMode: true,
@@ -663,6 +685,21 @@
                             tileSources: imgURL
                         });
                         
+                        viewer2.addHandler('open', function() {
+                            var tiledImage = viewer.world.getItemAt(0);
+                            if (tiledImage.getFullyLoaded()) {
+                                hideLoading2();
+                            } else {
+                                tiledImage.addOnceHandler('fully-loaded-change', hideLoading2);
+                            }
+                        });
+
+                        function hideLoading2() {
+                            var spinnerID = "spinner_img-2";
+                            if ( $("#" + spinnerID ) ) {
+                                $("#" + spinnerID ).remove();
+                            }
+                        }
                     </script>
                     <div class="row">
                         {% if x.relation1 is string %}
@@ -675,6 +712,9 @@
                         </div>
                         <div class="col-md-6">                            
                             <div class="card">
+                                <div id="spinner_img-journal-1" class="text-center">
+                                    <div class="loader"></div>
+                                </div>
                                 <div class="card-body" id="img-journal-1" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
                                 </div>
                             </div>
@@ -684,7 +724,7 @@
                             $("#img-journal-1").css({
                                 'height': '400px'
                             });
-                            var viewer = OpenSeadragon({
+                            var viewer3 = OpenSeadragon({
                                 id: 'img-journal-1',
                                 prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                                 // sequenceMode: true,
@@ -693,11 +733,30 @@
                                 // imageLoaderLimit: 10,
                                 tileSources: imgURL
                             });
+
+                            viewer3.addHandler('open', function() {
+                                var tiledImage = viewer.world.getItemAt(0);
+                                if (tiledImage.getFullyLoaded()) {
+                                    hideLoading3();
+                                } else {
+                                    tiledImage.addOnceHandler('fully-loaded-change', hideLoading3);
+                                }
+                            });
+    
+                            function hideLoading3() {
+                                var spinnerID = "spinner_img-journal-1";
+                                if ( $("#" + spinnerID ) ) {
+                                    $("#" + spinnerID ).remove();
+                                }
+                            }
                         </script>
                         {% endif %}
                         {% if x.relation2 is string %}
                         <div class="col-md-6">
-                            <div class="card">                        
+                            <div class="card">   
+                                <div id="spinner_img-journal-2" class="text-center">
+                                    <div class="loader"></div>
+                                </div>                     
                                 <div class="card-body" id="img-journal-2" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
                                 </div>
                             </div>
@@ -707,7 +766,7 @@
                             $("#img-journal-2").css({
                                 'height': '400px'
                             });
-                            var viewer = OpenSeadragon({
+                            var viewer4 = OpenSeadragon({
                                 id: 'img-journal-2',
                                 prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                                 // sequenceMode: true,
@@ -716,6 +775,22 @@
                                 // imageLoaderLimit: 10,
                                 tileSources: imgURL
                             });
+
+                            viewer4.addHandler('open', function() {
+                                var tiledImage = viewer.world.getItemAt(0);
+                                if (tiledImage.getFullyLoaded()) {
+                                    hideLoading4();
+                                } else {
+                                    tiledImage.addOnceHandler('fully-loaded-change', hideLoading4);
+                                }
+                            });
+    
+                            function hideLoading4() {
+                                var spinnerID = "spinner_img-journal-2";
+                                if ( $("#" + spinnerID ) ) {
+                                    $("#" + spinnerID ).remove();
+                                }
+                            }
                         </script> 
                         {% endif %}
                     </div>                    

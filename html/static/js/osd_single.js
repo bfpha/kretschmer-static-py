@@ -10,7 +10,7 @@ function load_image(el) {
         });
         // OpenSeaDragon Image Viewer
         var image = $this.attr("data-target");
-        var imageURL = {type: 'image', url: image};
+        // var imageURL = {type: 'image', url: image};
         var viewer = OpenSeadragon({
             id: image_id,
             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
@@ -18,7 +18,7 @@ function load_image(el) {
             // showReferenceStrip: true,
             // showNavigator: true,
             // imageLoaderLimit: 10,
-            tileSources: imageURL
+            tileSources: image
         });
 
         // hide loading spinner if image fully loaded status changes
@@ -36,11 +36,10 @@ function load_image(el) {
 
     function hideLoading() {
         // var container = $(osd_container_id).attr("id");  
-        var spinnerID = "spinner_" + osd_container_id;
+        var spinnerID = `spinner_${ image_id }`;
         if ( $("#" + spinnerID ) ) {
             // console.log(spinnerID);
             $("#" + spinnerID ).remove();
         }
     }
 }
-console.log($("#img-back").attr("id"));
