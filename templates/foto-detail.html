@@ -82,7 +82,7 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
                               <div class="card-header text-center">
                                 {% for x in res.metadata %}
                                   <img id="photo_{{ x.file1.replace(".tif", "") }}"
-                                    src="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/full/,300/0/default.jpg" 
+                                    src="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=full/,300/0/default.jpg" 
                                     title="{{ x.titleDe }} / {{ x.titleGr }}"/>         
                                          
                                 {% endfor %}
