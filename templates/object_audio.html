@@ -668,7 +668,7 @@
                             });
 
                             viewer2.addHandler('open', function() {
-                                var tiledImage = viewer.world.getItemAt(0);
+                                var tiledImage = viewer2.world.getItemAt(0);
                                 if (tiledImage.getFullyLoaded()) {
                                     hideLoading2();
                                 } else {
