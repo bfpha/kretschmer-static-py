@@ -95,6 +95,9 @@ p a, td a, h3 a, h4 a {
     color: #0d6efd;
 }
 
+#wrapper-footer-full {
+    margin-top: auto !important;
+}
 
 .show {
     display: block;
