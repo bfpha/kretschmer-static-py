@@ -266,7 +266,7 @@ def make_rdf_person_ttl(df):
     os.makedirs('./rdf', exist_ok=True)
     items = []
     rows = []     
-    template = templateEnv.get_template('./templates/deleted/katalog_person.ttl')
+    template = templateEnv.get_template('./templates/katalog_person.ttl')
     for gr, df in df.groupby('id'):
         object_id = slugify(gr)
         file_name = f"{object_id}.xml"

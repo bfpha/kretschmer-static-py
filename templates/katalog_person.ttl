@@ -9,6 +9,5 @@ a acdh:Person;
 acdh:hasTitle "{% if md.Vorname_gr is string and md.Familienname_gr is string %}{{ md.Vorname_gr }} {{ md.Familienname_gr }}{% elif md.Vorname_gr is string %}{{ md.Vorname_gr }}{% elif md.Familienname_gr is string %}{{ md.Familienname_gr }}{% endif %}"@ell;
 {% if md.Vorname is string%}acdh:hasFirstName "{{ md.Vorname }}"@und,"{{ md.Vorname_gr }}"@ell;{% endif %}
 {% if md.Familienname is string%}acdh:hasLastName "{{ md.Familienname }}"@und,"{{ md.Familienname_gr }}"@ell;{% endif %}
-{% if md.Link1 is string%}acdh:hasIdentifier <{{ md.Link1 }}>;{% endif %}
 {% if md.Link2 is string%}acdh:hasIdentifier <{{ md.Link2 }}>;{% endif %}
 acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ md.id }}> .{% endfor %}{% endfor %}
