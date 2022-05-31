@@ -270,7 +270,7 @@
                                                 <tr>
                                                     <th>Zitiervorschlag Web</th>
                                                     <td>
-                                                        {{ x.authorDe }}. {{ x.titleDe }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        {{ x.authorDe }}. {{ x.titleDe }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                     </td>
@@ -278,7 +278,7 @@
                                                 <tr>
                                                     <th>Zitiervorschlag ARCHE</th>
                                                     <td>
-                                                        {{ x.authorDe }}. {{ x.titleDe }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        {{ x.authorDe }}. {{ x.titleDe }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
                                                         {% if x.journalFile1 is string %}
@@ -489,7 +489,7 @@
                                                 <tr>
                                                     <th>Zitiervorschlag Web</th>
                                                     <td>
-                                                        {{ x.authorGr }}. {{ x.titleGr }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        {{ x.authorGr }}. {{ x.titleGr }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                     </td>
@@ -497,7 +497,7 @@
                                                 <tr>
                                                     <th>Zitiervorschlag ARCHE</th>
                                                     <td>
-                                                        {{ x.authorGr }}. {{ x.titleGr }} In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        {{ x.authorGr }}. {{ x.titleGr }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
                                                         {% if x.journalFile1 is string %}
@@ -585,10 +585,14 @@
                     <div class="col-md-12">                        
                         <div class="card">
                             <div class="card-body text-center">
-                                <video controls>
+                                <!-- <video controls>
                                     <source src="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{{ x.file1 }}?format=video/x-matroska" type="video/mp4">                                    
                                     <p>Your browser doesn't support HTML5 video. Here is a <a href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/recording/{{ x.file1 }}?format=video/x-matroska">link to the video</a> instead.</p>
-                                  </video>
+                                  </video> -->
+                                  <audio controls>
+                                    <source src="{{ x.file1Audio }}" type="audio/mpeg">
+                                    <p>Your browser doesn't support HTML5 video. Here is a <a href="https://catalog.phonogrammarchiv.at/media/Ph_131_ex.mp3">link to the audio</a> instead.</p>
+                                  </audio>
                             </div>
                         </div>
                     </div>                    

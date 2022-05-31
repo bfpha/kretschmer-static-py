@@ -17,8 +17,21 @@ body {
 }
 
 .navbar {
-    display: grid;
+    display: flex;
     border: none;
+}
+
+.navbar .navbar-brand {
+    height: auto !important;
+}
+
+.site-title-with-logo {
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+.navbar .navbar-nav {
+    margin-right: 0 !important;
 }
 
 h3 {
@@ -29,8 +42,8 @@ h4 {
     margin-top: 1em;
 }
 
-.navbar .nav-link {
-    color: #fff !important;
+.navbar .nav-link:hover {
+    color: blue !important;
 }
 
 a .btn:hover {
@@ -38,7 +51,12 @@ a .btn:hover {
 }
 
 #navbarNavDropdown {
-    margin-left: 4em !important;
+    justify-content: end !important;
+}
+
+.navbar > .container-fluid {
+    width: inherit;
+    max-width: inherit;
 }
 
 .wrapper_navbar {

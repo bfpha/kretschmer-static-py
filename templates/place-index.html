@@ -116,7 +116,7 @@
           var out = [];
           if (f.properties){
               out.push("Ortsname: "+f.properties['title']);
-              out.push(`Όνομα τόπου: <a href='${f.properties['link']}.html'>${f.properties['titleGr']}</a>`);   
+              out.push(`Όνομα τόπου: ${f.properties['titleGr']}`);   
               out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitleDe']}</a>`);    
               out.push(`Φωτογραφία: <a href='${f.properties['link']}.html'>${f.properties['linkTitleGr']}</a>`);            
               l.bindPopup(out.join("<br />"));
