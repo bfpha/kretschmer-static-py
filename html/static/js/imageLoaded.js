@@ -1,6 +1,5 @@
 function hideLoader(el) {
     if (IsImageOk(el) == true) {
-        console.log(IsImageOk(el));
         hideLoading(el);
     }
 }
