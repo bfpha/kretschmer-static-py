@@ -80,10 +80,14 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
                           <a href="{{ res.url }}">
                             <div class="card shadow-sm">
                               <div class="card-header text-center">
+                                <div class="text-center">
+                                  <div class="loader-toc"></div>
+                                </div>
                                 {% for x in res.metadata %}
                                   <img id="photo_{{ x.file1.replace(".tif", "") }}"
                                     src="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=full/,300/0/default.jpg" 
-                                    title="{{ x.titleDe }} / {{ x.titleGr }}"/>         
+                                    title="{{ x.titleDe }} / {{ x.titleGr }}"
+                                    onload="hideLoader(this)"/>         
                                          
                                 {% endfor %}
                               </div>
@@ -109,6 +113,7 @@ Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer 
         </div>
       </div>
     </div> 
+    <script type="text/javascript" src="static/js/imageLoaded.js"></script>
   </div>
 
 {% endblock %}
