@@ -69,21 +69,21 @@
     </div>
     <div class="row">
         {% for x in metadata %}    
-            <div class="col-md-6">   
+            <div class="col-md-8">   
                 <div class="row">     
                     <div class="col-md-12">        
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="meta-german" tabindex="-1">
                                 <div class="card">   
                                     <div class="card-header">
-                                        <h1 class="fw-light">{{ x.titleDe }}</h1>   
+                                        <h1 class="fw-light">{{ x.titleOriginal }}</h1>   
                                     </div>
                                     <div class="card-body table-responsive">
                                         <table class="table" id="res-table">
                                             <tbody>
                                                 <tr>
-                                                    <th>Titel (Original)</th>
-                                                    <td>{{ x.titleOriginal }}</td>
+                                                    <th>Titel (Übersetzung)</th>
+                                                    <td>{{ x.titleDe  }}</td>
                                                 </tr>
                                                 <tr>
                                                     {% if x.descriptionDe is string %}
@@ -140,13 +140,11 @@
                                                     <td>
                                                         {{ x.relation1 | replace('\n', '<br>') }}
                                                         <br>
-                                                        <!-- 
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            {{ x.journalSignature1 }}
                                                         </a> 
-                                                        -->
-                                                        {{ x.journalSignature1 }}
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -156,14 +154,11 @@
                                                     <td>
                                                         {{ x.relation2 | replace('\n', '<br>')  }}
                                                         <br>
-                                                        <!-- 
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature2 }}
                                                         </a> 
-                                                        -->
-                                                        {{ x.journalSignature2 }}
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -273,6 +268,8 @@
                                                         {{ x.authorDe }}. {{ x.titleDe }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        <br/><br/>
+                                                        Anmerkung: Für die Zitierung des digitalen Objekts wurde als Titel die (erklärende) Übersetzung von Kretschmers ursprünglicher Beschriftung auf der Rückseite der Fotos verwendet.
                                                     </td>
                                                 </tr>
                                                 <!--
@@ -300,14 +297,14 @@
                             <div class="tab-pane fade" id="meta-creek" tabindex="-1">
                                 <div class="card">   
                                     <div class="card-header">
-                                        <h1 class="fw-light">{{ x.titleGr }}</h1>   
+                                        <h1 class="fw-light">{{ x.titleOriginal  }}</h1>   
                                     </div>
                                     <div class="card-body table-responsive">
                                         <table class="table" id="res-table">
                                             <tbody>
                                                 <tr>
-                                                    <th>Τίτλος (Αρχικό)</th>
-                                                    <td>{{ x.titleOriginal }}</td>
+                                                    <th>Τίτλος (Μετάφραση)</th>
+                                                    <td>{{ x.titleGr  }}</td>
                                                 </tr>
                                                 <tr>
                                                     {% if x.descriptionGr is string %}
@@ -359,14 +356,11 @@
                                                     <td>
                                                         {{ x.relation1 | replace('\n', '<br>') }}
                                                         <br>
-                                                        <!-- 
                                                         <a target="_blank"
-                                                            title="{{ x.journalSignature2 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            title="{{ x.journalSignature1 }}"
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature1 }}
                                                         </a> 
-                                                        -->
-                                                        {{ x.journalSignature1 }}
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -376,14 +370,11 @@
                                                     <td>
                                                         {{ x.relation2 | replace('\n', '<br>')  }}
                                                         <br>
-                                                        <!-- 
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature2 }}
                                                         </a> 
-                                                        -->
-                                                        {{ x.journalSignature2 }}
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -494,6 +485,8 @@
                                                         {{ x.authorGr }}. {{ x.titleGr }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
                                                         Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
                                                         (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        <br/><br/>
+                                                        Σημείωση: Για την παραπομπή του ψηφιακού αντικειμένου χρησιμοποιήθηκε ως τίτλος η μετάφραση/επεξήγηση της αρχικής περιγραφής του Κρέτσμερ στο πίσω μέρος της φωτογραφίας
                                                     </td>
                                                 </tr>
                                                 <!--
@@ -577,7 +570,7 @@
                     {% endfor %}
                 </div>
             </div> 
-            <div class="col-md-6">    
+            <div class="col-md-4">    
                 <div class="row">    
                     <div class="col-md-12">
                         <div class="card" style="margin-bottom:0;">
@@ -599,7 +592,8 @@
                                   </audio>
                             </div>
                         </div>
-                    </div>                    
+                    </div>         
+                    <!--        
                     <div class="row">
                         {% if x.relation1 is string %}
                         <div class="col-md-12">
@@ -692,7 +686,8 @@
                             }
                         </script> 
                         {% endif %}
-                    </div>                    
+                    </div>  
+                    -->                     
                 </div>
             </div>
             

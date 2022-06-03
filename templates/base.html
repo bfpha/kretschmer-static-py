@@ -21,12 +21,14 @@
       <a class="skip-link screen-reader-text sr-only" href="#content">Skip to content</a>
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff;color:#444;" id="wrapper-navbar-nav">
         <!-- Your site title as branding in the menu -->
-        <a href="index.html" id="main-logo" class="navbar-brand custom-logo-link text-right" rel="home" itemprop="url">
-            <img class="card-img-left flex-auto d-md-block" src="static/img/oeaw-logo.png" alt="Österreichische Akademie der Wissenschaften" style="max-width: 300px; height: auto; vertical-align: middle;" title="Österreichische Akademie der Wissenschaften" />
+        <a href="index.html" class="navbar-brand custom-logo-link text-right" rel="home" itemprop="url">
+            <img id="main-logo" class="card-img-left flex-auto d-md-block" src="static/img/oeaw-logo.png" alt="Österreichische Akademie der Wissenschaften" title="Österreichische Akademie der Wissenschaften" />
         </a><!-- end custom logo -->
+        <!-- 
         <a class="navbar-brand site-title-with-logo lead" rel="home" href="index.html" title="Die Reise von Paul und Leona Kretschmer nach Lesbos" itemprop="url">
             Kretschmer Lesbos Online
         </a>
+         -->
         <span style="margin-left:-1.7em;" class="badge bg-light text-dark">BETA</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -142,7 +144,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="footer-widget col-md-4">
+                <div class="footer-widget col-md-5">
                     <h6 class="font-weight-bold" style="margin-bottom: 1em;">PROJEKTPARTNER</h6>
                     <div class="row">     
                         <div class="col-md-4">
@@ -174,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-widget col-md-2">
+                <div class="footer-widget col-md-1">
                     <div class="row">
                         <div class="custom-html-widget" style="margin-left:0 !important;">
                             <div class="row">
@@ -211,7 +213,8 @@
             if (document.body.scrollTop >= 80 || document.documentElement.scrollTop >= 80) {
                 document.getElementById("main-logo").classList.add("fade-logo-transition");
             } else {
-                document.getElementById("main-logo").classList.remove("fade-logo-transition");            }
+                document.getElementById("main-logo").classList.remove("fade-logo-transition");
+            }
         }
     </script>   
   </body>

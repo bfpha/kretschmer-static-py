@@ -123,6 +123,9 @@ def make_index_html(df):
     template = templateEnv.get_template('./templates/journey.html')
     with open('./html/journey.html', 'w') as f:
         f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/imprint.html')
+    with open('./html/imprint.html', 'w') as f:
+        f.write(template.render({"objects": items}))
     # print(places)
     return items
 
