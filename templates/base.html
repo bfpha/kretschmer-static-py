@@ -210,7 +210,7 @@
         window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {
-            if (document.body.scrollTop >= 80 || document.documentElement.scrollTop >= 80) {
+            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
                 document.getElementById("main-logo").classList.add("fade-logo-transition");
             } else {
                 document.getElementById("main-logo").classList.remove("fade-logo-transition");
