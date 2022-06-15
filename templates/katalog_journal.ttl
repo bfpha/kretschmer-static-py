@@ -4,51 +4,12 @@
 
 {% for items in objects %}{% for md in items.metadata %}{% if md.journalFile1 is string %}
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}> a acdh:Resource;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal>;
-acdh:hasTitle "{{ md.journalTitle1 }} {{ md.journalSignature1.split(" ")[6] }}"@de;
-acdh:hasNonLinkedIdentifier "{{ md.journalSignature1 }}";
-acdh:hasNonLinkedIdentifier "{{ md.journalFile1 }}";
-acdh:hasUrl "{{ md.journalLink }}";
-acdh:hasContact acdhi:enikolaros;
-acdh:hasAuthor acdhi:pkretschmer;
-acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasDepositor acdhi:enikolaros;
-acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc-ow-eu>;
-acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
-acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/public>;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
-acdh:hasOwner acdhi:pha-oeaw;
-acdh:hasRightsHolder acdhi:unknown;
-acdh:hasPid "create";
-acdh:hasLicensor acdhi:pha-oeaw;
-acdh:hasDigitisingAgent acdhi:onb;
-acdh:hasTemporalCoverage "{{ md.journalTitle1 }}"@de;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
+acdh:hasOwner acdhi:onb .
 {% endif %}{% endfor %}{% endfor %}
 
 {% for items in objects %}{% for md in items.metadata %}{% if md.journalFile2 is string %}
 <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}> a acdh:Resource;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal>;
-acdh:hasTitle "{{ md.journalTitle2 }} {{ md.journalSignature2.split(" ")[6] }}"@de;
-acdh:hasNonLinkedIdentifier "{{ md.journalSignature2 }}";
-acdh:hasUrl "{{ md.journalLink }}";
-acdh:hasContact acdhi:enikolaros;
-acdh:hasPid "create";
-acdh:hasAuthor acdhi:pkretschmer;
-acdh:hasMetadataCreator acdhi:enikolaros,acdhi:dstoxreiter;
-acdh:hasDepositor acdhi:enikolaros;
-acdh:hasCurator acdhi:dstoxreiter;
-acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc-ow-eu>;
-acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool>;
-acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/public>;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602>;
-acdh:hasOwner acdhi:pha-oeaw;
-acdh:hasRightsHolder acdhi:unknown;
-acdh:hasLicensor acdhi:pha-oeaw;
-acdh:hasDigitisingAgent acdhi:onb;
-acdh:hasTemporalCoverage "{{ md.journalTitle2 }}"@de;
-acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/601009>,<https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/602035> .
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
+acdh:hasOwner acdhi:onb .
 {% endif %}{% endfor %}{% endfor %}
