@@ -2,11 +2,12 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-{% for items in objects %}{% for md in items.metadata %}acdhi:{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }} acdh:hasTitle "{{ md.Vorname }} {{ md.Familienname }}"@de;
+{% for items in objects %}{% for md in items.metadata %}
+acdhi:{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }}{% elif md.Vorname is string %}{{ md.Vorname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% elif md.Familienname is string %}{{ md.Familienname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% endif %}
+acdh:hasTitle "{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname }} {{ md.Familienname }}{% elif md.Vorname is string %}{{ md.Vorname }}{% elif md.Familienname is string %}{{ md.Familienname }}{% endif %}"@und;
 a acdh:Person;
-acdh:hasAlternativeTitle "{{ md.Vorname_gr }} {{ md.Familienname_gr }}"@mus;
-{% if md.Vorname is string%}acdh:hasFirstName "{{ md.Vorname }}"@de,"{{ md.Vorname_gr }}"@mus;{% endif %}
-{% if md.Familienname is string%}acdh:hasLastName "{{ md.Familienname }}"@de,"{{ md.Familienname_gr }}"@mus;{% endif %}
-{% if md.Link1 is string%}acdh:hasIdentifier <{{ md.Link1 }}>;{% endif %}
+acdh:hasTitle "{% if md.Vorname_gr is string and md.Familienname_gr is string %}{{ md.Vorname_gr }} {{ md.Familienname_gr }}{% elif md.Vorname_gr is string %}{{ md.Vorname_gr }}{% elif md.Familienname_gr is string %}{{ md.Familienname_gr }}{% endif %}"@ell;
+{% if md.Vorname is string%}acdh:hasFirstName "{{ md.Vorname }}"@und,"{{ md.Vorname_gr }}"@ell;{% endif %}
+{% if md.Familienname is string%}acdh:hasLastName "{{ md.Familienname }}"@und,"{{ md.Familienname_gr }}"@ell;{% endif %}
 {% if md.Link2 is string%}acdh:hasIdentifier <{{ md.Link2 }}>;{% endif %}
 acdh:hasIdentifier <https://id.acdh.oeaw.ac.at/kretschmer-lesbos/{{ md.id }}> .{% endfor %}{% endfor %}

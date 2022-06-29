@@ -1,0 +1,11 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+{% for items in objects %}{% for md in items.metadata %}
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.archeCollection | replace('F', 'Ph') | lower }}> <delete://delete> acdh:hasPrincipalInvestigator .
+
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> <delete://delete> acdh:hasPrincipalInvestigator .
+
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file2 }}> <delete://delete> acdh:hasPrincipalInvestigator .
+{% endfor %}{% endfor %}

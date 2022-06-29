@@ -1,0 +1,5 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+<https://arche-curation.acdh-dev.oeaw.ac.at/api/452711> <delete://delete> acdh:hasLicense .

@@ -1,0 +1,8 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+{% for items in objects %}{% for md in items.metadata %}
+acdhi:{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }}{% elif md.Vorname is string %}{{ md.Vorname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% elif md.Familienname is string %}{{ md.Familienname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% endif %}
+<delete://delete> acdhi:{% if md.Vorname is string and md.Familienname is string %}{{ md.Vorname[0] | lower }}{{ md.Familienname | lower }}{% elif md.Vorname is string %}{{ md.Vorname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% elif md.Familienname is string %}{{ md.Familienname.replace("[^a-zA-Z\d\s:]", "") | lower }}{% endif %} .
+{% endfor %}{% endfor %}

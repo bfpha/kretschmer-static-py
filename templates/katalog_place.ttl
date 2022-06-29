@@ -2,18 +2,18 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-{% for items in objects %}{% for md in items.metadata %}<{{ md.placeRegionID }}> a acdh:Place;
-acdh:hasTitle "{{ md.placeRegionDe }}"@de;
-acdh:hasAlternativeTitle "{{ md.placeRegionGr }}"@mus;
+{% for items in objects %}{% for md in items.metadata %}
+<{{ md.placeRegionID }}> a acdh:Place;
+acdh:hasTitle "{{ md.placeRegionDeARCHE }}"@de,"{{ md.placeRegionArcheGr }}"@ell,"{{ md.placeRegionEn }}"@en;
+{% if md.placeGeonames is string %}
 acdh:hasIdentifier <{{ md.placeGeonames }}>;
+{% endif %}
+{% if md.placeRegionArcheID is string %}
+acdh:hasIdentifier <{{ md.placeRegionID }}>;
+{% endif %}
+{% if md.placeRegionWikidata is string %}
+acdh:hasIdentifier <{{ md.placeRegionWikidata }}>;
+{% endif %}
 acdh:hasLatitude "{{ md.coordinates.split(", ")[0] }}";
 acdh:hasLongitude "{{ md.coordinates.split(", ")[1] }}" .
-<{{ md.countryID }}> a acdh:Place;
-acdh:hasTitle "{{ md.countryDe }}"@de;
-acdh:hasAlternativeTitle "{{ md.countryGr }}"@mus;
-acdh:hasIdentifier <{{ md.countryWikidata }}>;
-acdh:hasIdentifier <{{ md.countryGeonames }}> .
-<{{ md.countryHistoryID }}> a acdh:Place;
-acdh:hasTitle "{{ md.countryHistoryDe }}"@de;
-acdh:hasAlternativeTitle "{{ md.countryHistoryGr }}"@mus;
-acdh:hasIdentifier <{{ md.countryHistoryWikidata }}> .{% endfor %}{% endfor %}
+{% endfor %}{% endfor %}
