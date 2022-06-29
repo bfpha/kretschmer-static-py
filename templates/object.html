@@ -1,13 +1,17 @@
 {% extends "templates/base.html" %}
-{% block title%} {{ title }} {% endblock %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
 {% block scriptHeader %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+    <script src="https://unpkg.com/arche-api@1.2.1/lib/arche-api.min.js"></script>
     <style>
         .container-fluid{
             max-width: 100%;
+        }
+        ul li {
+            padding: .3em 0;
         }
     </style>
 {% endblock %}
@@ -15,12 +19,24 @@
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+        <li class="breadcrumb-item"><a href="fotos-detail.html">Fotografien</a></li>
         <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitle.lstrip('0') }}</a></li>   
         <li class="breadcrumb-item active" aria-current="page">{{ titleOrig }}</li>        
         <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitle.lstrip('0') }}</a></li>
     </ol>
 </nav>
-<div class="container container-fluid">
+<!--
+<nav style="bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb" style="margin-bottom: 1em;">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>     
+        <li class="breadcrumb-item"><a href="fotos-detail.html">Φωτογραφία</a></li>
+        <li class="breadcrumb-item"><a href="{{ prev }}">{{ prevTitleGr.lstrip('0') }}</a></li>   
+        <li class="breadcrumb-item active" aria-current="page">{{ titleOrigGr.lstrip('0') }}</li>        
+        <li class="breadcrumb-item"><a href="{{ next }}">{{ nextTitleGr.lstrip('0') }}</a></li>
+    </ol>
+</nav>
+-->
+<div class="container-fluid">
     <div id="tab-navigation">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -76,11 +92,11 @@
                                                     {% endif %} 
                                                 </tr>
                                                 <tr>
-                                                    <th>Signatur/Inv-Nr.</th>
+                                                    <th>ONB Signatur/Inv-Nr.</th>
                                                     <td>{{ x.singatureInv }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Signatur Link</th>
+                                                    <th>ONB Signatur Link</th>
                                                     <td>
                                                         <a target="_blank"
                                                             title="OENB"
@@ -123,12 +139,12 @@
                                                     <th>Reisetagebuch (Zitat 1)</th>
                                                     <td>
                                                         {{ x.relation1 | replace('\n', '<br>') }}
-                                                        <br>
+                                                        <br>                                                        
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature1 }}
-                                                        </a>
+                                                        </a>                                                        
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -140,15 +156,15 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature2 }}
-                                                        </a>
+                                                        </a> 
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
                                                 {% if x.journalLink is string %}
                                                 <tr>
-                                                    <th>Reisetagebuch (Link)</th>
+                                                    <th>ONB Reisetagebuch (Link)</th>
                                                     <td>
                                                         <a target="_blank"
                                                             title="OENB"
@@ -168,6 +184,131 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
+                                                <tr>
+                                                    <th>ARCHE Ressource Centre</th>
+                                                    <td>
+                                                        <table id="arche-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>PID</th>
+                                                                    <th>Fotos (IIIF Server)</th>
+                                                                    <th>RDF Zugang</th>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" id="file1_get" class="file1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
+                                                                        </a>                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=metadata">
+                                                                            <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                        </a>   
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" id="file2_get" class="file2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=metadata">
+                                                                            <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                        </a>  
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" id="journalfile1_get" class="journalfile1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}
+                                                                        </a> 
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation1 is string %}
+                                                                                                                      
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
+                                                                            </a>   
+                                                                            
+                                                                        {% endif %}   
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation1 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=metadata">
+                                                                                <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                            </a> 
+                                                                        {% endif %}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" id="journalfile2_get" class="journalfile2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}
+                                                                            </a>  
+                                                                        {% endif %} 
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
+                                                                            </a>       
+                                                                        {% endif %}  
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=metadata">
+                                                                                <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                            </a> 
+                                                                        {% endif %} 
+                                                                    </td>
+                                                                
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr> 
+                                                <tr>
+                                                    <th>Zitiervorschlag</th>
+                                                    <td>
+                                                        {{ x.photographDe }}. {{ x.titleDe }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        <br/><br/>
+                                                        Anmerkung: Für die Zitierung des digitalen Objekts wurde als Titel die (erklärende) Übersetzung von Kretschmers ursprünglicher Beschriftung auf der Rückseite der Fotos verwendet.
+                                                    </td>
+                                                </tr>
+                                                <!--
+                                                <tr>
+                                                    <th>Zitiervorschlag ARCHE</th>
+                                                    <td>
+                                                        {{ x.photographDe }}. {{ x.titleDe }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
+                                                        , <a class="file2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}</a>
+                                                        {% if x.journalFile1 is string %}
+                                                        , <a class="journalfile1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}</a>
+                                                        {% endif %}
+                                                        {% if x.journalFile2 is string %}
+                                                        , <a class="journalfile2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}</a>
+                                                        {% endif %}
+                                                        ), aufgerufen am <span class="current-date">Datum</span>.
+                                                    </td>
+                                                </tr>
+                                                -->
                                             </tbody>         
                                         </table>
                                     </div>
@@ -237,9 +378,9 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile1 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature1 }}
-                                                        </a>
+                                                        </a>  
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
@@ -251,15 +392,15 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/journal/{{ x.journalFile2 }}/full/full/0/default.jpg">
+                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
                                                             {{ x.journalSignature2 }}
-                                                        </a>
+                                                        </a>  
                                                     </td>
                                                 </tr>
                                                 {% endif %} 
                                                 {% if x.journalLink is string %}
                                                 <tr>
-                                                    <th>Ημερολόγιο (Link)</th>
+                                                    <th>ONB Ημερολόγιο (Link)</th>
                                                     <td>
                                                         <a target="_blank"
                                                             title="OENB"
@@ -279,6 +420,131 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
+                                                <tr>
+                                                    <th>ARCHE Ressource Centre</th>
+                                                    <td>
+                                                        <table id="arche-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>PID</th>
+                                                                    <th>Fotos (IIIF Server)</th>
+                                                                    <th>RDF Zugang</th>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" class="file1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}
+                                                                        </a>  
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=metadata">
+                                                                            <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                        </a>   
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" class="file2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=metadata">
+                                                                            <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                        </a>  
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <a target="_blank" class="journalfile1" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}">
+                                                                            https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}
+                                                                        </a> 
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation1 is string %}
+                                                                                                                      
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json
+                                                                            </a>   
+                                                                            
+                                                                        {% endif %}   
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation1 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=metadata">
+                                                                                <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                            </a> 
+                                                                        {% endif %}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" class="journalfile2" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}
+                                                                            </a>  
+                                                                        {% endif %} 
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
+                                                                                https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json
+                                                                            </a>       
+                                                                        {% endif %}  
+                                                                    </td>
+                                                                    <td>
+                                                                        {% if x.relation2 is string %}
+                                                                            <a target="_blank" href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=metadata">
+                                                                                <img src="https://www.w3.org/RDF/icons/rdf_w3c_icon.48" alt="RDF Logo"/>
+                                                                            </a> 
+                                                                        {% endif %} 
+                                                                    </td>
+                                                                
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>                                        
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Zitiervorschlag</th>
+                                                    <td>
+                                                        {{ x.photographGr }}. {{ x.titleGr }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        <br/><br/>
+                                                        Σημείωση: Για την παραπομπή του ψηφιακού αντικειμένου χρησιμοποιήθηκε ως τίτλος η μετάφραση/επεξήγηση της αρχικής περιγραφής του Κρέτσμερ στο πίσω μέρος της φωτογραφίας
+                                                    </td>
+                                                </tr>
+                                                <!--
+                                                <tr>
+                                                    <th>Zitiervorschlag ARCHE</th>
+                                                    <td>
+                                                        {{ x.photographGr }}. {{ x.titleGr }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
+                                                        (<a class="file1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file1 }}</a>
+                                                            , <a class="file2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.file2 }}</a>
+                                                        {% if x.journalFile1 is string %}
+                                                            , <a class="journalfile1" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile1 }}</a>
+                                                        {% endif %}
+                                                        {% if x.journalFile2 is string %}
+                                                            , <a class="journalfile2" href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.journalFile2 }}</a>
+                                                        {% endif %}
+                                                        ), aufgerufen am <span class="current-date">Datum</span>.
+                                                    </td>
+                                                </tr>
+                                                -->
                                             </tbody>         
                                         </table>
                                     </div>
@@ -308,8 +574,10 @@
                             function popUp(f,l){
                                 var out = [];
                                 if (f.properties){
-                                    out.push("Ortsname: "+f.properties["title"]);
-                                    out.push("Foto: "+f.properties["linkTitle"]);
+                                    out.push("Ortsname: "+f.properties['title']);
+                                    out.push(`Όνομα τόπου: <a href='${f.properties['link']}.html'>${f.properties['titleGr']}</a>`);   
+                                    out.push(`Foto: <a href='${f.properties['link']}.html'>${f.properties['linkTitleDe']}</a>`);    
+                                    out.push(`Φωτογραφία: <a href='${f.properties['link']}.html'>${f.properties['linkTitleGr']}</a>`);            
                                     l.bindPopup(out.join("<br />"));
                                 }
                             };
@@ -321,7 +589,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Abgebildete Personen</h5>
+                                    <h5>Abgebildete Personen </h5>
                                 </div>
                                 <div class="card-body">
                                     <ul>
@@ -342,20 +610,30 @@
                 </div>
             </div> 
             <div class="col-md-6">    
-                <div class="row">       
-                    <div class="col-md-12" id="img-front" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file1 }}/info.json">
+                <div class="row">    
+                    <div class="col-md-12">
+                        <div class="card" style="margin-bottom:0;">
+                            <div class="card-header">
+                                <h5>Fotografien</h5>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="col-md-12">                        
                         <div class="card">
-                            <div class="card-body" id="img-front-body">
+                            <div class="loader-wrapper" id="spinner_img-1" class="text-center">
+                                <div class="loader"></div>
+                            </div>
+                            <div class="card-body" id="img-front" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-front").attr('data-target');
-                        $("#img-front-body").css({
+                        $("#img-front").css({
                             'height': '600px'
                         });
                         var viewer = OpenSeadragon({
-                            id: 'img-front-body',
+                            id: 'img-front',
                             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                             // sequenceMode: true,
                             // showReferenceStrip: true,
@@ -363,20 +641,39 @@
                             // imageLoaderLimit: 10,
                             tileSources: imgURL
                         });
+
+                        viewer.addHandler('open', function() {
+                            var tiledImage = viewer.world.getItemAt(0);
+                            if (tiledImage.getFullyLoaded()) {
+                                hideLoading();
+                            } else {
+                                tiledImage.addOnceHandler('fully-loaded-change', hideLoading);
+                            }
+                        });
+
+                        function hideLoading() {
+                            var spinnerID = "spinner_img-1";
+                            if ( $("#" + spinnerID ) ) {
+                                $("#" + spinnerID ).remove();
+                            }
+                        }
                     </script>
-                    <div class="col-md-12" id="img-back" data-target="https://loris.acdh.oeaw.ac.at/uuid:/kretschmer-lesbos/photos/{{ x.file2 }}/info.json">
+                    <div class="col-md-12">
                         <div class="card">
-                            <div class="card-body" id="img-back-body">
+                            <div class="loader-wrapper" id="spinner_img-2" class="text-center">
+                                <div class="loader"></div>
+                            </div>
+                            <div class="card-body" id="img-back" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-back").attr('data-target');
-                        $("#img-back-body").css({
+                        $("#img-back").css({
                             'height': '600px'
                         });
-                        var viewer = OpenSeadragon({
-                            id: 'img-back-body',
+                        var viewer2 = OpenSeadragon({
+                            id: 'img-back',
                             prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
                             // sequenceMode: true,
                             // showReferenceStrip: true,
@@ -384,12 +681,146 @@
                             // imageLoaderLimit: 10,
                             tileSources: imgURL
                         });
-                    </script>  
+                        
+                        viewer2.addHandler('open', function() {
+                            var tiledImage = viewer2.world.getItemAt(0);
+                            if (tiledImage.getFullyLoaded()) {
+                                hideLoading2();
+                            } else {
+                                tiledImage.addOnceHandler('fully-loaded-change', hideLoading2);
+                            }
+                        });
+
+                        function hideLoading2() {
+                            var spinnerID = "spinner_img-2";
+                            if ( $("#" + spinnerID ) ) {
+                                $("#" + spinnerID ).remove();
+                            }
+                        }
+                    </script>
+                    <!--
+                    <div class="row">
+                        {% if x.relation1 is string %}
+                        <div class="col-md-12">
+                            <div class="card" style="margin-bottom:0;">
+                                <div class="card-header">
+                                    <h5>Reisetagebuch / Ημερολόγιο </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">                            
+                            <div class="card">
+                                <div class="loader-wrapper" id="spinner_img-journal-1" class="text-center">
+                                    <div class="loader"></div>
+                                </div>
+                                <div class="card-body" id="img-journal-1" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=info.json">
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            var imgURL = $("#img-journal-1").attr('data-target');
+                            $("#img-journal-1").css({
+                                'height': '400px'
+                            });
+                            var viewer3 = OpenSeadragon({
+                                id: 'img-journal-1',
+                                prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                                // sequenceMode: true,
+                                // showReferenceStrip: true,
+                                // showNavigator: true,
+                                // imageLoaderLimit: 10,
+                                tileSources: imgURL
+                            });
+
+                            viewer3.addHandler('open', function() {
+                                var tiledImage = viewer3.world.getItemAt(0);
+                                if (tiledImage.getFullyLoaded()) {
+                                    hideLoading3();
+                                } else {
+                                    tiledImage.addOnceHandler('fully-loaded-change', hideLoading3);
+                                }
+                            });
+    
+                            function hideLoading3() {
+                                var spinnerID = "spinner_img-journal-1";
+                                if ( $("#" + spinnerID ) ) {
+                                    $("#" + spinnerID ).remove();
+                                }
+                            }
+                        </script>
+                        {% endif %}
+                        {% if x.relation2 is string %}
+                        <div class="col-md-6">
+                            <div class="card">   
+                                <div class="loader-wrapper" id="spinner_img-journal-2" class="text-center">
+                                    <div class="loader"></div>
+                                </div>                     
+                                <div class="card-body" id="img-journal-2" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=info.json">
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            var imgURL = $("#img-journal-2").attr('data-target');
+                            $("#img-journal-2").css({
+                                'height': '400px'
+                            });
+                            var viewer4 = OpenSeadragon({
+                                id: 'img-journal-2',
+                                prefixUrl: 'https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/',
+                                // sequenceMode: true,
+                                // showReferenceStrip: true,
+                                // showNavigator: true,
+                                // imageLoaderLimit: 10,
+                                tileSources: imgURL
+                            });
+
+                            viewer4.addHandler('open', function() {
+                                var tiledImage = viewer4.world.getItemAt(0);
+                                if (tiledImage.getFullyLoaded()) {
+                                    hideLoading4();
+                                } else {
+                                    tiledImage.addOnceHandler('fully-loaded-change', hideLoading4);
+                                }
+                            });
+    
+                            function hideLoading4() {
+                                var spinnerID = "spinner_img-journal-2";
+                                if ( $("#" + spinnerID ) ) {
+                                    $("#" + spinnerID ).remove();
+                                }
+                            }
+                        </script> 
+                        {% endif %}
+                    </div>  
+                    -->                  
                 </div>
             </div>
             
         {% endfor %}       
         
     </div>
+    <script type="text/javascript">
+        $(function() {
+
+            `
+            replacing uri with pid of app build with current date
+            in de and en format.
+        
+            `
+            $('.current-date').each(function() {
+                let date = new Date();
+                let options = { 
+                    // weekday: 'long', 
+                    year: 'numeric',
+                    month: 'numeric', 
+                    day: 'numeric'
+                };
+                $(this).html(
+                    date.toLocaleDateString('de-DE', options)
+                );
+            });
+        });
+    </script>
+    <script type="text/javascript" src="static/js/get_handle.js"></script>
 </div>
 {% endblock %}

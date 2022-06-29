@@ -1,5 +1,5 @@
 # bin/bash
-BOOTSTRAP_VERSION=5.0.2
+BOOTSTRAP_VERSION=5.1.3
 BOOTSTRAP=bootstrap-${BOOTSTRAP_VERSION}-examples
 mkdir ./html
 rm -rf ${BOOTSTRAP} && rm -rf ./html/assets
@@ -7,3 +7,4 @@ wget https://github.com/twbs/bootstrap/releases/download/v${BOOTSTRAP_VERSION}/$
 mv ./${BOOTSTRAP}/assets ./html/assets && rm -rf ${BOOTSTRAP}
 ./dl_imprint.sh
 cp ./templates/imprint.html ./html/imprint.html
+./dl_fundament.sh

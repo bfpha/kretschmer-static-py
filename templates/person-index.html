@@ -1,85 +1,130 @@
 {% extends "templates/base.html" %}
-{% block title%} Personenindex {% endblock %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
 {% block scriptHeader %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+<style>
+  .container-fluid{
+      max-width: 100%;
+  }
+  ul li {
+      padding: .3em 0;
+  }
+</style>
 {% endblock %}
 {% block content %}
 <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Start</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Alle Personen als Tabelle</li>
+      <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+      <li class="breadcrumb-item active" aria-current="page">Personenregister</li>
   </ol>
 </nav>
-<div class="container text-center">
-  <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">Alle Personen</h1>
-      <p class="lead text-muted">Personen abgebildet auf den Fotos von <strong>Paul Kretschmer</strong> </p>
+<!--
+<nav style="bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Πρόσωπο Κανω ΕΓΓΡΑΦΗ</li>
+  </ol>
+</nav>
+-->
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 mx-auto">
+      <h1 class="fw-light">Personenregister</h1>
+      <p class="lead text-muted">Alle auf den Fotos von <strong>Paul Kretschmer</strong> abgebildeten Personen  </p>
     </div>
   </div>
-  <table id="myTable" class="display" style="width:100%;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Vorname griechisch</th>
-        <th>Nachname</th>
-        <th>Nachname griechisch</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in objects %}
-        {% for x in item.metadata %}
-        <tr>
-          <td>
-            <a href="{{ x.id }}.html">{{ x.id }}</a>
-          </td>
-          <td>
-            {% if x.Vorname is string %}
-            {{ x.Vorname }}
-            {% endif %}
-          </td>
-          <td>
-            {% if x.Vorname_gr is string %}
-            {{ x.Vorname_gr }}
-            {% endif %}
-          </td>
-          <td>
-            {% if x.Familienname is string %}
-            {{ x.Familienname }}
-            {% endif %}                  
-          </td>
-          <td>
-            {% if x.Familienname_gr is string %}
-            {{ x.Familienname_gr }}
-            {% endif %}                  
-          </td>
-        </tr>
-        {% endfor %}
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Vorname griechisch</th>
-        <th>Nachname</th>
-        <th>Nachname griechisch</th>
-      </tr>
-    </tfoot>
-  </table>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 mx-auto">
+      <table id="myTable" class="display" style="width:100%;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Vorname / Όνομα</th>
+            <th>Familienname / Ονοματεπώνυμο</th>
+            <th>GND</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in objects %}
+            {% for x in item.metadata %}
+            <tr>
+              <td>
+                <a href="{{ x.id }}.html">{{ x.id }}</a>
+              </td>
+              <td>
+                {% if x.Vorname is string %}
+                    {{ x.Vorname }}
+                    <br/>
+                    {{ x.Vorname_gr }}
+                {% endif %}
+              </td>
+              <td>
+                {% if x.Familienname is string %}
+                    {{ x.Familienname }}
+                    <br/>
+                    {{ x.Familienname_gr }}
+                {% endif %}                  
+              </td>
+              <td style="width:20%;overflow:hidden;">
+                {% if x.Link2 is string %}
+                    <a href="{{ x.Link1 }}">
+                      {{ x.Link2 }}
+                    </a>
+                {% endif %}   
+              </td>
+              <td>  
+                {% if x.Link1 is string %}
+                    <a href="{{ x.Link1 }}">
+                      URL
+                    </a>
+                {% endif %}               
+              </td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>ID</th>
+            <th>Vorname / Όνομα</th>
+            <th>Familienname / Ονοματεπώνυμο</th>
+            <th>GND</th>
+            <th>Link</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
 </div>
 <script>
   $(document).ready(function() {
       $('#myTable').DataTable(
           {
+            language: {
+              search: "Suchen / Αναζήτηση ",
+              paginate: {
+                  next: "Nächste / Επόμενο",
+                  previous: "Vorherige / Προηγούμενο"
+              },
+              sInfo: "zeigt _START_ bis _END_ von _TOTAL_ Einträgen",
+              sInfoFiltered: "(_END_ von _MAX_ Einträgen gefiltert)",
+              searchPanes: {
+                  collapseMessage: "schließen",
+                  showMessage: "anzeigen",
+                  clearMessage: "leeren",
+                  title: {
+                      _: 'Filter ausgewählt - %d'
+                  }
+              }
+            },
             dom: 'PfrtipB',
             searchPanes: {
-                initCollapsed: true
+                initCollapsed: false
             },
             buttons: [
                 'copy', 'excel', 'pdf'
@@ -89,8 +134,14 @@
                     searchPanes: {
                         show: true
                     },
-                    targets: [1, 2, 3, 4]
+                    targets: [1, 2]
                 },
+                {
+                  searchPanes: {
+                      show: false
+                  },
+                  targets: [0, 3, 4]
+              }
             ]
           }   
       );

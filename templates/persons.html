@@ -1,21 +1,40 @@
 {% extends "templates/base.html" %}
-{% block title%} {{ title }} {% endblock %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
 {% block scriptHeader %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.2/openseadragon.min.js"></script>
+    <style>
+        .container-fluid{
+            max-width: 100%;
+        }
+        ol li {
+            padding: .3em 0;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-<nav style="--bs-breadcrumb-divider: '>>'; margin-bottom: 4em;" aria-label="breadcrumb">
+<nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Start</a></li>   
-        <li class="breadcrumb-item"><a href="person-index.html">Alle Personen als Tabelle</a></li>
+        <li class="breadcrumb-item"><a href="index.html">Start</a></li>      
+        <li class="breadcrumb-item"><a href="person-index.html">Personenregister</a></li>
         {% for x in metadata %}     
             <li class="breadcrumb-item active" aria-current="page">{{ x.Familienname }} {{ x.Vorname }}</li>    
         {% endfor %}    
     </ol>
 </nav>
+<!--
+<nav style="bs-breadcrumb-divider: '>>';margin-bottom:2em;" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Πρόσωπο Κανω ΕΓΓΡΑΦΗ</li>
+        {% for x in metadata %}     
+            <li class="breadcrumb-item active" aria-current="page"> {{ x.Familienname_gr }} {{ x.Vorname_gr }}</li>    
+        {% endfor %}   
+    </ol>
+  </nav>
+-->
 <div class="container">
     <div id="tab-navigation">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -47,7 +66,7 @@
             </li>
         </ul>
     </div>
-    <div class="row">
+    <div class="row" syle="margin-bottom:4em;">
         {% for x in metadata %}    
             <div class="col-md-12">                
                 <div class="tab-content">
@@ -85,15 +104,25 @@
                                         {% endif %}
                                         {% if x.Link1 is string %}
                                         <tr>
-                                            <th style="width:30%;">Link extern</th>
-                                            <td>
-                                                <ul>
-                                                    <li><a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a></li>
-                                                    {% if x.Link2 is string %}
-                                                        <li><a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a></li>
-                                                    {% endif %}
-                                                </ul>
-                                            </td>
+                                            <th>GND</th>
+                                            <td style="width:20%;overflow:hidden;">
+                                                <a href="{{ x.Link1 }}">
+                                                    {{ x.Link2 }}
+                                                </a>
+                                               
+                                              </td>
+                                        </tr> 
+                                        {% endif %} 
+                                        {% if x.Link1 is string %}
+                                        <tr>
+                                              <th>Link</th>
+                                              <td>  
+                                            
+                                                <a href="{{ x.Link1 }}">
+                                                    {{ x.Link1 }}
+                                                </a>
+                                                            
+                                              </td>
                                         </tr>  
                                         {% endif %}                                      
                                     </tbody>        
@@ -111,39 +140,49 @@
                                     <tbody>
                                         {% if x.Familienname_gr is string %}
                                         <tr>
-                                            <th style="width:30%;">Familienname</th>
+                                            <th style="width:30%;">Ονοματεπώνυμο</th>
                                             <td>{{ x.Familienname_gr }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Vorname_gr is string %}
                                         <tr>
-                                            <th style="width:30%;">Vorname</th>
+                                            <th style="width:30%;">Όνομα</th>
                                             <td>{{ x.Vorname_gr }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Geburtsdatum | int() != 0 %}
                                         <tr>
-                                            <th style="width:30%;">Geburtsdatum</th>
+                                            <th style="width:30%;">Ημερομηνία γέννησης</th>
                                             <td>{{ x.Geburtsdatum | int() }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Sterbedatum | int() != 0 %}
                                         <tr>
-                                            <th style="width:30%;">Sterbedatum</th>
+                                            <th style="width:30%;">Ημερομηνία θανάτου</th>
                                             <td>{{ x.Sterbedatum | int() }}</td>
                                         </tr>
                                         {% endif %}
                                         {% if x.Link1 is string %}
                                         <tr>
-                                            <th style="width:30%;">Link extern</th>
-                                            <td>
-                                                <ul>
-                                                    <li><a target="_blank" href="{{ x.Link1 }}">{{ x.Link1 }}</a></li>
-                                                    {% if x.Link2 is string %}
-                                                        <li><a target="_blank" href="{{ x.Link2 }}">{{ x.Link2 }}</a></li>
-                                                    {% endif %}
-                                                </ul>
-                                            </td>
+                                            <th>GND</th>
+                                            <td style="width:20%;overflow:hidden;">
+                                                <a href="{{ x.Link1 }}">
+                                                    {{ x.Link2 }}
+                                                </a>
+                                               
+                                              </td>
+                                        </tr> 
+                                        {% endif %} 
+                                        {% if x.Link1 is string %}
+                                        <tr>
+                                              <th>Link</th>
+                                              <td>  
+                                            
+                                                <a href="{{ x.Link1 }}">
+                                                    {{ x.Link1 }}
+                                                </a>
+                                                            
+                                              </td>
                                         </tr>  
                                         {% endif %}                                      
                                     </tbody>         
