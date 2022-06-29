@@ -140,3 +140,11 @@ dmypy.json
 html/assets/brand/bootstrap-logo-white.svg
 html/assets/brand/bootstrap-logo.svg
 html/indexhansi.html
+
+# arche
+composer.*
+delete_place_kretschmer.sh
+/vendor
+
+delete_metadata_sample.php
+delete_metadata_sample.ttl
