@@ -3,11 +3,9 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
 {% for items in objects %}{% for md in items.metadata %}{% if md.journalFile1 is string %}
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted> .
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile1 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc> .
 {% endif %}{% endfor %}{% endfor %}
 
 {% for items in objects %}{% for md in items.metadata %}{% if md.journalFile2 is string %}
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted> .
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ md.journalFile2 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc> .
 {% endif %}{% endfor %}{% endfor %}
