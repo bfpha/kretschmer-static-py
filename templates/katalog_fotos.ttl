@@ -3,11 +3,9 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
 {% for items in objects %}{% for md in items.metadata %}
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> a acdh:Resource;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
-acdh:hasSpatialCoverage <{{ md.placeRegionID }}> .
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file1 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted> .
 
-<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file2 }}> a acdh:Resource;
-acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted>;
-acdh:hasSpatialCoverage <{{ md.placeRegionID }}> .
+<https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ md.file2 }}> acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/inc>;
+acdh:hasAccessRestriction <https://vocabs.acdh.oeaw.ac.at/archeaccessrestrictions/restricted> .
 {% endfor %}{% endfor %}
