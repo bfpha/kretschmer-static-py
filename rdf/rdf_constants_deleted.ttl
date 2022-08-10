@@ -2,4 +2,6 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 
-<https://arche.acdh.oeaw.ac.at/api/214824> <delete://delete> acdh:hasNote .
+<https://arche.acdh.oeaw.ac.at/api/214872> <delete://delete> acdh:hasNote .
+
+<https://arche.acdh.oeaw.ac.at/api/214429> <delete://delete> acdh:hasNote .
