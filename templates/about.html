@@ -1,0 +1,46 @@
+{% extends "templates/base.html" %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
+{% block scriptHeader %}
+<style>
+    ul li {
+        padding: .3em 0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+          <li class="breadcrumb-item active" aria-current="page">Über das Projekt</li>
+      </ol>
+  </nav>
+  <!--
+  <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Σχετικά με το έργο</li>
+    </ol>
+  </nav>
+-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mx-auto text-center" id="index-title">
+        <h1 class="fw-light">ZUM PROJEKT</h1>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-lg-6 col-md-6 mx-auto" style="margin-bottom:4em;">        
+            <p style="font-size:18px;" class="lead text-muted">
+              Die Idee für eine Website über die Expedition von Paul und Leona Kretschmer nach Lesbos 1901 kam mir während meiner Feldforschungsreise (26.10.2020-7.11.2020) nach Athen und Lesbos. Die Reise fand im Rahmen des Projekts „Die Reise von Paul und Leona Kretschmer nach Lesbos (Griechenland). Kontextualisierung und Restudy“ statt. (Förderung: Stadt Wien 2019).<br/> <br/> 
+              Ziel meiner Reise war die Durchführung von Interviews mit der lokalen Bevölkerung bezüglich der Nachhaltigkeit der drei im <a href="https://www.oeaw.ac.at/phonogrammarchiv/home">Phonogrammarchiv</a> (PhA) der <a href="https://www.oeaw.ac.at">Österreichischen Akademie der Wissenschaften</a> (ÖAW) befindlichen Lieder, die Kretschmer 1901 in Mytilini aufnahm. Obwohl die Ankündigung eines Lock-Downs (7.11.) in Griechenland wegen COVID-19 zum unerwarteten Schluss der Reise führte, war der Aufenthalt in Lesbos sehr produktiv.<br/>  <br/> 
+              Das von Kretschmer 1901 gesammelte Material weckte das Interesse der lokalen Bevölkerung, die durch die unveröffentlichten Fotos, Tagebücher, Briefe und Tonaufnahmen die Möglichkeit sahen, (un)bekannte Persönlichkeiten und Seiten der lesbischen Gesellschaft zur Wende des 20. Jhdts. zu entdecken. Darüber hinaus wurde die Frage nach der Zugänglichkeit des in Wiener Institutionen befindlichen Archivmaterials zur Reise für ForscherInnen und InteressentInnen der Insel gestellt. <br/> <br/> 
+              Diese Entwicklung, zusätzlich zur steigenden virtuellen Realität, die die Pandemie mit sich brachte, war entscheidend für die Idee einer Online-Edition aller Fotos und Tonaufnahmen Kretschmers Reise, die auf dieser Website präsentiert werden. Damit das Publikum Griechenlands und besonders die source community in Lesbos Zugang zu Kretschmers Archivmaterial hat, wird die Website zweisprachig (Deutsch/Griechisch) gestaltet. <br/> <br/> 
+              Die Kontextualisierung des Materials stützt sich einerseits auf die unveröffentlichten <a href="http://data.onb.ac.at/rec/AC14015680">Reisetagebücher</a> der Lesbos Reise, die sich im <a href="http://data.onb.ac.at/rec/AC14244031">Nachlass Paul Kretschmer</a> an der <a href="https://www.onb.ac.at">Österreichischen National Bibliothek</a> (ÖNB) befinden, andererseits auf die Quellen des PhA der ÖAW in Wien. Die Sicherung der Daten erfolgt durch die Aufnahme in das Langzeitarchivierungsprojekt ARCHE an der ÖAW.<br/> <br/> 
+              Die historischen Bilder sowie die Reisetagebücher dieser Homepage wurden von der ÖNB zur Verfügung gestellt, mit der Erlaubnis sie für dieses Projekt zu verwenden. Jede Nutzung dieses Materials durch Dritte ist mit der ÖNB zu klären. <br/> 
+              Die Aufnahmen dieser Homepage sind Eigentum des PhA.
+            </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

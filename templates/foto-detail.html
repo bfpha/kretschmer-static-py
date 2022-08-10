@@ -1,0 +1,119 @@
+{% extends "templates/base.html" %}
+{% block title%} Die Reise von Paul und Leona Kretschmer nach Lesbos {% endblock %}
+{% block scriptHeader %}
+<script type="text/javascript" src="static/js/imageLoaded.js"></script>
+<style>
+    ul li {
+        padding: .3em 0;
+    }
+</style>
+{% endblock %}
+{% block content %}
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Start</a></li>     
+          <li class="breadcrumb-item active" aria-current="page">Fotografien</li>
+      </ol>
+  </nav>
+  <!--
+  <nav style="bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+    <ol class="breadcrumb" style="margin-bottom: 1em;">
+        <li class="breadcrumb-item"><a href="index.html">Κεντρική σελίδα</a></li>     
+        <li class="breadcrumb-item"><a href="fotos-detail.html">Φωτογραφία</a></li>
+    </ol>
+  </nav>
+  -->
+  <div class="container-fluid">
+    <div class="row" style="margin-bottom: 2em;">
+      <div class="col-lg-6 col-md-6 mx-auto">
+        <h1 class="fw-light text-center" style="margin-bottom:1em;">Fotografien</h1>
+        <p class="lead text-muted">
+          Kretschmer versuchte auch mithilfe der Photographie örtliche und volkskundliche Besonderheiten festzuhalten. Unsere Informationen über den Fotoapparat der Reise sind beschränkt. Die Reisetagebücher führen nur die Information an, dass es sich um ein Gerät der Firma Kodak handelte, ohne weitere Angaben über das konkrete Model zu machen. <br/><br/>
+          Das Paar Kretschmer nahm in dieser Expedition etwa 176 Fotos auf, von denen die Mehrheit aus dem Osmanischen Reich bzw. aus Lesbos stammt. In dieser Edition werden die 131 übrig gebliebenen Reisefotos präsentiert, die im Nachlass Kretschmers aufbewahrt werden. Kretschmer nummerierte nach seiner Rückkehr in Wien die Fotos auf der Rückseite durch und notierte meistens den Aufnahmeort oder in manchen Fällen die abgebildeten Personen. Sehr seltene Beispiele führen nur eine Nummer oder gar keine Auskunft. Alle diese Informationen auf der Rückseite der Fotos fungieren in der Edition als Titel der Metadaten. Eine Übersetzung des Titels wird auch angegeben. <br/><br/>
+          Die Dokumentation der Fotos stützt sich jedoch nicht nur auf die Angaben ihrer Rückseite, sondern auch auf die Informationen aus den Reisetagebüchern. Hierfür werden Transkriptionen der entsprechenden Stellen der Tagebücher zitiert, die Informationen über die abgebildeten Personen, das Datum und oft den genauen Aufnahmeort liefern. Die Beschreibung der Fotos in den Metadaten stützt sich auf diese Informationen. Der transkribierte Text führt am Ende einen Link, der zur entsprechenden Seite des Tagebuchs führt. Alle Ergänzungen von unserer Seite werden in den Transkriptionen in eckigen Klammern wiedergegeben. Runde Klammern lösen Abkürzungen aus dem Original auf.
+        </p>        
+      </div>        
+    </div>
+    <div class="row" style="margin-bottom: 3em;">
+      <div class="col-lg-6 col-md-6 mx-auto text-center">
+        <a href="table.html">
+          <button class="btn btn-round" class="lead text-muted">
+            Fotografie Register
+          </button>  
+        </a>        
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 mx-auto text-center">
+        <div id="tab-navigation">
+          <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            {% for col, items in objects|groupby('collection') %}
+              <li class="nav-item" role="presentation">
+                <button class=
+                  {% if col == 'Fotos_0001-0028' %}"nav-link active"{% else %}"nav-link"{% endif %}
+                  id="{{ col|lower }}-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#{{ col|lower }}"
+                  role="tab"
+                  aria-controls="{{ col|lower }}"
+                  type="button"
+                  aria-selected={% if col == 'Fotos_1-28' %}"true"{% else %}"false"{% endif %}
+                >
+                  {{ loop.index }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="album bg-light">
+          <div class="tab-content" id="nav-index">
+            <div class="container-fluid">        
+              {% for col, items in objects|groupby('collection') %}
+                <div class=
+                  "{% if col == 'Fotos_0001-0028' %}tab-pane fade show active{% else %}tab-pane fade{% endif %}"
+                  id="{{ col|lower }}"
+                  role="tabpanel"
+                  aria-labelledby="{{ col|lower }}-tab"
+                >
+                  <div class="row">    
+                      {% for res in items %}
+                        <div class="col-md-4">
+                          <a href="{{ res.url }}">
+                            <div class="card shadow-sm">
+                              <div class="card-header text-center">
+                                <div class="text-center">
+                                  <div class="loader-toc"></div>
+                                </div>
+                                {% for x in res.metadata %}
+                                  <img id="photo_{{ x.file1.replace(".tif", "") }}"
+                                    src="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=full/,300/0/default.jpg" 
+                                    title="{{ x.titleDe }} / {{ x.titleGr }}"
+                                    onload="hideLoader(this)"/>         
+                                         
+                                {% endfor %}
+                              </div>
+
+                              <div class="card-body">
+                                <p class="card-text"></p>
+                                <div class="align-items-center">
+                                  {% for x in res.metadata %}
+                                  <p>{{ x.titleDe }} <br/> {{ x.titleGr }}</p>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                        
+                      {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div>  
+
+{% endblock %}

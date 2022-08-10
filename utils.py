@@ -45,12 +45,17 @@ def make_index_html(df):
         }
         place = {}
         for i, row in df.iterrows():
+            item['collection'] = row['collection']
             item['prev'] = slugify(row['previous']) + ".html"
             item['next'] = slugify(row['next']) + ".html"
             item['prevTitle'] = row['previous']
             item['nextTitle'] = row['next']
-            item['collection'] = row['collection']
-            item['titleOrig'] = row['titleOriginal']
+            item['prevGr'] = slugify(row['previousGr']) + ".html"
+            item['nextGr'] = slugify(row['nextGr']) + ".html"
+            item['prevTitleGr'] = row['previousGr']
+            item['nextTitleGr'] = row['nextGr']
+            item['titleOrig'] = row['titleDe']
+            item['titleOrigGr'] = row['titleGr']
             station = {}
             placeKey = slugify(row['placeRegionDe'])
             place[placeKey] = {
@@ -64,6 +69,10 @@ def make_index_html(df):
                 "geonamesPlace": row['placeGeonames'],
                 "data_src": data_src,
                 "object_id": f"a{object_id.replace('-', '_')}",
+                "fileName": file_name,
+                "photoTitleDe": row['titleDe'],
+                "photoTitleGr": row['titleGr'],
+                "placeGeonames": row['placeGeonames']
             }            
             for x in row.keys():
                 station[x] = row[x]
@@ -81,7 +90,7 @@ def make_index_html(df):
         for x in obj.keys():
             if x not in tmp_names:
                 tmp_names.append(x)
-                tmp_places.append(obj[x])
+                tmp_places.append(obj[x])                
             else:
                 places_map.append(obj[x])
     places = {
@@ -89,9 +98,12 @@ def make_index_html(df):
         "map": []
     }
     places['unique'].append(tmp_places)
-    places['map'].append(places_map)
+    places['map'].append(places_map) 
     template = templateEnv.get_template('./templates/index.html')
     with open('./html/index.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/foto-detail.html')
+    with open('./html/fotos-detail.html', 'w') as f:
         f.write(template.render({"objects": items}))
     # template = templateEnv.get_template('./templates/map.html')
     # with open('./html/map.html', 'w') as f:
@@ -101,6 +113,18 @@ def make_index_html(df):
         f.write(template.render({"objects": rows}))
     template = templateEnv.get_template('./templates/place-index.html')
     with open('./html/place-index.html', 'w') as f:
+        f.write(template.render({"objects": items,"places": places}))
+    template = templateEnv.get_template('./templates/about.html')
+    with open('./html/about.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/team.html')
+    with open('./html/team.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/journey.html')
+    with open('./html/journey.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/imprint.html')
+    with open('./html/imprint.html', 'w') as f:
         f.write(template.render({"objects": items}))
     # print(places)
     return items
@@ -142,7 +166,6 @@ def make_geojsons(df):
                 }
             }
             item["features"].append(feature_point)
-
         item["features"].append(feature_line)
         with open(f'./html/data/{file_name}', 'w', encoding='utf-8') as f:
             json.dump(item, f, ensure_ascii=False, indent=4)
@@ -187,6 +210,63 @@ def make_person_html(df):
     template = templateEnv.get_template('./templates/person-index.html')
     with open('./html/person-index.html', 'w') as f:
         f.write(template.render({"objects": items}))
+    return items
+
+
+GDRIVE_URL_AUDIO = "https://docs.google.com/spreadsheet/ccc?key=16HRSdXvbUiTrQaxWoDjXiY3KfOFKUGwCoWE4S9TgcmU"
+
+def gsheet4_to_df():
+    url = f"{GDRIVE_URL_AUDIO}&output=csv"
+    r = requests.get(url)
+    print(r.status_code)
+    data = r.content
+    df = pd.read_csv(BytesIO(data), on_bad_lines='skip')
+    # df = pd.read_csv('./data_dump.csv')
+    # print(df)
+    return df
+
+def make_audio_html(df):
+    os.makedirs('./html', exist_ok=True)
+    items = []
+    rows = []       
+    template = templateEnv.get_template('./templates/object_audio.html')
+    for gr, df in df.groupby('ordering'):
+        object_id = slugify(gr)
+        file_name = f"{object_id}.html"
+        data_src = f"data/{object_id}.geojson"
+        item = {
+            "object_id": f"a{object_id.replace('-', '_')}",
+            "url": file_name,
+            "data_src": data_src, 
+            "title": gr,
+            "metadata": []
+        }
+        for i, row in df.iterrows():
+            item['prev'] = slugify(row['previous']) + ".html"
+            item['next'] = slugify(row['next']) + ".html"
+            item['prevTitle'] = row['previous']
+            item['nextTitle'] = row['next']
+            item['prevGr'] = slugify(row['previousGr']) + ".html"
+            item['nextGr'] = slugify(row['nextGr']) + ".html"
+            item['prevTitleGr'] = row['previousGr']
+            item['nextTitleGr'] = row['nextGr']
+            item['titleOrig'] = row['titleDe']
+            item['titleOrigGr'] = row['titleGr']
+            station = {}
+            for x in row.keys():
+                station[x] = row[x]
+            station["fileName"] = file_name
+            item['metadata'].append(station)
+            rows.append(station)            
+        items.append(item)
+        with open(f"./html/{file_name}", 'w') as f:
+            f.write(template.render(**item))
+    template = templateEnv.get_template('./templates/tonaufnahmen-detail.html')
+    with open('./html/tonaufnahmen-detail.html', 'w') as f:
+        f.write(template.render({"objects": items}))
+    template = templateEnv.get_template('./templates/table_audio.html')
+    with open('./html/table_audio.html', 'w') as f:
+        f.write(template.render({"objects": rows}))
     return items
 
 # creating rdf ttl files

@@ -1,8 +1,8 @@
 *.ipynb
-*.csv
 html/data
 html/*.html
 venv-kretschmer
+katalog*.ttl 
 dl_fundament.sh
 rdf/katalog*.ttl 
 rdf/deleted/katalog*.ttl 
