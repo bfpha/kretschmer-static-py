@@ -3,15 +3,16 @@ from utils import (
     gsheet_to_df,
     make_index_html,
     make_geojsons,
-    gsheet2_to_df,
     make_person_html,
-    gsheet4_to_df,
     make_audio_html,
 )
 
-DF = gsheet_to_df()
-DF2 = gsheet2_to_df()
-DF3 = gsheet4_to_df()
+IMAGES = "1aJz8-2rj-d2a62ciBH2j-ehzp4f0EgPF_Qg554W2IFA"
+DF = gsheet_to_df(IMAGES)
+PERSONS = "1frs9RF7kqAmbl3W1PWPRJyq1iGBxHIQikrNr9yXkkyQ"
+DF2 = gsheet_to_df(PERSONS)
+AUDIO = "16HRSdXvbUiTrQaxWoDjXiY3KfOFKUGwCoWE4S9TgcmU"
+DF3 = gsheet_to_df(AUDIO)
 make_index_html(DF)
 make_geojsons(DF)
 make_person_html(DF2)
