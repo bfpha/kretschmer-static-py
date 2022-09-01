@@ -15,7 +15,7 @@
     `python run.py`
 
 ### Automatic app build process using Github Workflows
-The build process is documented and available in the [BUILD YML](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/.github/workflows/arche.yml).
+The build process is documented and available in [BUILD YML](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/.github/workflows/arche.yml).
 Learn more about [Github Actions](https://docs.github.com/en/actions).
 After the build process finished the website is hosted using [Github Pages](https://pages.github.com/). The finished build is deployed in a separate branch called gh-pages.
 
@@ -28,24 +28,24 @@ Project template from https://github.com/csae8092/object-biographien.
 
 ### utlis
 
-[utlis](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/utils.py) contains all necessary python functions to process the data. If changes were made to the gsheet data a new build of the app will include those changes.
-This is true for currently available columns. In most case also new columns are processed and made available. The Jinja2 templates must be adapted in such cases.
+[utlis](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/utils.py) contains all necessary python functions to process the data. If changes were made to the gsheet a new build of the app will recognize the changes.
+This is true for currently available columns. In most cases also new columns are processed and made available. The Jinja2 templates must be adapted accordingly.
 
 ### templates
 
-The directory [templates](https://github.com/acdh-oeaw/kretschmer-static-py/tree/master/templates) contains all required Jinja2 templates. To change the HTML structure or exchange URLs for e.g. images the templates have to be adapted.
-For building the web app only .html templates are required. TTL templates are used to generate rdf/ttl metadata.
+The directory [templates](https://github.com/acdh-oeaw/kretschmer-static-py/tree/master/templates) contains all required Jinja2 templates. To change the HTML structure or content like URLs for e.g. images the templates have to be adapted.
+To build the app only html templates are required. TTL templates are used to generate rdf/ttl metadata.
 
 ### setup
 
-The webapp requires [Bootstrap](https://getbootstrap.com/) and ACDH-CH [Fundament](https://github.com/acdh-oeaw/fundament) ([dl_fundament.sh](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/dl_fundament.sh)). Running [setup.sh](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/setup.sh) will install both. Additionally, the website imprint is provided by an imprint ([dl_imprint.sh](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/dl_imprint.sh)) service hosted at the ACDH-CH which will be installed as well.
+The app requires [Bootstrap](https://getbootstrap.com/) and ACDH-CH [Fundament](https://github.com/acdh-oeaw/fundament) ([dl_fundament.sh](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/dl_fundament.sh)). Running the [setup](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/setup.sh) will install both. Additionally, the website imprint is provided by an imprint ([dl_imprint.sh](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/dl_imprint.sh)) service hosted at the ACDH-CH which will be installed as well.
 
 After the app was build all required files are saved in the [html](https://github.com/acdh-oeaw/kretschmer-static-py/tree/master/html) directory. From start this directory contains a subdir [static](https://github.com/acdh-oeaw/kretschmer-static-py/tree/master/html/static) with required CSS, JS and static images.
 
 ### Generic images and other files
 
-All filenames for images and other files are part of the gsheet and automatically implemented to the HTML site using the mentioned Jinja2 templates.
-If the file host changes the URL must be changed in the underlying template.
+All filenames for images and other files are part of the gsheet and automatically implemented using the mentioned Jinja2 templates.
+If the file host changes URLs must be adapted in the underlying Jinja2 template.
 
 # LICENSE
 
