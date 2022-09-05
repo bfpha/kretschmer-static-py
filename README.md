@@ -15,7 +15,7 @@
     `python run.py`
 
 ### Automatic app build process using Github Workflows
-The build process is documented and available in [BUILD YML](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/.github/workflows/arche.yml).
+The build process is documented and available in [BUILD YML](https://github.com/acdh-oeaw/kretschmer-static-py/blob/master/.github/workflows/build.yml).
 Learn more about [Github Actions](https://docs.github.com/en/actions).
 After the build process finished the website is hosted using [Github Pages](https://pages.github.com/). The finished build is deployed in a separate branch called gh-pages.
 
