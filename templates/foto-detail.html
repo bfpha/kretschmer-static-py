@@ -86,7 +86,7 @@
                                 </div>
                                 {% for x in res.metadata %}
                                   <img id="photo_{{ x.file1.replace(".tif", "") }}"
-                                    src="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=full/,300/0/default.jpg" 
+                                    src="{{ x.server_url }}{% if x.sv_ph_location is string %}{{ x.sv_ph_location }}{% endif %}{{ x.file1 }}{% if x.sv_url_param_reduced is string %}{{ x.sv_url_param_reduced }}{% endif %}" 
                                     title="{{ x.titleDe }} / {{ x.titleGr }}"
                                     onload="hideLoader(this)"/>         
                                          

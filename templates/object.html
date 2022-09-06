@@ -142,7 +142,7 @@
                                                         <br>                                                        
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature1 }}
                                                         </a>                                                        
                                                     </td>
@@ -156,7 +156,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature2 }}
                                                         </a> 
                                                     </td>
@@ -184,7 +184,7 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
-                                                <tr>
+                                                <!-- <tr>
                                                     <th>ARCHE Ressource Centre</th>
                                                     <td>
                                                         <table id="arche-table">
@@ -280,13 +280,13 @@
                                                             </tbody>
                                                         </table>
                                                     </td>
-                                                </tr> 
+                                                </tr> -->
                                                 <tr>
                                                     <th>Zitiervorschlag</th>
                                                     <td>
                                                         {{ x.photographDe }}. {{ x.titleDe }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
-                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
-                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis 
+                                                        (<a href="{{ x.domain }}{{ x.fileName }}">{{ x.domain }}{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                         <br/><br/>
                                                         Anmerkung: Für die Zitierung des digitalen Objekts wurde als Titel die (erklärende) Übersetzung von Kretschmers ursprünglicher Beschriftung auf der Rückseite der Fotos verwendet.
                                                     </td>
@@ -378,7 +378,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature1 }}
                                                         </a>  
                                                     </td>
@@ -392,7 +392,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile2 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature2 }}
                                                         </a>  
                                                     </td>
@@ -420,6 +420,7 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
+                                                <!-- 
                                                 <tr>
                                                     <th>ARCHE Ressource Centre</th>
                                                     <td>
@@ -517,12 +518,13 @@
                                                         </table>                                        
                                                     </td>
                                                 </tr>
+                                                -->
                                                 <tr>
                                                     <th>Zitiervorschlag</th>
                                                     <td>
                                                         {{ x.photographGr }}. {{ x.titleGr }} ({{ x.singatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
-                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
-                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis 
+                                                        (<a href="{{ x.domain }}{{ x.fileName }}">{{ x.domain }}{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                         <br/><br/>
                                                         Σημείωση: Για την παραπομπή του ψηφιακού αντικειμένου χρησιμοποιήθηκε ως τίτλος η μετάφραση/επεξήγηση της αρχικής περιγραφής του Κρέτσμερ στο πίσω μέρος της φωτογραφίας
                                                     </td>
@@ -623,12 +625,13 @@
                             <div class="loader-wrapper" id="spinner_img-1" class="text-center">
                                 <div class="loader"></div>
                             </div>
-                            <div class="card-body" id="img-front" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file1 }}?format=iiif&amp;param=info.json">
+                            <div class="card-body" id="img-front" data-target="{{ x.server_url }}{% if x.sv_ph_location is string %}{{ x.sv_ph_location }}{% endif %}{{ x.file1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full}}{% endif %}">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-front").attr('data-target');
+                        var imgObj = {type: 'image', url: imgURL};
                         $("#img-front").css({
                             'height': '600px'
                         });
@@ -639,7 +642,7 @@
                             // showReferenceStrip: true,
                             // showNavigator: true,
                             // imageLoaderLimit: 10,
-                            tileSources: imgURL
+                            tileSources: imgObj
                         });
 
                         viewer.addHandler('open', function() {
@@ -663,12 +666,13 @@
                             <div class="loader-wrapper" id="spinner_img-2" class="text-center">
                                 <div class="loader"></div>
                             </div>
-                            <div class="card-body" id="img-back" data-target="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/photos/{{ x.file2 }}?format=iiif&amp;param=info.json">
+                            <div class="card-body" id="img-back" data-target="{{ x.server_url }}{% if x.sv_ph_location is string %}{{ x.sv_ph_location }}{% endif %}{{ x.file2 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full}}{% endif %}">
                             </div>
                         </div>
                     </div>
                     <script type="text/javascript">
                         var imgURL = $("#img-back").attr('data-target');
+                        var imgObj = {type: 'image', url: imgURL};
                         $("#img-back").css({
                             'height': '600px'
                         });
@@ -679,7 +683,7 @@
                             // showReferenceStrip: true,
                             // showNavigator: true,
                             // imageLoaderLimit: 10,
-                            tileSources: imgURL
+                            tileSources: imgObj
                         });
                         
                         viewer2.addHandler('open', function() {
@@ -821,6 +825,6 @@
             });
         });
     </script>
-    <script type="text/javascript" src="static/js/get_handle.js"></script>
+    <!-- <script type="text/javascript" src="static/js/get_handle.js"></script> -->
 </div>
 {% endblock %}

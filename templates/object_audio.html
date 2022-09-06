@@ -142,7 +142,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature1 }}
                                                         </a> 
                                                     </td>
@@ -156,7 +156,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile2 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature2 }}
                                                         </a> 
                                                     </td>
@@ -174,6 +174,7 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
+                                                <!--
                                                 <tr>
                                                     <th>ARCHE Ressource Centre</th>
                                                     <td>
@@ -261,13 +262,14 @@
                                                             </tbody>
                                                         </table>                                       
                                                     </td>
-                                                </tr> 
+                                                </tr>
+                                                --> 
                                                 <tr>
                                                     <th>Zitiervorschlag</th>
                                                     <td>
                                                         {{ x.authorDe }}. {{ x.titleDe }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
-                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
-                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis 
+                                                        (<a href="{{ x.domain }}{{ x.fileName }}">{{ x.domain }}{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                         <br/><br/>
                                                         Anmerkung: Für die Zitierung des digitalen Objekts wurde als Titel die (erklärende) Übersetzung von Kretschmers ursprünglicher Beschriftung auf der Rückseite der Fotos verwendet.
                                                     </td>
@@ -358,7 +360,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature1 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile1 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile1 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature1 }}
                                                         </a> 
                                                     </td>
@@ -372,7 +374,7 @@
                                                         <br>
                                                         <a target="_blank"
                                                             title="{{ x.journalSignature2 }}"
-                                                            href="https://id.acdh.oeaw.ac.at/kretschmer-lesbos/journal/{{ x.journalFile2 }}?format=iiif&amp;param=full/full/0/default.jpg">
+                                                            href="{{ x.server_url }}{% if x.sv_jn_location is string %}{{ x.sv_jn_location }}{% endif %}{{ x.journalFile2 }}{% if x.sv_url_param_full is string %}{{ x.sv_url_param_full }}{% endif %}">
                                                             {{ x.journalSignature2 }}
                                                         </a> 
                                                     </td>
@@ -390,6 +392,7 @@
                                                     </td>
                                                 </tr>  
                                                 {% endif %} 
+                                                <!--
                                                 <tr>
                                                     <th>ARCHE Ressource Centre</th>
                                                     <td>
@@ -479,12 +482,13 @@
                                                     </td>
 
                                                 </tr> 
+                                                -->
                                                 <tr>
                                                     <th>Zitiervorschlag</th>
                                                     <td>
                                                         {{ x.authorGr }}. {{ x.titleGr }} ({{ x.signatureInv }}). In: Die Reise von Paul und Leona Kretschmer nach Lesbos - Fotos und Tonaufnahmen einer Expedition um 1901. 
-                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis, Stoxreiter Daniel 
-                                                        (<a href="https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}">https://acdh-oeaw.github.io/kretschmer-static-py/{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
+                                                        Hg. Nikolaros Stratos, Pantillon Gabriel, Brigkos Ioannis 
+                                                        (<a href="{{ x.domain }}{{ x.fileName }}">{{ x.domain }}{{ x.fileName }}</a>), aufgerufen am <span class="current-date">Datum</span>.
                                                         <br/><br/>
                                                         Σημείωση: Για την παραπομπή του ψηφιακού αντικειμένου χρησιμοποιήθηκε ως τίτλος η μετάφραση/επεξήγηση της αρχικής περιγραφής του Κρέτσμερ στο πίσω μέρος της φωτογραφίας
                                                     </td>
@@ -588,7 +592,7 @@
                                   </video> -->
                                   <audio controls>
                                     <source src="{{ x.file1Audio }}" type="audio/mpeg">
-                                    <p>Your browser doesn't support HTML5 video. Here is a <a href="https://catalog.phonogrammarchiv.at/media/Ph_131_ex.mp3">link to the audio</a> instead.</p>
+                                    <p>Your browser doesn't support HTML5 video. Here is a <a href="{{ x.file1Audio }}">link to the audio</a> instead.</p>
                                   </audio>
                             </div>
                         </div>
@@ -715,6 +719,6 @@
             });
         });
     </script>
-    <script type="text/javascript" src="static/js/get_handle.js"></script>
+    <!-- <script type="text/javascript" src="static/js/get_handle.js"></script> -->
 </div>
 {% endblock %}
