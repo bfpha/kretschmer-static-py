@@ -45,7 +45,8 @@ After the app was build all required files are saved in the [html](https://githu
 ### Generic images and other files
 
 All filenames for images and other files are part of the gsheet and automatically implemented using the mentioned Jinja2 templates.
-If the file host changes URLs must be adapted in the underlying Jinja2 template.
+If the file host changes the GSheet holds variables for "server_url" (domain), "sv_ph_location" or "sv_jn_location" (file location optional), "sv_url_param_reduced" or "sv_url_param_full" (url parameters optional) for easily updating the host.
+Additionally, the variable "domain" is used to change the domain name of the website in order to change the citation proposal.
 
 # LICENSE
 
