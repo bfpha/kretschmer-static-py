@@ -31,7 +31,6 @@ echo '<body class="page">
             Kretschmer Lesbos Online
         </a>
          -->
-        <span style="margin-left:-1.7em;" class="badge bg-light text-dark">BETA</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
